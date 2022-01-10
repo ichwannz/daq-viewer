@@ -11,6 +11,10 @@ using Transitions;
 using System.Globalization;
 
 using System.IO;
+/*TES RE COMMIT 
+ * 
+ * 
+ * /
 
 /*
 A-SELASA, 10 Dzulhijjah 1442 / 20 Juli 2021 
