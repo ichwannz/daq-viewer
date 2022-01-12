@@ -285,7 +285,7 @@ namespace DACQViewer
                 panJudulSubForm.Visible = true;
                 panFooterLeft.Visible = true;
                 lblJudulSubForm.Visible = true;
-                lblJudulSubForm.Text = "Parameter Data Akuisi & Firing Setup";
+                lblJudulSubForm.Text = "PARAMETER DATA AKUISISI DAN FIRING SETUP";
 
                 coloring(btnParamsInput);
                 openMainForm(new FormParams(dtRekapNum, daqID, roketID, dateID, timeID, sampleRate, jumChannel, idChannel, unitChannelStr));     // start form baru
@@ -299,7 +299,7 @@ namespace DACQViewer
             //seqClick = ftabel.getSeqClick_FTabelz() + 1;
             if(seqClick==1)
             {
-                lblJudulSubForm.Text = "Parameter Data Motor Roket Uji (Checklist)";
+                lblJudulSubForm.Text = "DATA MOTOR ROKET (CHECKLIST)";
                 coloring(btnDataMotor);
                 openMainForm(new FormDataMotor());
             }
@@ -325,7 +325,7 @@ namespace DACQViewer
             //seqClick = fchart0.getSeqClick_FChart0() + 1;
             if(seqClick==1)
             {
-                lblJudulSubForm.Text = "Form Laporan Hasil Uji Statis";
+                lblJudulSubForm.Text = "FORM LAPORAN HASIL UJI STATIS";
                 coloring(btnReport);
                 openMainForm(new FormReport());
             }
@@ -338,7 +338,7 @@ namespace DACQViewer
             if (seqClick == 1)
             {
                 hidingSubMenu();
-                lblJudulSubForm.Text = "Bundel Arsip (zip) Motor Roket Uji Statis";
+                lblJudulSubForm.Text = "BUNDEL ARSIP (zip) MOTOR ROKET UJI STATIS";
                 coloring(btnZip);
                 openMainForm(new FormArsipZip());
             }
@@ -396,7 +396,7 @@ namespace DACQViewer
 
         private void btnGrafIgn_Click(object sender, EventArgs e)
         {
-            lblJudulSubForm.Text = "Grafik Data Akuisisi US";
+            lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
             coloring(btnGrafIgn);
             openMainForm(new FormChart0(dtRekap, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate));
         }
@@ -404,7 +404,7 @@ namespace DACQViewer
         private void btnGrafThrust_Click(object sender, EventArgs e)
         {
 
-            lblJudulSubForm.Text = "Grafik Data Akuisisi";
+            lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
             coloring(btnGrafThrust);
             openMainForm(new ADMIN());
         }
