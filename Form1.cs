@@ -56,7 +56,11 @@ namespace DACQViewer
             InitializeComponent();
             showSubMenu(false);
             hideButton(true);
-            //btnLoad.Enabled = false;
+
+            btnDetach.Visible = false;
+            panJudulSubForm.Visible = false;
+            lblJudulSubForm.Visible = false;
+            panFooterLeft.Visible = false;
 
             //Judul (panel atas)
             label17.Visible = false;
@@ -64,7 +68,8 @@ namespace DACQViewer
 
             panWelcome.Visible = false;
             panEngineerID.Visible = false;
-            panFooter.Size = new Size(1069, 50);
+            panHeader.Size = new Size(1069, 25);
+            panFooter.Size = new Size(1069, 25);
 
             textBox5.CharacterCasing = CharacterCasing.Upper;
         }
@@ -93,7 +98,7 @@ namespace DACQViewer
 
         private string daqID, roketID, dateID, timeID;
 
-        
+        bool loadFailed = false;
         private void ambil_csv_table()
         {
             Stream mystream = null;
@@ -116,46 +121,58 @@ namespace DACQViewer
                             mystream.Close();
                         }
                     }
+                    else
+                    {
+                        loadFailed = true;
+                    }
+                }
+                catch (Exception err)
+                {
+                    loadFailed = true;
+                    MessageBox.Show("Gagal mengambil CSV, mohon diulangi, broo ! " + err.Message);
+                }
+            }
+
+            if (!loadFailed)
+            {
+                try
+                {
+                    if (bc != null)
+                    {
+                        //Ambil DataTable : Binding
+                        dtRekap = bc.get_dataRekap();
+
+                        //HEADER
+                        daqID = bc.get_daqID();
+                        roketID = bc.get_roketID();
+                        dateID = bc.get_dateID();
+                        timeID = bc.get_timeID();
+
+                        //Ambil DATA_HEADER
+                        jumDataRow = bc.get_jumlahData() - 1;
+                        unitChannelStr = bc.get_channelUNIT();
+                        idChannel = bc.get_channelID();
+                        unitChannelStr = bc.get_channelUNIT();
+                        jumChannel = bc.get_jumlahCh();
+                        sampleRate = int.Parse(bc.get_Sps());
+
+                        //tambah/insert kolom Nomer urut di Column0
+                        dtRekapNum = dtRekap.Copy();
+                        dtRekapNum.Columns.Add("No.Data", typeof(int)).SetOrdinal(0);
+                        for (int a = 0; a < jumDataRow; a++)
+                            dtRekapNum.Rows[a][0] = a;
+
+                        //debung value via textbox
+                        string csvPath = ofd.FileName;
+                    }
                 }
 
-                catch (Exception err) { MessageBox.Show(err.Message); }
-            }
-
-            try
-            {
-                //Ambil DataTable : Binding
-                dtRekap = bc.get_dataRekap();
-                
-                //HEADER
-                daqID = bc.get_daqID();
-                roketID = bc.get_roketID();
-                dateID = bc.get_dateID();
-                timeID = bc.get_timeID();
-                
-                //Ambil DATA_HEADER
-                jumDataRow = bc.get_jumlahData() - 1;
-                unitChannelStr = bc.get_channelUNIT();
-                idChannel = bc.get_channelID();
-                unitChannelStr = bc.get_channelUNIT();
-                jumChannel = bc.get_jumlahCh();
-                sampleRate = int.Parse(bc.get_Sps());
-
-                //tambah/insert kolom Nomer urut di Column0
-                dtRekapNum = dtRekap.Copy();
-                dtRekapNum.Columns.Add("No.Data", typeof(int)).SetOrdinal(0);
-                for (int a = 0; a < jumDataRow; a++)
-                    dtRekapNum.Rows[a][0] = a;
-
-                //debung value via textbox
-                string csvPath = ofd.FileName;
-
-            }
-            catch (Exception) //err
-            {
-                //MessageBox.Show("Isi dulu bagian Comment D850 ! <ERROR_PARSE>");     // err.Message);
-                MessageBox.Show("TIDAK BERHASIL MENGAMBIL FILE ! <ERROR_STREAM>","Wassalam..",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                Application.Exit();
-                Environment.Exit(0);
+                catch (Exception) //err
+                {
+                    MessageBox.Show("TIDAK BERHASIL MENGAMBIL FILE ! <ERROR_STREAM>", "Wassalam..", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Application.Exit();
+                    Environment.Exit(0);
+                }
             }
         }
      # endregion FUNGSI_UTAMA_DACQ
@@ -264,6 +281,12 @@ namespace DACQViewer
         {
             if(seqClick == 1)
             {
+                btnDetach.Visible = true;
+                panJudulSubForm.Visible = true;
+                panFooterLeft.Visible = true;
+                lblJudulSubForm.Visible = true;
+                lblJudulSubForm.Text = "PARAMETER DATA AKUISISI DAN FIRING SETUP";
+
                 coloring(btnParamsInput);
                 openMainForm(new FormParams(dtRekapNum, daqID, roketID, dateID, timeID, sampleRate, jumChannel, idChannel, unitChannelStr));     // start form baru
             }
@@ -276,6 +299,7 @@ namespace DACQViewer
             //seqClick = ftabel.getSeqClick_FTabelz() + 1;
             if(seqClick==1)
             {
+                lblJudulSubForm.Text = "DATA MOTOR ROKET (CHECKLIST)";
                 coloring(btnDataMotor);
                 openMainForm(new FormDataMotor());
             }
@@ -301,6 +325,7 @@ namespace DACQViewer
             //seqClick = fchart0.getSeqClick_FChart0() + 1;
             if(seqClick==1)
             {
+                lblJudulSubForm.Text = "FORM LAPORAN HASIL UJI STATIS";
                 coloring(btnReport);
                 openMainForm(new FormReport());
             }
@@ -313,6 +338,7 @@ namespace DACQViewer
             if (seqClick == 1)
             {
                 hidingSubMenu();
+                lblJudulSubForm.Text = "BUNDEL ARSIP (zip) MOTOR ROKET UJI STATIS";
                 coloring(btnZip);
                 openMainForm(new FormArsipZip());
             }
@@ -370,12 +396,15 @@ namespace DACQViewer
 
         private void btnGrafIgn_Click(object sender, EventArgs e)
         {
+            lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
             coloring(btnGrafIgn);
             openMainForm(new FormChart0(dtRekap, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate));
         }
 
         private void btnGrafThrust_Click(object sender, EventArgs e)
         {
+
+            lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
             coloring(btnGrafThrust);
             openMainForm(new ADMIN());
         }
@@ -397,12 +426,12 @@ namespace DACQViewer
             if (textBox6.Text == "2040" && textBox5.Text != " ")
             {
                 // Transition.run(panMainView, "BackColor", Color.Green, new TransitionType_Linear(1000));
+                Transition.run(panHeader, "Height", 70, new TransitionType_EaseInEaseOut(1000));
                 Transition.run(panFooter,"Height",100, new TransitionType_EaseInEaseOut(1000));
                 Transition.run(panWelcome, "Height", 52, new TransitionType_EaseInEaseOut(300));
+
                 //...
 
-                MessageBox.Show($"Selamat datang, {textBox5.Text} !!","",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                flag_logged_in = true;
 
                 textBox1.Text = textBox5.Text;   //ID_User
                 textBox4.Text = "Engineer Staff US-1";  //User positiion in OFK
@@ -416,6 +445,10 @@ namespace DACQViewer
                 panEngineerID.Visible = true;   //panel ID Engineer kanan bawah pojok
                 //panFooter.Size = new Size(1069, 100); // Balikin ke semula
                 gbLogin.Visible = false;
+
+                MessageBox.Show($"Selamat datang, {textBox5.Text} !!","",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                flag_logged_in = true;
+                
                 btnLoad_Click(sender, e);
             }
 
