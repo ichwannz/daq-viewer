@@ -62,6 +62,7 @@ namespace DACQViewer
             panJudulSubForm.Visible = false;
             lblJudulSubForm.Visible = false;
             panFooterLeft.Visible = false;
+            panel3.Visible = false;
 
             //Judul (panel atas)
             label17.Visible = false;
@@ -184,6 +185,7 @@ namespace DACQViewer
             if(val)
                 seqClick = 0;
 
+            btnLoad.ForeColor = Color.DimGray;
             btnParamsInput.ForeColor = Color.DimGray;
             btnDataMotor.ForeColor = Color.DimGray;
             btnGrafik.ForeColor = Color.DimGray;
@@ -230,6 +232,14 @@ namespace DACQViewer
             tombol.ForeColor = Color.Gold;
             tombol.Font = ftBold;
 
+            //panelbar
+            //panel3.Location = new Point(192, tombol.Location.Y);
+            panel3.Location = tombol.Location;
+            panel3.Visible = true;
+            if(panel3.Location==btnGrafIgn.Location || panel3.Location==btnGrafThrust.Location)
+            { panel3.Location = btnGrafik.Location;
+                //panel3.Location = new Point(this.panel3.Location.X, 195);
+            }
         }
   
      #endregion FUNGSI_VIEW-HIDE-UX
@@ -242,8 +252,7 @@ namespace DACQViewer
         private void btnLoad_Click(object sender, EventArgs e)
         {
             coloring(btnLoad);
-
-
+            
             //setting datetime lokal Indonesia
             CultureInfo lokalID = new System.Globalization.CultureInfo("id-ID");
             string hariUji, tglUji;
@@ -279,6 +288,7 @@ namespace DACQViewer
                 MessageBox.Show("Anda belum login, Bro !");
         }
     
+       
         private void btnParamsInput_Click(object sender, EventArgs e)
         {
             if(seqClick == 1)
@@ -405,7 +415,6 @@ namespace DACQViewer
 
         private void btnGrafThrust_Click(object sender, EventArgs e)
         {
-
             lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
             coloring(btnGrafThrust);
             openMainForm(new ADMIN());

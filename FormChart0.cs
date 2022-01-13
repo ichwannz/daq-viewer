@@ -302,6 +302,11 @@ namespace DACQViewer
             }
         }
 
+        private void create_cursor_vertical()
+        {
+
+        }
+
         private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             //saat 1 event ngeklik dihitung 1 kali eksekusi (mouse up)
@@ -323,6 +328,12 @@ namespace DACQViewer
         {
             seqClick = 1;
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            grafikAstm astm = new grafikAstm();
+            astm.Show();
         }
 
 

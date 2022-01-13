@@ -150,6 +150,12 @@
     <Compile Include="FormVideoz.Designer.cs">
       <DependentUpon>FormVideoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="grafikAstm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="grafikAstm.Designer.cs">
+      <DependentUpon>grafikAstm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="temporarys.cs">
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVideoz.resx">
       <DependentUpon>FormVideoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="grafikAstm.resx">
+      <DependentUpon>grafikAstm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -249,6 +258,9 @@
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
     <Content Include="logobaru_64px.ico" />
+    <None Include="Resources\exitButton2t.png" />
+    <None Include="Resources\detachButton3t.png" />
+    <None Include="Resources\grafik-us-solid-rocket-sni-8938-2020.png" />
     <None Include="Resources\logobaru_fix.jpg" />
     <None Include="Resources\logobaru_png1.png" />
     <None Include="Resources\Logo BRIN_landscape.png" />

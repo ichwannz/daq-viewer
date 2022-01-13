@@ -73,6 +73,36 @@ namespace DACQViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap detachButton3t {
+            get {
+                object obj = ResourceManager.GetObject("detachButton3t", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap exitButton2t {
+            get {
+                object obj = ResourceManager.GetObject("exitButton2t", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap grafik_us_solid_rocket_sni_8938_2020 {
+            get {
+                object obj = ResourceManager.GetObject("grafik-us-solid-rocket-sni-8938-2020", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logo_BRIN_landscape {
             get {
                 object obj = ResourceManager.GetObject("Logo BRIN_landscape", resourceCulture);

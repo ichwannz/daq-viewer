@@ -58,7 +58,6 @@
             this.cbDEBUG_MODE = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbLogin = new System.Windows.Forms.GroupBox();
-            this.btnExit = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -79,9 +78,11 @@
             this.panHeader = new System.Windows.Forms.Panel();
             this.panJudulSubForm = new System.Windows.Forms.Panel();
             this.lblJudulSubForm = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDetach = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panelSideMenu.SuspendLayout();
             this.panSubAnalyze.SuspendLayout();
             this.panFooter.SuspendLayout();
@@ -102,6 +103,7 @@
             // 
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(17)))), ((int)(((byte)(7)))));
+            this.panelSideMenu.Controls.Add(this.panel3);
             this.panelSideMenu.Controls.Add(this.pictureBox2);
             this.panelSideMenu.Controls.Add(this.btnZip);
             this.panelSideMenu.Controls.Add(this.btnReport);
@@ -260,7 +262,7 @@
             this.btnLoad.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
             this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoad.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoad.ForeColor = System.Drawing.Color.Gold;
+            this.btnLoad.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLoad.Location = new System.Drawing.Point(0, 70);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -502,26 +504,12 @@
             this.gbLogin.TabIndex = 99;
             this.gbLogin.TabStop = false;
             // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(100)))));
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(92, 72);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(25, 23);
-            this.btnExit.TabIndex = 2;
-            this.btnExit.Text = "X";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // btnLogin
             // 
             this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(100)))));
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.BackColor = System.Drawing.Color.Gold;
+            this.btnLogin.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnLogin.Location = new System.Drawing.Point(123, 72);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(70, 23);
@@ -740,6 +728,21 @@
             this.lblJudulSubForm.Text = "JUDUL_SUBFORM";
             this.lblJudulSubForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExit.BackColor = System.Drawing.Color.Gold;
+            this.btnExit.BackgroundImage = global::DACQViewer.Properties.Resources.exitButton2t;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(92, 72);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(25, 23);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -753,14 +756,15 @@
             // 
             // btnDetach
             // 
-            this.btnDetach.BackgroundImage = global::DACQViewer.Properties.Resources.detachButton;
+            this.btnDetach.BackColor = System.Drawing.Color.Gold;
+            this.btnDetach.BackgroundImage = global::DACQViewer.Properties.Resources.detachButton3t;
             this.btnDetach.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDetach.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetach.Location = new System.Drawing.Point(489, 3);
+            this.btnDetach.Location = new System.Drawing.Point(487, 3);
             this.btnDetach.Name = "btnDetach";
-            this.btnDetach.Size = new System.Drawing.Size(34, 28);
+            this.btnDetach.Size = new System.Drawing.Size(33, 29);
             this.btnDetach.TabIndex = 92;
-            this.btnDetach.UseVisualStyleBackColor = true;
+            this.btnDetach.UseVisualStyleBackColor = false;
             this.btnDetach.Click += new System.EventHandler(this.btnDetach_Click);
             // 
             // pictureBox2
@@ -773,6 +777,14 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 90;
             this.pictureBox2.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gold;
+            this.panel3.Location = new System.Drawing.Point(188, 70);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(7, 50);
+            this.panel3.TabIndex = 912;
             // 
             // Form1
             // 
@@ -876,6 +888,7 @@
         private System.Windows.Forms.Panel panJudulSubForm;
         private System.Windows.Forms.Panel panFooterLeft;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 
