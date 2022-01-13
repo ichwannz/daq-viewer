@@ -40,11 +40,12 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -85,14 +86,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(421, 11);
+            this.textBox1.Location = new System.Drawing.Point(570, 13);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(120, 20);
             this.textBox1.TabIndex = 7;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(696, 13);
+            this.button1.Location = new System.Drawing.Point(6, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 27);
             this.button1.TabIndex = 8;
@@ -137,6 +138,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Control;
+            this.panel5.Controls.Add(this.button1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
@@ -167,18 +169,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kurva Igniter (Volt), Gaya Dorong (Kgf)";
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.SystemColors.Control;
-            this.panel4.Controls.Add(this.button1);
-            this.panel4.Controls.Add(this.btnMakeReport);
-            this.panel4.Controls.Add(this.textBox1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 411);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(793, 61);
-            this.panel4.TabIndex = 7;
-            // 
             // richTextBox2
             // 
             this.richTextBox2.Location = new System.Drawing.Point(100, 104);
@@ -186,6 +176,17 @@
             this.richTextBox2.Size = new System.Drawing.Size(247, 226);
             this.richTextBox2.TabIndex = 5;
             this.richTextBox2.Text = resources.GetString("richTextBox2.Text");
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.btnMakeReport);
+            this.panel4.Controls.Add(this.textBox1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 411);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(793, 61);
+            this.panel4.TabIndex = 7;
             // 
             // FormChart0
             // 
@@ -200,6 +201,7 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);

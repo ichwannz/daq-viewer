@@ -249,6 +249,8 @@
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
     <Content Include="logobaru_64px.ico" />
+    <None Include="Resources\logobaru_fix.jpg" />
+    <None Include="Resources\logobaru_png1.png" />
     <None Include="Resources\Logo BRIN_landscape.png" />
     <None Include="Resources\detachButton.png" />
     <None Include="Resources\logobaru.png" />

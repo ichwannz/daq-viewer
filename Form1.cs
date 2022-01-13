@@ -57,6 +57,7 @@ namespace DACQViewer
             showSubMenu(false);
             hideButton(true);
 
+            pictureBox2.Visible = false;
             btnDetach.Visible = false;
             panJudulSubForm.Visible = false;
             lblJudulSubForm.Visible = false;
@@ -267,6 +268,7 @@ namespace DACQViewer
                 label18.Text = "Waktu Uji : " + hariUji + ", " + tglUji + ", " + timeID;
                 label17.Visible = true;
                 label18.Visible = true;
+                pictureBox2.Visible = true;
 
                 //langsung buka tabel
                 seqClick = 1;
@@ -496,7 +498,8 @@ namespace DACQViewer
         /*Status waktu saat ini*/
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label9.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");//DateTime.Today.ToLongDateString();
+            string strDate = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");//DateTime.Today.ToLongDateString();
+            //label9.Text = strDate;
         }
     }
 }

@@ -49,9 +49,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(503, 12);
+            this.richTextBox1.Location = new System.Drawing.Point(118, 12);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(478, 294);
+            this.richTextBox1.Size = new System.Drawing.Size(478, 141);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "- Tabel Konfirmasi nilai hasil penghitungan ISP, Impuls, dkk\n- Hasil Report FORM-" +
     "UJI-STATIS\n\n- lampiran photo gambar2 penting";

@@ -289,7 +289,7 @@
             this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox3.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(735, 34);
+            this.textBox3.Location = new System.Drawing.Point(720, 34);
             this.textBox3.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox3.MaxLength = 32;
             this.textBox3.Name = "textBox3";
@@ -304,12 +304,12 @@
             this.textBox11.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox11.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox11.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(659, 60);
+            this.textBox11.Location = new System.Drawing.Point(720, 60);
             this.textBox11.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox11.MaxLength = 32;
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(32, 25);
+            this.textBox11.Size = new System.Drawing.Size(37, 25);
             this.textBox11.TabIndex = 1;
             // 
             // textBox10
@@ -379,20 +379,20 @@
             this.label17.Location = new System.Drawing.Point(602, 62);
             this.label17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(57, 18);
+            this.label17.Size = new System.Drawing.Size(111, 18);
             this.label17.TabIndex = 0;
-            this.label17.Text = "JumCH :";
+            this.label17.Text = "JUMLAH KANAL :";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(812, 36);
+            this.label16.Location = new System.Drawing.Point(764, 36);
             this.label16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(107, 18);
+            this.label16.Size = new System.Drawing.Size(30, 18);
             this.label16.TabIndex = 0;
-            this.label16.Text = "sample per detik";
+            this.label16.Text = "sps";
             // 
             // label3
             // 
@@ -584,7 +584,7 @@
             this.label4.Location = new System.Drawing.Point(33, 66);
             this.label4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 16);
+            this.label4.Size = new System.Drawing.Size(88, 16);
             this.label4.TabIndex = 2;
             this.label4.Text = "[3] CABLE RES.";
             // 
@@ -595,7 +595,7 @@
             this.label6.Location = new System.Drawing.Point(33, 14);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 16);
+            this.label6.Size = new System.Drawing.Size(109, 16);
             this.label6.TabIndex = 4;
             this.label6.Text = "[1] TRIGGER FORCE";
             // 
@@ -616,7 +616,7 @@
             this.label13.Location = new System.Drawing.Point(355, 14);
             this.label13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(58, 16);
+            this.label13.Size = new System.Drawing.Size(59, 16);
             this.label13.TabIndex = 4;
             this.label13.Text = "Amp (CC)";
             // 
@@ -627,7 +627,7 @@
             this.label11.Location = new System.Drawing.Point(33, 91);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(111, 16);
+            this.label11.Size = new System.Drawing.Size(112, 16);
             this.label11.TabIndex = 2;
             this.label11.Text = "[4] TRIG. DURATION";
             // 
@@ -638,7 +638,7 @@
             this.label7.Location = new System.Drawing.Point(223, 14);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 16);
+            this.label7.Size = new System.Drawing.Size(57, 16);
             this.label7.TabIndex = 4;
             this.label7.Text = "Volt (CV)";
             // 
@@ -659,7 +659,7 @@
             this.label8.Location = new System.Drawing.Point(223, 40);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 16);
+            this.label8.Size = new System.Drawing.Size(34, 16);
             this.label8.TabIndex = 4;
             this.label8.Text = "Ohm";
             // 
@@ -670,7 +670,7 @@
             this.label5.Location = new System.Drawing.Point(33, 40);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 16);
+            this.label5.Size = new System.Drawing.Size(95, 16);
             this.label5.TabIndex = 3;
             this.label5.Text = "[2] IGNITER RES.";
             // 
@@ -681,7 +681,7 @@
             this.label9.Location = new System.Drawing.Point(223, 66);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 16);
+            this.label9.Size = new System.Drawing.Size(34, 16);
             this.label9.TabIndex = 4;
             this.label9.Text = "Ohm";
             // 
@@ -722,7 +722,7 @@
             this.label12.Location = new System.Drawing.Point(223, 91);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 16);
+            this.label12.Size = new System.Drawing.Size(54, 16);
             this.label12.TabIndex = 4;
             this.label12.Text = "Seconds";
             // 

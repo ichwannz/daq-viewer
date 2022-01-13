@@ -44,9 +44,7 @@
             this.panFooter = new System.Windows.Forms.Panel();
             this.panFooterLeft = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.panEngineerID = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -81,12 +79,11 @@
             this.panHeader = new System.Windows.Forms.Panel();
             this.panJudulSubForm = new System.Windows.Forms.Panel();
             this.lblJudulSubForm = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnDetach = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnDetach = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelSideMenu.SuspendLayout();
             this.panSubAnalyze.SuspendLayout();
-            this.panelLogo.SuspendLayout();
             this.panFooter.SuspendLayout();
             this.panFooterLeft.SuspendLayout();
             this.panEngineerID.SuspendLayout();
@@ -97,14 +94,15 @@
             this.panel2.SuspendLayout();
             this.panHeader.SuspendLayout();
             this.panJudulSubForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
             // 
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(17)))), ((int)(((byte)(7)))));
+            this.panelSideMenu.Controls.Add(this.pictureBox2);
             this.panelSideMenu.Controls.Add(this.btnZip);
             this.panelSideMenu.Controls.Add(this.btnReport);
             this.panelSideMenu.Controls.Add(this.panSubAnalyze);
@@ -275,7 +273,7 @@
             // 
             // panelLogo
             // 
-            this.panelLogo.Controls.Add(this.pictureBox1);
+            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(17)))), ((int)(((byte)(7)))));
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
@@ -295,61 +293,35 @@
             // 
             // panFooterLeft
             // 
-            this.panFooterLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panFooterLeft.Controls.Add(this.label18);
-            this.panFooterLeft.Controls.Add(this.label16);
             this.panFooterLeft.Controls.Add(this.label17);
-            this.panFooterLeft.Controls.Add(this.label9);
+            this.panFooterLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panFooterLeft.Location = new System.Drawing.Point(0, 0);
             this.panFooterLeft.Name = "panFooterLeft";
-            this.panFooterLeft.Size = new System.Drawing.Size(358, 99);
+            this.panFooterLeft.Size = new System.Drawing.Size(526, 100);
             this.panFooterLeft.TabIndex = 97;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.Gold;
-            this.label18.Location = new System.Drawing.Point(5, 38);
+            this.label18.Font = new System.Drawing.Font("HP Simplified", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.FloralWhite;
+            this.label18.Location = new System.Drawing.Point(5, 47);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(168, 23);
+            this.label18.Size = new System.Drawing.Size(209, 28);
             this.label18.TabIndex = 96;
             this.label18.Text = "WAKTU_PENGUJIAN";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(3, 74);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(125, 18);
-            this.label16.TabIndex = 95;
-            this.label16.Text = "Waktu saat ini :";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.Gold;
-            this.label17.Location = new System.Drawing.Point(5, 10);
+            this.label17.Font = new System.Drawing.Font("HP Simplified", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FloralWhite;
+            this.label17.Location = new System.Drawing.Point(5, 14);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(187, 23);
+            this.label17.Size = new System.Drawing.Size(231, 28);
             this.label17.TabIndex = 96;
             this.label17.Text = "KODE_MOTOR_ROKET";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(134, 74);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(130, 18);
-            this.label9.TabIndex = 94;
-            this.label9.Text = "_date_time_now";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panEngineerID
             // 
@@ -470,6 +442,7 @@
             // panMainView
             // 
             this.panMainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(85)))));
+            this.panMainView.Controls.Add(this.pictureBox1);
             this.panMainView.Controls.Add(this.cbDEBUG_MODE);
             this.panMainView.Controls.Add(this.label1);
             this.panMainView.Controls.Add(this.gbLogin);
@@ -477,7 +450,6 @@
             this.panMainView.Controls.Add(this.label10);
             this.panMainView.Controls.Add(this.label6);
             this.panMainView.Controls.Add(this.label7);
-            this.panMainView.Controls.Add(this.pictureBox2);
             this.panMainView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panMainView.Location = new System.Drawing.Point(195, 70);
             this.panMainView.Name = "panMainView";
@@ -493,7 +465,7 @@
             this.cbDEBUG_MODE.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbDEBUG_MODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbDEBUG_MODE.ForeColor = System.Drawing.Color.Red;
-            this.cbDEBUG_MODE.Location = new System.Drawing.Point(294, 311);
+            this.cbDEBUG_MODE.Location = new System.Drawing.Point(408, 161);
             this.cbDEBUG_MODE.Name = "cbDEBUG_MODE";
             this.cbDEBUG_MODE.Size = new System.Drawing.Size(193, 29);
             this.cbDEBUG_MODE.TabIndex = 96;
@@ -524,7 +496,7 @@
             this.gbLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbLogin.ForeColor = System.Drawing.Color.FloralWhite;
-            this.gbLogin.Location = new System.Drawing.Point(801, 186);
+            this.gbLogin.Location = new System.Drawing.Point(792, 186);
             this.gbLogin.Name = "gbLogin";
             this.gbLogin.Size = new System.Drawing.Size(199, 104);
             this.gbLogin.TabIndex = 99;
@@ -637,7 +609,7 @@
             this.label6.ForeColor = System.Drawing.Color.FloralWhite;
             this.label6.Location = new System.Drawing.Point(263, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(735, 52);
+            this.label6.Size = new System.Drawing.Size(736, 52);
             this.label6.TabIndex = 92;
             this.label6.Text = "DATA ACQUISITION VIEWER UJI STATIS";
             // 
@@ -686,15 +658,15 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.btnLogout.ForeColor = System.Drawing.Color.FloralWhite;
-            this.btnLogout.Location = new System.Drawing.Point(166, 24);
+            this.btnLogout.ForeColor = System.Drawing.Color.Gold;
+            this.btnLogout.Location = new System.Drawing.Point(149, 27);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(70, 22);
+            this.btnLogout.Size = new System.Drawing.Size(98, 22);
             this.btnLogout.TabIndex = 94;
             this.btnLogout.Text = "LOGOUT";
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -705,7 +677,7 @@
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Right;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label15.ForeColor = System.Drawing.Color.FloralWhite;
+            this.label15.ForeColor = System.Drawing.Color.Gold;
             this.label15.Location = new System.Drawing.Point(98, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(152, 17);
@@ -724,6 +696,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDark;
@@ -767,16 +740,16 @@
             this.lblJudulSubForm.Text = "JUDUL_SUBFORM";
             this.lblJudulSubForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox2
+            // pictureBox1
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = global::DACQViewer.Properties.Resources.logobaru;
-            this.pictureBox2.Location = new System.Drawing.Point(824, 320);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(172, 118);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 91;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::DACQViewer.Properties.Resources.logobaru_fix;
+            this.pictureBox1.Location = new System.Drawing.Point(880, 340);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(111, 93);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 90;
+            this.pictureBox1.TabStop = false;
             // 
             // btnDetach
             // 
@@ -790,15 +763,16 @@
             this.btnDetach.UseVisualStyleBackColor = true;
             this.btnDetach.Click += new System.EventHandler(this.btnDetach_Click);
             // 
-            // pictureBox1
+            // pictureBox2
             // 
-            this.pictureBox1.Image = global::DACQViewer.Properties.Resources.logobaru;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(152, 70);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 90;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox2.Image = global::DACQViewer.Properties.Resources.logobaru_fix;
+            this.pictureBox2.Location = new System.Drawing.Point(33, 561);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(128, 95);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 90;
+            this.pictureBox2.TabStop = false;
             // 
             // Form1
             // 
@@ -825,7 +799,6 @@
             this.Enter += new System.EventHandler(this.btnLogin_Click);
             this.panelSideMenu.ResumeLayout(false);
             this.panSubAnalyze.ResumeLayout(false);
-            this.panelLogo.ResumeLayout(false);
             this.panFooter.ResumeLayout(false);
             this.panFooterLeft.ResumeLayout(false);
             this.panFooterLeft.PerformLayout();
@@ -843,8 +816,8 @@
             this.panHeader.ResumeLayout(false);
             this.panJudulSubForm.ResumeLayout(false);
             this.panJudulSubForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -869,7 +842,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panMainView;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnDetach;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
@@ -886,8 +858,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panWelcome;
         private System.Windows.Forms.CheckBox cbDEBUG_MODE;
@@ -905,6 +875,7 @@
         private System.Windows.Forms.Label lblJudulSubForm;
         private System.Windows.Forms.Panel panJudulSubForm;
         private System.Windows.Forms.Panel panFooterLeft;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
