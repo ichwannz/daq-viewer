@@ -314,11 +314,6 @@ namespace DACQViewer
                 dataGridView1.EndEdit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            tampilkan_tabel_analitik();
-        }
-
         int seqClick = 0;
         public int getSeqClick_FChart0()
         {
@@ -336,17 +331,53 @@ namespace DACQViewer
             astm.Show();
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            tampilkan_tabel_analitik();
+        }
+
+        private static bool isOdd(int val)
+        {
+            return val % 2 != 0;
+        }
+
+        int idxButton = 0;
+        private void button9_Click(object sender, EventArgs e)
+        {
+            idxButton++;
+
+            if(isOdd(idxButton))
+            {
+                Transition.run(panel4, "Height", 35, new TransitionType_EaseInEaseOut(500));
+                //button9.Text = "show";
+                button9.BackgroundImage = Properties.Resources.upBtn;
+            }
+            else
+            {
+                Transition.run(panel4, "Height", 232, new TransitionType_EaseInEaseOut(500));
+                //button9.Text = "hide";
+                button9.BackgroundImage = Properties.Resources.downBtn;
+            }
+        }
+
 
         //fungsi untuk show/hide curve, via kolom centang di DGV1
         private void aksi_centang(int idx, bool status)
         {
             if (status)
+            {
                 //curve visiblity true
+                myChart.CurveList[idx].IsVisible = true;
                 dataGridView1.Rows[idx].Cells[4].Style.BackColor = Color.GreenYellow;
-            else
-                //curve visibility false
-                dataGridView1.Rows[idx].Cells[4].Style.BackColor = Color.Crimson;
+            }
 
+            else
+            {
+                //curve visibility false
+                myChart.CurveList[idx].IsVisible = false;
+                dataGridView1.Rows[idx].Cells[4].Style.BackColor = Color.Crimson;
+            }
+            zedGraphControl1.Refresh();
         }
 
     # endregion TABEL_ANALITIK_CELL_KLIK_EVENT

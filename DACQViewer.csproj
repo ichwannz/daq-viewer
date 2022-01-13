@@ -258,6 +258,9 @@
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
     <Content Include="logobaru_64px.ico" />
+    <None Include="Resources\upBtn.png" />
+    <None Include="Resources\downBtn.png" />
+    <None Include="Resources\up_btn.png" />
     <None Include="Resources\exitButton2t.png" />
     <None Include="Resources\detachButton3t.png" />
     <None Include="Resources\grafik-us-solid-rocket-sni-8938-2020.png" />

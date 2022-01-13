@@ -83,6 +83,16 @@ namespace DACQViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap downBtn {
+            get {
+                object obj = ResourceManager.GetObject("downBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap exitButton2t {
             get {
                 object obj = ResourceManager.GetObject("exitButton2t", resourceCulture);
@@ -146,6 +156,16 @@ namespace DACQViewer.Properties {
         internal static System.Drawing.Bitmap RCX_GRUP {
             get {
                 object obj = ResourceManager.GetObject("RCX.GRUP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap upBtn {
+            get {
+                object obj = ResourceManager.GetObject("upBtn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

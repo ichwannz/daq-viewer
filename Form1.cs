@@ -50,9 +50,6 @@ namespace DACQViewer
 
         public Form1()
         {
-            //tes sukses clear synchronize SF3<>github<>GSXLAPAN
-            //Alhamdulillah
-
             InitializeComponent();
             showSubMenu(false);
             hideButton(true);

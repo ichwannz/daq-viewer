@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelSideMenu = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnZip = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.panSubAnalyze = new System.Windows.Forms.Panel();
@@ -55,9 +57,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panMainView = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbDEBUG_MODE = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbLogin = new System.Windows.Forms.GroupBox();
+            this.btnExit = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -78,25 +82,21 @@
             this.panHeader = new System.Windows.Forms.Panel();
             this.panJudulSubForm = new System.Windows.Forms.Panel();
             this.lblJudulSubForm = new System.Windows.Forms.Label();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDetach = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panelSideMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panSubAnalyze.SuspendLayout();
             this.panFooter.SuspendLayout();
             this.panFooterLeft.SuspendLayout();
             this.panEngineerID.SuspendLayout();
             this.panMainView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbLogin.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panWelcome.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panHeader.SuspendLayout();
             this.panJudulSubForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -118,6 +118,25 @@
             this.panelSideMenu.Name = "panelSideMenu";
             this.panelSideMenu.Size = new System.Drawing.Size(195, 681);
             this.panelSideMenu.TabIndex = 90;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gold;
+            this.panel3.Location = new System.Drawing.Point(188, 70);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(7, 50);
+            this.panel3.TabIndex = 912;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox2.Image = global::DACQViewer.Properties.Resources.logobaru_fix;
+            this.pictureBox2.Location = new System.Drawing.Point(33, 561);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(128, 95);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 90;
+            this.pictureBox2.TabStop = false;
             // 
             // btnZip
             // 
@@ -458,6 +477,17 @@
             this.panMainView.Size = new System.Drawing.Size(1069, 511);
             this.panMainView.TabIndex = 91;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::DACQViewer.Properties.Resources.logobaru_fix;
+            this.pictureBox1.Location = new System.Drawing.Point(880, 340);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(111, 93);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 90;
+            this.pictureBox1.TabStop = false;
+            // 
             // cbDEBUG_MODE
             // 
             this.cbDEBUG_MODE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -503,6 +533,21 @@
             this.gbLogin.Size = new System.Drawing.Size(199, 104);
             this.gbLogin.TabIndex = 99;
             this.gbLogin.TabStop = false;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExit.BackColor = System.Drawing.Color.Gold;
+            this.btnExit.BackgroundImage = global::DACQViewer.Properties.Resources.exitButton2t;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(92, 72);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(25, 23);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnLogin
             // 
@@ -728,32 +773,6 @@
             this.lblJudulSubForm.Text = "JUDUL_SUBFORM";
             this.lblJudulSubForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnExit.BackColor = System.Drawing.Color.Gold;
-            this.btnExit.BackgroundImage = global::DACQViewer.Properties.Resources.exitButton2t;
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(92, 72);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(25, 23);
-            this.btnExit.TabIndex = 2;
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::DACQViewer.Properties.Resources.logobaru_fix;
-            this.pictureBox1.Location = new System.Drawing.Point(880, 340);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(111, 93);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 90;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnDetach
             // 
             this.btnDetach.BackColor = System.Drawing.Color.Gold;
@@ -766,25 +785,6 @@
             this.btnDetach.TabIndex = 92;
             this.btnDetach.UseVisualStyleBackColor = false;
             this.btnDetach.Click += new System.EventHandler(this.btnDetach_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox2.Image = global::DACQViewer.Properties.Resources.logobaru_fix;
-            this.pictureBox2.Location = new System.Drawing.Point(33, 561);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(128, 95);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 90;
-            this.pictureBox2.TabStop = false;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Gold;
-            this.panel3.Location = new System.Drawing.Point(188, 70);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(7, 50);
-            this.panel3.TabIndex = 912;
             // 
             // Form1
             // 
@@ -810,6 +810,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Enter += new System.EventHandler(this.btnLogin_Click);
             this.panelSideMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panSubAnalyze.ResumeLayout(false);
             this.panFooter.ResumeLayout(false);
             this.panFooterLeft.ResumeLayout(false);
@@ -818,6 +819,7 @@
             this.panEngineerID.PerformLayout();
             this.panMainView.ResumeLayout(false);
             this.panMainView.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbLogin.ResumeLayout(false);
             this.gbLogin.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -828,8 +830,6 @@
             this.panHeader.ResumeLayout(false);
             this.panJudulSubForm.ResumeLayout(false);
             this.panJudulSubForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
