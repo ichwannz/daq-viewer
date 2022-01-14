@@ -113,6 +113,16 @@ namespace DACQViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leftBtn {
+            get {
+                object obj = ResourceManager.GetObject("leftBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logo_BRIN_landscape {
             get {
                 object obj = ResourceManager.GetObject("Logo BRIN_landscape", resourceCulture);
@@ -156,6 +166,16 @@ namespace DACQViewer.Properties {
         internal static System.Drawing.Bitmap RCX_GRUP {
             get {
                 object obj = ResourceManager.GetObject("RCX.GRUP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rightBtn {
+            get {
+                object obj = ResourceManager.GetObject("rightBtn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

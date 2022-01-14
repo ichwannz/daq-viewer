@@ -21,7 +21,7 @@ namespace DACQViewer
       
         Color[] warnaKurva = new Color[10]
         {
-            Color.Crimson,          // sebisa mungin tuntuk igniter signal
+            Color.Crimson,          // sebisa mungkin untuk igniter signal
             Color.Gold,
             Color.DeepSkyBlue,
             Color.LimeGreen,
@@ -34,112 +34,69 @@ namespace DACQViewer
         };
 
         //variabel data header tabel
-        private string[] dataChX;
+        private string[] dataChX, dataChDg;
         private string[] idChannelArr;
         private int jumChannel;
         private int jumDataRow;
         private int sampleRate;
         private string[] unitChannelArr;
+        private string roketID;
 
-        public FormChart0(DataTable dtRekapF1, int dt1, string[] dt2, string[] dt3, int dt4, int dt5)
+
+
+        public FormChart0(DataTable dtRekapF1, int dt1, string[] dt2, string[] dt3, int dt4, int dt5, string dt6)
         {
             InitializeComponent();
-
-
+            
             dtRekapF3 = dtRekapF1;  //ambil data tabel full
             jumDataRow = dt1;       //jumlah baris data
             unitChannelArr = dt2;   //nama satuan
             idChannelArr = dt3;     //nama channel
             jumChannel = dt4;       //jumlah channel yg dipakai
             sampleRate = dt5;
+            roketID = dt6;
 
             //mulai form
             inisialisasi_grafik();
             plot_grafik();
-
         }
-
-
-        private int indexIgn, indexKgf;
-
-        // cari nomor urut-index Channel dgn KGF, VOLT
-        private void cekIndexKgf()
-        {
-            //apakah semua satuan sama? if no..activate Y2 axis: Bar & KGF
-            //indexKgf = Array.IndexOf(unitChannel, "kgf");
-            indexKgf = Array.FindIndex(unitChannelArr, a => a.Equals("kgf", StringComparison.InvariantCultureIgnoreCase));
-
-            //indexIgn = Array.IndexOf(unitChannel, "V");
-            indexIgn = Array.FindIndex(unitChannelArr, b => b.Equals("v", StringComparison.InvariantCultureIgnoreCase));
-
-            if (indexKgf < 0) indexKgf = 0;
-            if (indexIgn < 0) indexIgn = 0;
-        }
-
-        // bool apakah iTag(urutan kurvaCH0 cocok dengan nomor urut index KGF
-        private int isKgfExist(int indexKurva)
-        {
-            int pembagiBar = 10000;
-            int pembagiKgf = 10000;
-
-            int pembagiSatuan;
-            int tagz = indexKurva + 1;
-
-            if (tagz == indexKgf || tagz == indexIgn)    // if channel kurva ini Thrust(KgF)
-            {
-                myChart.CurveList[indexKurva].IsY2Axis = true;  //kalau ada Volt atau Kgf
-                pembagiSatuan = pembagiKgf;
-            }
-            else //if channel ini normal, pressure (bar)
-            {
-                myChart.CurveList[indexKurva].IsY2Axis = false; // kalau cuma Bar 
-                pembagiSatuan = pembagiBar;
-            }
-            return pembagiSatuan;
-        }
+#region FORM_CHART
+        LineItem kurvaCHX;
 
         private void plot_grafik()
-        {
-            cekIndexKgf();
-
-            myChart.CurveList.Clear();
-
-            if (indexKgf > 0)
-            {
-                myChart.Y2Axis.IsVisible = true;
-                myChart.Y2Axis.Title.Text = "kgf";
-            }
-
+        { 
             /*clearing area grafik dulu*/
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.GraphPane.GraphObjList.Clear();
-
-            myChart.Legend.IsVisible = true;
-            myChart.Legend.Position = ZedGraph.LegendPos.InsideTopRight;
-            //zedGraphControl1.GraphPane.Chart.Fill.Color = Color.Black;    //chart
-            //zedGraphControl1.GraphPane.Fill.Color = Color.Black;            //keseluruhan
-
-            /*setup untuk tampilan chart*/
-            myChart.XAxis.Scale.MajorStepAuto = true;
-            myChart.XAxis.Scale.MinorStepAuto = true;
-
-            //myChart.YAxis.Scale.MagAuto = false;
-            myChart.XAxis.Scale.Max = jumDataRow / sampleRate;
-            myChart.YAxis.Cross = 0.0;
-
+            myChart.CurveList.Clear();
+            
             /*Pointpairlist kurva listCHX*/
-            LineItem kurvaCHX;
-
             double[] xVal = new double[jumDataRow];
             double[] yVal = new double[jumDataRow];
 
-            /*isi kurva (a) tiap channel (a)*/
+            int pembagi = 10000;
+            int pembagiVolt = 1000000;
+
+            /*isi kurva (a) tiap Channel (a)  ===> tiap Kurva*/
             for (int a = 0; a < jumChannel; a++)
             {
-                /*isi data(c) di tiap channel (a)*/
-                int pembagi = 10000;
+
+                bool isVolt = false;    bool isBar = false;
                 float b = 0;
 
+                //cek Unit satuan >> tentukan pembagi Value
+                if (String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "bar")
+                {
+                    isBar = true;
+                }
+
+                if (String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "volt" || String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "V")
+                {
+                    isVolt = true;
+                    pembagi = pembagiVolt;          //pengecualian untuk Volt, pembagi pakai 1000000
+                }
+                
+                //isi data pointpair untuk kurva
                 dataChX = dtRekapF3.AsEnumerable().Select(r => r.Field<string>(a)).ToArray();
                 for (int c = 0; c < jumDataRow; c++)
                 {
@@ -148,61 +105,128 @@ namespace DACQViewer
                     b++;
                 }
 
-                kurvaCHX = new LineItem(idChannelArr[a + 1], xVal, yVal, warnaKurva[a], SymbolType.None, 2.0f);
+                //isi kurva line & style
+                kurvaCHX = new LineItem(idChannelArr[a + 1], xVal, yVal, warnaKurva[a], SymbolType.None, 3.0f);
                 kurvaCHX.Line.IsAntiAlias = true;
+                kurvaCHX.Line.IsSmooth = true;
+
+
+                //penentuan letak kurva dengan Y-Axis : Y2Axis, Yaxis1, YAxis2
+                if(isVolt)
+                {
+                    kurvaCHX.IsY2Axis = true;
+                    myChart.Y2Axis.IsVisible = true;
+                }
+
+                if(isBar)
+                {
+                    kurvaCHX.YAxisIndex= 1 ;        //YAxis0
+                    myChart.YAxisList[1].IsVisible = true;
+                    //YAxis0.IsVisible = true;
+                }
+                
                 myChart.CurveList.Add(kurvaCHX);
-
-                isKgfExist(a);
-
+                
                 zedGraphControl1.AxisChange();
+                zedGraphControl1.Invalidate();
                 //zedGraphControl1.Refresh();
             }
         }
-
         private void inisialisasi_grafik()
         {
-            /* SETUP AWAL CHART */
+            /*---------------------------------------------------------------------------CHART_SETUP-------*/
+            //inisiasi grafik plot area
             myChart = zedGraphControl1.GraphPane;
 
-            //Font setupp
-            myChart.IsFontsScaled = false;
+            //setup background
+            //myChart.Fill = new Fill(Color.GreenYellow);  //outside chart
+            //myChart.Chart.Fill = new Fill(Color.Black);   //inside chart   
 
+            myChart.Legend.IsVisible = true;
+            myChart.Legend.Position = ZedGraph.LegendPos.Top;
+            myChart.IsFontsScaled = false;
+            
+            //judul grafik
+            myChart.Title.Text = "Grafik Hasil Uji Statis " + roketID; 
             myChart.Title.FontSpec.Family = "HP Simplified";
             myChart.Title.FontSpec.Size = 15;
             myChart.Title.FontSpec.IsBold = true;
 
-            myChart.XAxis.Title.FontSpec.Family = "HP Simplified";
-            myChart.XAxis.Title.FontSpec.Size = 13;
-            myChart.XAxis.Title.FontSpec.IsBold = true;
+            /*---------------------------------------------------------------------------AXIS_SETUP-------*/
+            //setup X-Axis
+            myChart.XAxis.Title.Text = "Waktu (Detik)";
+            myChart.XAxis.Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black, true, false, false);
+            myChart.XAxis.Title.FontSpec.Border = new Border(false,Color.Black,0);
 
-            myChart.YAxis.Title.FontSpec.Family = "HP Simplified";
-            myChart.YAxis.Title.FontSpec.Size = 13;
-            myChart.YAxis.Title.FontSpec.IsBold = true;
-
-            myChart.Y2Axis.Title.FontSpec.Family = "HP Simplified";
-            myChart.Y2Axis.Title.FontSpec.Size = 13;
-            myChart.Y2Axis.Title.FontSpec.IsBold = true;
-
-            //myChart.Fill = new Fill(Color.GreenYellow);  //outside chart
-            //myChart.Chart.Fill = new Fill(Color.Black);   //inside chart   
-            
-            //Judul
-            myChart.Title.Text = "Grafik Penyalaan & Gaya Dorong";// Debit (pressure)";                                 //VAR           
-
-            /* SETUP AWAL AXIS */
-            //Axis X
-            myChart.XAxis.Title.Text = " detik";
+            myChart.XAxis.Scale.Max = jumDataRow / sampleRate;
             myChart.XAxis.Scale.Min = 0;
+            myChart.XAxis.MajorGrid.IsVisible = true;
+            myChart.XAxis.MinorGrid.IsVisible = false;
+
+            //setup Y-Axis
+            myChart.YAxis.Title.Text = "Gaya dorong (Kgf)";
+            myChart.YAxis.Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black,true,false,false);
+            myChart.YAxis.Title.FontSpec.Border = new Border(false, Color.Black, 0);
+
+            myChart.YAxis.Scale.MaxAuto = true;
             myChart.YAxis.Scale.Min = 0;
+            myChart.YAxis.MajorGrid.IsVisible = true;
+            myChart.YAxis.MinorGrid.IsVisible = false;
+
+            myChart.YAxis.MajorTic.IsOpposite = false;  //biar Tic tidak muncul di semua YAxis-Y2
+            myChart.YAxis.MinorTic.IsOpposite = false;
+            myChart.YAxis.MajorTic.IsInside = false;
+            myChart.YAxis.MinorTic.IsInside = false;
+            myChart.YAxis.Scale.Align = AlignP.Inside;
+            myChart.YAxis.Cross = 0.0;
+
+            //setup Y2-AXIS
+            myChart.Y2Axis.Title.Text = "Ignition (Volt)";
+            myChart.Y2Axis.Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black, true, false, false);
+            myChart.Y2Axis.Title.FontSpec.Border = new Border(false, Color.Black, 0);
+
+            myChart.Y2Axis.Scale.Max = 30;      //30 volt...
             myChart.Y2Axis.Scale.Min = 0;
 
-            //Axis Y
-            myChart.YAxis.Title.Text = " bar ";     //VAR bisa: bar, kgf, Celcius
+            myChart.Y2Axis.MajorTic.IsInside = false;
+            myChart.Y2Axis.MajorTic.IsInside = false;
+            myChart.Y2Axis.MinorTic.IsInside = false;
+            myChart.Y2Axis.MajorTic.IsOpposite = false;
+            myChart.Y2Axis.MinorTic.IsOpposite = false;
+            myChart.Y2Axis.Scale.Align = AlignP.Inside;
 
-            // setup draw plotting
+            //setup Y-Axis 1
+            YAxis YAxis0 = new YAxis("Bar");    //YAxisIndex nya = 1...
+            myChart.YAxisList.Add(YAxis0);
+            
+            myChart.YAxisList[1].Title.Text = "Tekanan (Bar)";
+            myChart.YAxisList[1].Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black, true, false, false);
+            myChart.YAxisList[1].Title.FontSpec.Border = new Border(false, Color.Black, 0);
+
+            myChart.YAxisList[1].Scale.Max = 150;       //bar max scale view
+            myChart.YAxisList[1].Scale.Min = 0;
+            myChart.YAxisList[1].MajorGrid.IsVisible = false;
+            myChart.YAxisList[1].MinorGrid.IsVisible = false;
+
+            myChart.YAxisList[1].MajorTic.IsOpposite = false;  //biar Tic tidak muncul di semua YAxis-Y2
+            myChart.YAxisList[1].MinorTic.IsOpposite = false;
+            myChart.YAxisList[1].MajorTic.IsInside = false;
+            myChart.YAxisList[1].MinorTic.IsInside = false;
+            myChart.YAxisList[1].Scale.Align = AlignP.Inside;
+            myChart.YAxisList[1].Cross = 0.0;
+
+            /*---------------------------------------------------------------------------ZGC_CONTROL_SETUP-------*/
+            // setup draw plotter
             zedGraphControl1.IsShowPointValues = true;
+            zedGraphControl1.IsShowHScrollBar = true;
+            zedGraphControl1.IsShowVScrollBar = true;
+            zedGraphControl1.IsAutoScrollRange = true;
+
             zedGraphControl1.AxisChange();     
         }
+
+#endregion FORM_CHART
+
 
         private void tampilkan_tabel_analitik()
         {
@@ -219,16 +243,17 @@ namespace DACQViewer
             try
             {
                 //isi header column dulu
-                dtAnalytic.Columns.Add("SEL", typeof(bool));
-                dtAnalytic.Columns.Add("CHANNEL", typeof(string));
-                dtAnalytic.Columns.Add("X0", typeof(string));
-                dtAnalytic.Columns.Add("X1", typeof(string));
-                dtAnalytic.Columns.Add("<status>", typeof(string));
+                dtAnalytic.Columns.Add("NO", typeof(int));      //0
+                dtAnalytic.Columns.Add("VIS", typeof(bool));    //1
+                dtAnalytic.Columns.Add("CHANNEL", typeof(string));  //2
+                dtAnalytic.Columns.Add("X1", typeof(string));       //3
+                dtAnalytic.Columns.Add("X2", typeof(string));       //4
+                dtAnalytic.Columns.Add("Unit Satuan", typeof(string)); //5
 
                 //isi auto idChannel
                 for(int a=0; a<jumChannel; a++)
                 {
-                    dtAnalytic.Rows.Add(true, idChannelArr[a+1]);
+                    dtAnalytic.Rows.Add((a+1), true, idChannelArr[a+1],0,0,unitChannelArr[a+1]);
                 }
 
                 //binding dgv1 dengan dtAnalytic yg telah dibuat
@@ -241,39 +266,39 @@ namespace DACQViewer
                 }
 
                 //style
-                dataGridView1.Columns[0].Width = 28;
+                dataGridView1.Columns[0].Width = 25;
+                dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.Columns[1].Width = 25;
+
 
                 // auto header style
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    col.HeaderCell.Style.Font = new System.Drawing.Font("HP Simplified", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
+                    col.HeaderCell.Style.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+
+                    col.ReadOnly = true;
                 }
+                dataGridView1.Columns[1].ReadOnly = false;
 
                 
                 // auto color style & isi nomor rows
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    row.DefaultCellStyle.Font = new System.Drawing.Font("HP Simplified", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
+                    row.DefaultCellStyle.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
 
                     //isi row number & style cell 
-                    row.Cells[2].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                     row.Cells[3].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    row.HeaderCell.Value = (row.Index + 1).ToString();
+                    row.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                     
-                    textBox1.Text = "here 3";
-
-                    dataGridView1.Rows[0].Cells[0].Style.BackColor = warnaKurva[0];
-
-                        textBox1.Text = "here 8";
+                    //dataGridView1.Rows[1].Cells[1].Style.BackColor = warnaKurva[0];
 
                     //set color cell
                     for (int k = 0; k < jumChannel; k++)  // cara 1
                     {
-                        dataGridView1.Rows[k].Cells[0].Style.BackColor = warnaKurva[k]; // kolom 0 (ID)
-                        dataGridView1.Rows[k].Cells[1].Style.BackColor = warnaKurva[k]; // kolom 1 (channelName)
-                        dataGridView1.Rows[k].Cells[0].Style.SelectionBackColor = warnaKurva[k];
-
+                        dataGridView1.Rows[k].Cells[1].Style.BackColor = warnaKurva[k]; // kolom 1 (ID)
+                        dataGridView1.Rows[k].Cells[2].Style.BackColor = warnaKurva[k]; // kolom 2 (channelName)
+                        dataGridView1.Rows[k].Cells[1].Style.SelectionBackColor = warnaKurva[k];
                     }
                 }
                 dataGridView1.Refresh();
@@ -283,16 +308,20 @@ namespace DACQViewer
                 MessageBox.Show("Gagal menampilkan Tabel Analitik! "+errz.Message);
             }
         }
+        private void create_cursor_vertical()
+        {
 
-    #region TABEL_ANALITIK_CELL_KLIK_EVENT
+        }
+
+#region TABEL_ANALITIK_CELL_KLIK_EVENT
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             //pakai event cell value changed >> perlu masuk ke status checkboxnya
             // auto cek status CheckBox
             for (int a = 0; a < jumChannel; a++)
             {
-                DataGridViewCheckBoxCell cBox = dataGridView1.Rows[a].Cells[0] as DataGridViewCheckBoxCell;
-                if (e.ColumnIndex == dataGridView1.Columns[0].Index && e.RowIndex != -1)
+                DataGridViewCheckBoxCell cBox = dataGridView1.Rows[a].Cells[1] as DataGridViewCheckBoxCell;
+                if (e.ColumnIndex == dataGridView1.Columns[1].Index && e.RowIndex != -1)
                 {
                     if (cBox != null && !DBNull.Value.Equals(cBox.Value) && (bool)cBox.Value == true)
                         aksi_centang(a, true);
@@ -302,15 +331,11 @@ namespace DACQViewer
             }
         }
 
-        private void create_cursor_vertical()
-        {
-
-        }
-
+        
         private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             //saat 1 event ngeklik dihitung 1 kali eksekusi (mouse up)
-            if (e.ColumnIndex == dataGridView1.Columns[0].Index && e.RowIndex != -1)
+            if (e.ColumnIndex == dataGridView1.Columns[1].Index && e.RowIndex != -1)
                 dataGridView1.EndEdit();
         }
 
@@ -336,6 +361,54 @@ namespace DACQViewer
             tampilkan_tabel_analitik();
         }
 
+
+        //fungsi untuk show/hide curve, via kolom centang di DGV1
+        private void aksi_centang(int idx, bool status)
+        {
+            if (status)
+            {
+                //curve visiblity true
+                myChart.CurveList[idx].IsVisible = true;
+                //dataGridView1.Rows[idx].Cells[5].Style.BackColor = Color.GreenYellow;
+            }
+
+            else
+            {
+                //curve visibility false
+                myChart.CurveList[idx].IsVisible = false;
+                //dataGridView1.Rows[idx].Cells[5].Style.BackColor = Color.Crimson;
+            }
+            zedGraphControl1.Refresh();
+        }
+
+# endregion TABEL_ANALITIK_CELL_KLIK_EVENT
+    
+#region CHART_CLICK_EVENTSSS
+        //point value waktu hovering
+        PointPair ppCross;
+        string strUnit;
+        private string zedGraphControl1_PointValueEvent(ZedGraphControl sender, GraphPane pane, CurveItem curve, int iPt)
+        {
+            ppCross = curve[iPt];
+            /*
+            for(int xx=0;xx<jumChannel;xx++)
+            {
+                if (curve.Label.Text == myChart.CurveList[xx].Label.Text)
+                    strUnit = unitChannelArr[xx+1];
+                else
+                    strUnit = " ~";
+            }
+
+            */
+            return curve.Label.Text + " : " + ppCross.X.ToString("#.##") + " detik; " + ppCross.Y.ToString("#.##") + " " + unitChannelArr[curve.YAxisIndex+1];  //strUnit;//
+        }
+
+        //fungsi klik baca value >> dgv1
+
+        
+#endregion CHART_CLICK_EVENTSS
+
+#region Fungsi Hide/show Panel
         private static bool isOdd(int val)
         {
             return val % 2 != 0;
@@ -349,37 +422,41 @@ namespace DACQViewer
             if(isOdd(idxButton))
             {
                 Transition.run(panel4, "Height", 35, new TransitionType_EaseInEaseOut(500));
-                //button9.Text = "show";
-                button9.BackgroundImage = Properties.Resources.upBtn;
+               button9.BackgroundImage = Properties.Resources.upBtn;
             }
             else
             {
                 Transition.run(panel4, "Height", 232, new TransitionType_EaseInEaseOut(500));
-                //button9.Text = "hide";
                 button9.BackgroundImage = Properties.Resources.downBtn;
             }
         }
+        #endregion Fungsi Hide/show Panel
 
-
-        //fungsi untuk show/hide curve, via kolom centang di DGV1
-        private void aksi_centang(int idx, bool status)
+        private void zedGraphControl1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (status)
-            {
-                //curve visiblity true
-                myChart.CurveList[idx].IsVisible = true;
-                dataGridView1.Rows[idx].Cells[4].Style.BackColor = Color.GreenYellow;
-            }
+            double X1, Y1;
+            int X1int,idxData, pembagiVolt;
 
-            else
+            myChart.ReverseTransform(e.Location, out X1, out Y1);
+
+            X1 = X1 * 100;
+            X1int = Convert.ToInt32(X1);
+
+            for(int idx=0; idx<jumChannel; idx++)
             {
-                //curve visibility false
-                myChart.CurveList[idx].IsVisible = false;
-                dataGridView1.Rows[idx].Cells[4].Style.BackColor = Color.Crimson;
+                if (String.Format(unitChannelArr[idx],StringComparison.InvariantCultureIgnoreCase) == "volt")
+                {
+                    pembagiVolt = 1000000;
+                }
+                else
+                    pembagiVolt = 10000;
+
+                dataChDg = dtRekapF3.AsEnumerable().Select(r => r.Field<string>(idx)).ToArray();
+
+
+                //idxData = dataChDg[X1int];
+                dataGridView1.Rows[idx].Cells[3].Value = idxData.ToString();
             }
-            zedGraphControl1.Refresh();
         }
-
-    # endregion TABEL_ANALITIK_CELL_KLIK_EVENT
     }
 }

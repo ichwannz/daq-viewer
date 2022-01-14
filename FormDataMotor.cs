@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Transitions;
 using System.Windows.Forms;
 
 namespace DACQViewer
@@ -254,6 +255,30 @@ namespace DACQViewer
             fileopener.StartInfo.Arguments = "\"" + path + "\"";
             fileopener.Start();
         }
-  
+
+        private static bool isOdd(int val)
+        {
+            return val % 2 != 0;
+        }
+
+        int idxButton = 0;
+ 
+        private void button20_Click(object sender, EventArgs e)
+        {
+            idxButton++;
+
+            if (isOdd(idxButton))   //hiding
+            {
+                panel2.Visible = false;
+                //Transition.run(panel2, "Width", 50, new TransitionType_EaseInEaseOut(500));
+                button20.BackgroundImage = Properties.Resources.leftBtn;
+            }
+            else //showing
+            {
+                panel2.Visible = true;
+                //Transition.run(panel2, "Width", 586, new TransitionType_EaseInEaseOut(500));
+                button20.BackgroundImage = Properties.Resources.rightBtn;
+            }
+        }
     }
 }

@@ -245,15 +245,15 @@ namespace DACQViewer
         // MAIN-BUTTON
         private int seqClick = 0;
         private bool flag_logged_in = false;
+        CultureInfo lokalID = new System.Globalization.CultureInfo("id-ID");
 
         private void btnLoad_Click(object sender, EventArgs e)
-        {
-            coloring(btnLoad);
-            
+        {           
             //setting datetime lokal Indonesia
-            CultureInfo lokalID = new System.Globalization.CultureInfo("id-ID");
             string hariUji, tglUji;
-            
+
+            coloring(btnLoad);
+
             if (flag_logged_in)
             {
                 showSubMenu(false);
@@ -271,7 +271,7 @@ namespace DACQViewer
                 tglUji = dayTime.ToString("dd MMM yyyy");
                 
                 label17.Text = "Motor Roket : "+roketID;
-                label18.Text = "Waktu Uji : " + hariUji + ", " + tglUji + ", " + timeID;
+                label18.Text = "Waktu Uji Statis : " + hariUji + ", " + tglUji + ", " + timeID;
                 label17.Visible = true;
                 label18.Visible = true;
                 pictureBox2.Visible = true;
@@ -296,8 +296,8 @@ namespace DACQViewer
                 lblJudulSubForm.Visible = true;
                 lblJudulSubForm.Text = "PARAMETER DATA AKUISISI DAN FIRING SETUP";
 
-                coloring(btnParamsInput);
                 openMainForm(new FormParams(dtRekapNum, daqID, roketID, dateID, timeID, sampleRate, jumChannel, idChannel, unitChannelStr));     // start form baru
+                coloring(btnParamsInput);
             }
             else
                 MessageBox.Show("File Data Akuisisi US (Csv) belum dipilih, bro !");
@@ -309,8 +309,9 @@ namespace DACQViewer
             if(seqClick==1)
             {
                 lblJudulSubForm.Text = "DATA MOTOR ROKET (CHECKLIST)";
-                coloring(btnDataMotor);
+
                 openMainForm(new FormDataMotor());
+                coloring(btnDataMotor);
             }
             else
                 MessageBox.Show("Data Parameter US belum dilengkapi, bro !");
@@ -321,9 +322,9 @@ namespace DACQViewer
             //seqClick = fmotor.getSeqClick_FMotor() + 1;
             if(seqClick==1)
             {
-                coloring(btnGrafik);
                 showingSubMenu(panSubAnalyze);
                 btnGrafIgn_Click(sender, e);
+                coloring(btnGrafik);
             }
             else
                 MessageBox.Show("Data Motor Roket (Checklist) belum lengkap, bro !");
@@ -335,8 +336,8 @@ namespace DACQViewer
             if(seqClick==1)
             {
                 lblJudulSubForm.Text = "FORM LAPORAN HASIL UJI STATIS";
-                coloring(btnReport);
                 openMainForm(new FormReport());
+                coloring(btnReport);
             }
             else
                 MessageBox.Show("Grafik Analisis belum diselesaikan, bro !");
@@ -348,8 +349,8 @@ namespace DACQViewer
             {
                 hidingSubMenu();
                 lblJudulSubForm.Text = "BUNDEL ARSIP (zip) MOTOR ROKET UJI STATIS";
-                coloring(btnZip);
                 openMainForm(new FormArsipZip());
+                coloring(btnZip);
             }
             else
                 MessageBox.Show("Form Laporan Uji Statis (pdf) belum selesai, bro !");
@@ -406,15 +407,15 @@ namespace DACQViewer
         private void btnGrafIgn_Click(object sender, EventArgs e)
         {
             lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
+            openMainForm(new FormChart0(dtRekap, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate, roketID));
             coloring(btnGrafIgn);
-            openMainForm(new FormChart0(dtRekap, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate));
         }
 
         private void btnGrafThrust_Click(object sender, EventArgs e)
         {
             lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
-            coloring(btnGrafThrust);
             openMainForm(new ADMIN());
+            coloring(btnGrafThrust);
         }
      #endregion SUB_BUTTON
 
