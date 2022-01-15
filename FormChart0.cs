@@ -14,11 +14,10 @@ namespace DACQViewer
 {
     public partial class FormChart0 : Form
     {
-        /* CREATE OBJEK*/
+        //create objek dulu
         DataTable dtRekapF3 = new DataTable();  //objek tabel
         DataTable dtAnalytic = new DataTable();
         GraphPane myChart = new GraphPane();    //objek zedgraph
-      
         Color[] warnaKurva = new Color[10]
         {
             Color.Crimson,          // sebisa mungkin untuk igniter signal
@@ -33,7 +32,7 @@ namespace DACQViewer
             Color.YellowGreen
         };
 
-        //variabel data header tabel
+        //variabel data header tabel parameter daq
         private string[] dataChX, dataChDg;
         private string[] idChannelArr;
         private int jumChannel;
@@ -41,8 +40,6 @@ namespace DACQViewer
         private int sampleRate;
         private string[] unitChannelArr;
         private string roketID;
-
-
 
         public FormChart0(DataTable dtRekapF1, int dt1, string[] dt2, string[] dt3, int dt4, int dt5, string dt6)
         {
@@ -60,7 +57,8 @@ namespace DACQViewer
             inisialisasi_grafik();
             plot_grafik();
         }
-#region FORM_CHART
+
+    #region FORM_CHART
         LineItem kurvaCHX;
 
         private void plot_grafik()
@@ -225,8 +223,7 @@ namespace DACQViewer
             zedGraphControl1.AxisChange();     
         }
 
-#endregion FORM_CHART
-
+    #endregion FORM_CHART
 
         private void tampilkan_tabel_analitik()
         {
@@ -244,16 +241,15 @@ namespace DACQViewer
             {
                 //isi header column dulu
                 dtAnalytic.Columns.Add("NO", typeof(int));      //0
-                dtAnalytic.Columns.Add("VIS", typeof(bool));    //1
+                dtAnalytic.Columns.Add("KURVA", typeof(bool));    //1
                 dtAnalytic.Columns.Add("CHANNEL", typeof(string));  //2
-                dtAnalytic.Columns.Add("X1", typeof(string));       //3
-                dtAnalytic.Columns.Add("X2", typeof(string));       //4
-                dtAnalytic.Columns.Add("Unit Satuan", typeof(string)); //5
+                dtAnalytic.Columns.Add("NILAI (detik-X)", typeof(string));       //3
+                dtAnalytic.Columns.Add("UNIT", typeof(string)); //4
 
                 //isi auto idChannel
                 for(int a=0; a<jumChannel; a++)
                 {
-                    dtAnalytic.Rows.Add((a+1), true, idChannelArr[a+1],0,0,unitChannelArr[a+1]);
+                    dtAnalytic.Rows.Add((a+1), true, idChannelArr[a+1],0,unitChannelArr[a+1]);
                 }
 
                 //binding dgv1 dengan dtAnalytic yg telah dibuat
@@ -268,52 +264,84 @@ namespace DACQViewer
                 //style
                 dataGridView1.Columns[0].Width = 25;
                 dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView1.Columns[1].Width = 25;
+                //dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[1].Width = 50;
+                dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[3].Width = 100;
+                dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-
-                // auto header style
+                //style header column
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     col.HeaderCell.Style.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+                    col.SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                    col.ReadOnly = true;
+                    col.ReadOnly = true;        //semua readonly..
                 }
-                dataGridView1.Columns[1].ReadOnly = false;
+                dataGridView1.Columns[1].ReadOnly = false;  //..kecuali column centang
 
                 
-                // auto color style & isi nomor rows
+                //style rows color & isi nomor rows
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    row.DefaultCellStyle.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+                    row.DefaultCellStyle.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
 
                     //isi row number & style cell 
                     row.Cells[3].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    row.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    
-                    //dataGridView1.Rows[1].Cells[1].Style.BackColor = warnaKurva[0];
+                    row.Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                     //set color cell
                     for (int k = 0; k < jumChannel; k++)  // cara 1
                     {
-                        dataGridView1.Rows[k].Cells[1].Style.BackColor = warnaKurva[k]; // kolom 1 (ID)
-                        dataGridView1.Rows[k].Cells[2].Style.BackColor = warnaKurva[k]; // kolom 2 (channelName)
+                        dataGridView1.Rows[k].Cells[0].Style.BackColor = warnaKurva[k]; // kolom 2 (ID)
+                        dataGridView1.Rows[k].Cells[1].Style.BackColor = warnaKurva[k]; // kolom 2 (ID)
+                        dataGridView1.Rows[k].Cells[2].Style.BackColor = warnaKurva[k]; // kolom 3 (channelName)
                         dataGridView1.Rows[k].Cells[1].Style.SelectionBackColor = warnaKurva[k];
                     }
                 }
+
                 dataGridView1.Refresh();
             }
             catch(Exception errz)
             {
-                MessageBox.Show("Gagal menampilkan Tabel Analitik! "+errz.Message);
+                MessageBox.Show("Gagal menampilkan Tabel Analitik! "+ Environment.NewLine + errz.Message);
             }
         }
         private void create_cursor_vertical()
         {
+            //dtRekapF3.Rows[1][2];
+        }
+
+    #region BUTTON
+        private void btnMakeReport_Click(object sender, EventArgs e)
+        {
+            seqClick = 1;
 
         }
 
-#region TABEL_ANALITIK_CELL_KLIK_EVENT
+        private void button2_Click(object sender, EventArgs e)
+        {
+            grafikAstm astm = new grafikAstm();
+            astm.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            tampilkan_tabel_analitik();
+            
+        }
+
+        int seqClick = 0;
+        public int getSeqClick_FChart0()
+        {
+            return seqClick;
+        }
+    
+    #endregion BUTTON
+
+        /*----------------------------------------------------------------------------------------------EVENT HANDLER-------*/
+    #region TABEL_ANALITIK_CELL_KLIK_EVENT
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             //pakai event cell value changed >> perlu masuk ke status checkboxnya
@@ -330,7 +358,6 @@ namespace DACQViewer
                 }
             }
         }
-
         
         private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -339,29 +366,7 @@ namespace DACQViewer
                 dataGridView1.EndEdit();
         }
 
-        int seqClick = 0;
-        public int getSeqClick_FChart0()
-        {
-            return seqClick;
-        }
-        private void btnMakeReport_Click(object sender, EventArgs e)
-        {
-            seqClick = 1;
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            grafikAstm astm = new grafikAstm();
-            astm.Show();
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            tampilkan_tabel_analitik();
-        }
-
-
+   
         //fungsi untuk show/hide curve, via kolom centang di DGV1
         private void aksi_centang(int idx, bool status)
         {
@@ -381,9 +386,9 @@ namespace DACQViewer
             zedGraphControl1.Refresh();
         }
 
-# endregion TABEL_ANALITIK_CELL_KLIK_EVENT
+    # endregion TABEL_ANALITIK_CELL_KLIK_EVENT
     
-#region CHART_CLICK_EVENTSSS
+    #region CHART_CLICK_EVENTSSS
         //point value waktu hovering
         PointPair ppCross;
         string strUnit;
@@ -404,11 +409,38 @@ namespace DACQViewer
         }
 
         //fungsi klik baca value >> dgv1
+        private void zedGraphControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            double X1, Y1, pembagiVolt;
 
+            myChart.ReverseTransform(e.Location, out X1, out Y1);
+            X1 = X1 * 100;
+            
+
+            for(int idx=0; idx<jumChannel; idx++)
+            {
+                
+                if (String.Format(unitChannelArr[idx],StringComparison.InvariantCultureIgnoreCase) == "volt")
+                {
+                    pembagiVolt = 1000000;
+                }
+                else
+                    pembagiVolt = 10000;
+                
+                dataChDg = dtRekapF3.AsEnumerable().Select(r => r.Field<string>(idx)).ToArray();
+
+                string dat0 = dataChDg[Convert.ToInt32(X1)];
+                double dat1 = double.Parse(dat0);
+                double dat2 = dat1 / pembagiVolt;
+
+                dataGridView1.Rows[idx].Cells[3].Value = dat2.ToString("#.###");
+                
+            }
+        }
         
-#endregion CHART_CLICK_EVENTSS
+    #endregion CHART_CLICK_EVENTSS
 
-#region Fungsi Hide/show Panel
+    #region Fungsi Hide/show Panel
         private static bool isOdd(int val)
         {
             return val % 2 != 0;
@@ -430,33 +462,8 @@ namespace DACQViewer
                 button9.BackgroundImage = Properties.Resources.downBtn;
             }
         }
-        #endregion Fungsi Hide/show Panel
+    #endregion Fungsi Hide/show Panel
 
-        private void zedGraphControl1_MouseClick(object sender, MouseEventArgs e)
-        {
-            double X1, Y1;
-            int X1int,idxData, pembagiVolt;
-
-            myChart.ReverseTransform(e.Location, out X1, out Y1);
-
-            X1 = X1 * 100;
-            X1int = Convert.ToInt32(X1);
-
-            for(int idx=0; idx<jumChannel; idx++)
-            {
-                if (String.Format(unitChannelArr[idx],StringComparison.InvariantCultureIgnoreCase) == "volt")
-                {
-                    pembagiVolt = 1000000;
-                }
-                else
-                    pembagiVolt = 10000;
-
-                dataChDg = dtRekapF3.AsEnumerable().Select(r => r.Field<string>(idx)).ToArray();
-
-
-                //idxData = dataChDg[X1int];
-                dataGridView1.Rows[idx].Cells[3].Value = idxData.ToString();
-            }
-        }
+        
     }
 }

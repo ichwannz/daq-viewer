@@ -65,6 +65,16 @@ namespace DACQViewer
             dataGridView1.DataSource = dtRekapF2;
             dataGridView1.Columns[0].Width = 55;
             dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.Silver;
+
+            //style
+            foreach(DataGridViewColumn col in dataGridView1.Columns)
+            {
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.HeaderCell.Style.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+                col.ReadOnly = true;        //semua readonly..
+            }
             dataGridView1.Refresh();
         }
 
@@ -113,6 +123,8 @@ namespace DACQViewer
                 foreach(DataGridViewColumn col in dataGridView2.Columns)
                 {
                     col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    col.HeaderCell.Style.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+                    col.SortMode = DataGridViewColumnSortMode.NotSortable;                    
                 }
 
                 //masukkan data tiap rows
