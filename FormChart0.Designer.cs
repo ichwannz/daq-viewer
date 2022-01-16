@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.btnMakeReport = new System.Windows.Forms.Button();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -40,8 +39,12 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -51,43 +54,47 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button9 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblSQ4 = new System.Windows.Forms.Label();
+            this.lblSQ1 = new System.Windows.Forms.Label();
+            this.lblSQ3 = new System.Windows.Forms.Label();
+            this.lblSQ2 = new System.Windows.Forms.Label();
+            this.lblSQ6 = new System.Windows.Forms.Label();
+            this.lblSQ5 = new System.Windows.Forms.Label();
+            this.panelSQ = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tbWpropelan = new System.Windows.Forms.TextBox();
+            this.btnSQ5 = new System.Windows.Forms.Button();
+            this.btnSQ6 = new System.Windows.Forms.Button();
+            this.btnSQ4 = new System.Windows.Forms.Button();
+            this.btnSQ3 = new System.Windows.Forms.Button();
+            this.btnSQ2 = new System.Windows.Forms.Button();
+            this.btnSQ1 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -110,7 +117,7 @@
             this.btnMakeReport.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnMakeReport.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnMakeReport.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMakeReport.Location = new System.Drawing.Point(678, 170);
+            this.btnMakeReport.Location = new System.Drawing.Point(662, 171);
             this.btnMakeReport.Name = "btnMakeReport";
             this.btnMakeReport.Size = new System.Drawing.Size(125, 45);
             this.btnMakeReport.TabIndex = 5;
@@ -139,13 +146,8 @@
             this.zedGraphControl1.UseExtendedPrintDialog = true;
             this.zedGraphControl1.PointValueEvent += new ZedGraph.ZedGraphControl.PointValueHandler(this.zedGraphControl1_PointValueEvent);
             this.zedGraphControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.zedGraphControl1_MouseClick);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(670, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 20);
-            this.textBox1.TabIndex = 7;
+            this.zedGraphControl1.MouseLeave += new System.EventHandler(this.zedGraphControl1_MouseLeave);
+            this.zedGraphControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.zedGraphControl1_MouseMove);
             // 
             // panel2
             // 
@@ -173,7 +175,7 @@
             this.groupBox2.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(260, 279);
+            this.groupBox2.Size = new System.Drawing.Size(260, 131);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Hasil Pembacaan";
@@ -193,7 +195,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(254, 250);
+            this.dataGridView1.Size = new System.Drawing.Size(254, 102);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseUp);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -203,17 +205,21 @@
             this.panel6.BackColor = System.Drawing.SystemColors.Control;
             this.panel6.Controls.Add(this.groupBox4);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 279);
+            this.panel6.Location = new System.Drawing.Point(0, 131);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(260, 232);
+            this.panel6.Size = new System.Drawing.Size(260, 380);
             this.panel6.TabIndex = 1;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.textBox8);
             this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.textBox13);
+            this.groupBox4.Controls.Add(this.textBox11);
+            this.groupBox4.Controls.Add(this.textBox10);
             this.groupBox4.Controls.Add(this.textBox7);
             this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.textBox1);
             this.groupBox4.Controls.Add(this.textBox6);
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.textBox5);
@@ -223,32 +229,43 @@
             this.groupBox4.Controls.Add(this.textBox3);
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.label18);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(260, 232);
+            this.groupBox4.Size = new System.Drawing.Size(260, 380);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hasil Penghitungan";
             // 
             // textBox8
             // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox8.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(113, 30);
+            this.textBox8.Location = new System.Drawing.Point(113, 33);
+            this.textBox8.MaxLength = 10000;
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(69, 25);
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(69, 18);
             this.textBox8.TabIndex = 10;
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label21
             // 
@@ -260,169 +277,301 @@
             this.label21.TabIndex = 9;
             this.label21.Text = "Ignition ON";
             // 
+            // textBox13
+            // 
+            this.textBox13.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox13.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox13.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox13.Location = new System.Drawing.Point(113, 340);
+            this.textBox13.MaxLength = 10000;
+            this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
+            this.textBox13.Size = new System.Drawing.Size(69, 18);
+            this.textBox13.TabIndex = 10;
+            this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox11.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox11.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox11.Location = new System.Drawing.Point(113, 314);
+            this.textBox11.MaxLength = 10000;
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(69, 18);
+            this.textBox11.TabIndex = 10;
+            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox10.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox10.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.Location = new System.Drawing.Point(113, 270);
+            this.textBox10.MaxLength = 10000;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(69, 18);
+            this.textBox10.TabIndex = 10;
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // textBox7
             // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox7.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(113, 198);
+            this.textBox7.Location = new System.Drawing.Point(113, 214);
+            this.textBox7.MaxLength = 10000;
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(69, 25);
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(69, 18);
             this.textBox7.TabIndex = 10;
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 61);
+            this.label5.Location = new System.Drawing.Point(15, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 18);
             this.label5.TabIndex = 9;
             this.label5.Text = "Action time";
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(113, 242);
+            this.textBox1.MaxLength = 10000;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(69, 18);
+            this.textBox1.TabIndex = 10;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // textBox6
             // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox6.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(113, 170);
+            this.textBox6.Location = new System.Drawing.Point(113, 186);
+            this.textBox6.MaxLength = 10000;
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(69, 25);
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(69, 18);
             this.textBox6.TabIndex = 10;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(188, 61);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(38, 18);
+            this.label14.Size = new System.Drawing.Size(43, 19);
             this.label14.TabIndex = 9;
             this.label14.Text = "detik";
             // 
             // textBox5
             // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox5.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox5.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(113, 142);
+            this.textBox5.Location = new System.Drawing.Point(113, 158);
+            this.textBox5.MaxLength = 10000;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(69, 25);
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(69, 18);
             this.textBox5.TabIndex = 10;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(188, 89);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(38, 18);
+            this.label15.Size = new System.Drawing.Size(43, 19);
             this.label15.TabIndex = 9;
             this.label15.Text = "detik";
             // 
             // textBox4
             // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox4.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(113, 114);
+            this.textBox4.Location = new System.Drawing.Point(113, 130);
+            this.textBox4.MaxLength = 10000;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(69, 25);
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(69, 18);
             this.textBox4.TabIndex = 10;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(188, 117);
+            this.label16.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(188, 130);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(60, 18);
+            this.label16.Size = new System.Drawing.Size(56, 19);
             this.label16.TabIndex = 9;
-            this.label16.Text = "kgf.detik";
+            this.label16.Text = "kgf.det";
             // 
             // textBox3
             // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox3.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(113, 86);
+            this.textBox3.Location = new System.Drawing.Point(113, 89);
+            this.textBox3.MaxLength = 10000;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(69, 25);
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(69, 18);
             this.textBox3.TabIndex = 10;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(188, 145);
+            this.label17.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(188, 158);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(38, 18);
+            this.label17.Size = new System.Drawing.Size(43, 19);
             this.label17.TabIndex = 9;
             this.label17.Text = "detik";
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox2.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(113, 58);
+            this.textBox2.Location = new System.Drawing.Point(113, 61);
+            this.textBox2.MaxLength = 10000;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(69, 25);
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(69, 18);
             this.textBox2.TabIndex = 10;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(188, 340);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(73, 19);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "rate (Sps)";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(188, 314);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(39, 19);
+            this.label26.TabIndex = 9;
+            this.label26.Text = "data";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(188, 243);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(31, 19);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "bar";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(188, 271);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 19);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "bar";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(188, 173);
+            this.label18.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(188, 186);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(27, 18);
+            this.label18.Size = new System.Drawing.Size(31, 19);
             this.label18.TabIndex = 9;
             this.label18.Text = "kgf";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(188, 201);
+            this.label19.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(188, 214);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(27, 18);
+            this.label19.Size = new System.Drawing.Size(31, 19);
             this.label19.TabIndex = 9;
             this.label19.Text = "kgf";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(188, 33);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(38, 18);
+            this.label20.Size = new System.Drawing.Size(43, 19);
             this.label20.TabIndex = 9;
             this.label20.Text = "detik";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(221, 199);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 18);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "Pressure Ave.";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(15, 89);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 18);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Burning time";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(221, 181);
+            this.label12.Location = new System.Drawing.Point(15, 314);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 18);
+            this.label12.Size = new System.Drawing.Size(64, 18);
             this.label12.TabIndex = 9;
-            this.label12.Text = "Pressure Max.";
+            this.label12.Text = "Sampling";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(15, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 18);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Burning time";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 271);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 18);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Pressure Ave.";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(15, 117);
+            this.label7.Location = new System.Drawing.Point(15, 130);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 18);
             this.label7.TabIndex = 9;
@@ -432,17 +581,27 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(15, 201);
+            this.label10.Location = new System.Drawing.Point(15, 214);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(80, 18);
             this.label10.TabIndex = 9;
             this.label10.Text = "Thrust Ave.";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 243);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 18);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Pressure Max.";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(15, 145);
+            this.label8.Location = new System.Drawing.Point(15, 158);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 18);
             this.label8.TabIndex = 9;
@@ -452,7 +611,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(15, 173);
+            this.label9.Location = new System.Drawing.Point(15, 186);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(81, 18);
             this.label9.TabIndex = 9;
@@ -471,7 +630,6 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.button9);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.zedGraphControl1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -481,19 +639,6 @@
             this.groupBox1.Size = new System.Drawing.Size(809, 279);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // button9
-            // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.BackColor = System.Drawing.Color.Gold;
-            this.button9.BackgroundImage = global::DACQViewer.Properties.Resources.downBtn;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button9.Location = new System.Drawing.Point(690, 258);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(116, 18);
-            this.button9.TabIndex = 13;
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label1
             // 
@@ -508,282 +653,291 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.textBox12);
+            this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.groupBox3);
             this.panel4.Controls.Add(this.btnMakeReport);
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.textBox1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 279);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(809, 232);
             this.panel4.TabIndex = 7;
             // 
+            // textBox12
+            // 
+            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox12.Location = new System.Drawing.Point(680, 129);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(95, 22);
+            this.textBox12.TabIndex = 14;
+            // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.BackColor = System.Drawing.Color.Gold;
+            this.button9.BackgroundImage = global::DACQViewer.Properties.Resources.downBtn;
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button9.Location = new System.Drawing.Point(662, 0);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(125, 18);
+            this.button9.TabIndex = 13;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // groupBox3
             // 
-            this.groupBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox3.Controls.Add(this.panel11);
+            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.tbWpropelan);
+            this.groupBox3.Controls.Add(this.lblSQ4);
+            this.groupBox3.Controls.Add(this.lblSQ1);
+            this.groupBox3.Controls.Add(this.lblSQ3);
+            this.groupBox3.Controls.Add(this.lblSQ2);
+            this.groupBox3.Controls.Add(this.lblSQ6);
+            this.groupBox3.Controls.Add(this.lblSQ5);
+            this.groupBox3.Controls.Add(this.panelSQ);
+            this.groupBox3.Controls.Add(this.panel5);
             this.groupBox3.Controls.Add(this.panel10);
             this.groupBox3.Controls.Add(this.panel9);
             this.groupBox3.Controls.Add(this.panel8);
             this.groupBox3.Controls.Add(this.panel7);
-            this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Controls.Add(this.button8);
-            this.groupBox3.Controls.Add(this.button7);
-            this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.label26);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Controls.Add(this.label31);
-            this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.btnSQ5);
+            this.groupBox3.Controls.Add(this.btnSQ6);
+            this.groupBox3.Controls.Add(this.btnSQ4);
+            this.groupBox3.Controls.Add(this.btnSQ3);
+            this.groupBox3.Controls.Add(this.btnSQ2);
+            this.groupBox3.Controls.Add(this.btnSQ1);
             this.groupBox3.Controls.Add(this.label23);
             this.groupBox3.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(3, 0);
+            this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(631, 232);
+            this.groupBox3.Size = new System.Drawing.Size(627, 220);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Langkah urutan analisis data";
             // 
-            // panel11
+            // lblSQ4
             // 
-            this.panel11.BackColor = System.Drawing.Color.Crimson;
-            this.panel11.Location = new System.Drawing.Point(595, 195);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(23, 23);
-            this.panel11.TabIndex = 12;
+            this.lblSQ4.AutoSize = true;
+            this.lblSQ4.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSQ4.Location = new System.Drawing.Point(22, 138);
+            this.lblSQ4.Name = "lblSQ4";
+            this.lblSQ4.Size = new System.Drawing.Size(430, 18);
+            this.lblSQ4.TabIndex = 9;
+            this.lblSQ4.Text = "4) Tentukan Titik-E, Time burning end (Titik Akhir pembakaran efektif)";
+            // 
+            // lblSQ1
+            // 
+            this.lblSQ1.AutoSize = true;
+            this.lblSQ1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSQ1.Location = new System.Drawing.Point(22, 57);
+            this.lblSQ1.Name = "lblSQ1";
+            this.lblSQ1.Size = new System.Drawing.Size(271, 18);
+            this.lblSQ1.TabIndex = 9;
+            this.lblSQ1.Text = "1) Tentukan T0 (Titik Awal sinyal Firing-On)";
+            // 
+            // lblSQ3
+            // 
+            this.lblSQ3.AutoSize = true;
+            this.lblSQ3.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSQ3.Location = new System.Drawing.Point(22, 111);
+            this.lblSQ3.Name = "lblSQ3";
+            this.lblSQ3.Size = new System.Drawing.Size(437, 18);
+            this.lblSQ3.TabIndex = 9;
+            this.lblSQ3.Text = "3) Tentukan Titik-B, Time burning-start (Titik Awal pembakaran efektif)";
+            // 
+            // lblSQ2
+            // 
+            this.lblSQ2.AutoSize = true;
+            this.lblSQ2.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSQ2.Location = new System.Drawing.Point(22, 84);
+            this.lblSQ2.Name = "lblSQ2";
+            this.lblSQ2.Size = new System.Drawing.Size(450, 18);
+            this.lblSQ2.TabIndex = 9;
+            this.lblSQ2.Text = "2) Tentukan Titik-A, Tim ignition (Titik Awal dimana motor mulai menyala)";
+            // 
+            // lblSQ6
+            // 
+            this.lblSQ6.AutoSize = true;
+            this.lblSQ6.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSQ6.Location = new System.Drawing.Point(38, 192);
+            this.lblSQ6.Name = "lblSQ6";
+            this.lblSQ6.Size = new System.Drawing.Size(381, 18);
+            this.lblSQ6.TabIndex = 9;
+            this.lblSQ6.Text = "Masukkan berat propelan motor roket (Wp)                           gram";
+            // 
+            // lblSQ5
+            // 
+            this.lblSQ5.AutoSize = true;
+            this.lblSQ5.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSQ5.Location = new System.Drawing.Point(23, 165);
+            this.lblSQ5.Name = "lblSQ5";
+            this.lblSQ5.Size = new System.Drawing.Size(381, 18);
+            this.lblSQ5.TabIndex = 9;
+            this.lblSQ5.Text = "5) Tentukan Titik-F, Time Action (Titik Akhir pembakaran total)";
+            // 
+            // panelSQ
+            // 
+            this.panelSQ.BackColor = System.Drawing.Color.Crimson;
+            this.panelSQ.Location = new System.Drawing.Point(6, 55);
+            this.panelSQ.Name = "panelSQ";
+            this.panelSQ.Size = new System.Drawing.Size(474, 20);
+            this.panelSQ.TabIndex = 13;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Blue;
+            this.panel5.Location = new System.Drawing.Point(595, 163);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(23, 23);
+            this.panel5.TabIndex = 12;
+            this.panel5.Visible = false;
             // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.Crimson;
-            this.panel10.Location = new System.Drawing.Point(595, 120);
+            this.panel10.Location = new System.Drawing.Point(595, 136);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(23, 23);
             this.panel10.TabIndex = 12;
+            this.panel10.Visible = false;
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.Crimson;
-            this.panel9.Location = new System.Drawing.Point(595, 93);
+            this.panel9.Location = new System.Drawing.Point(595, 109);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(23, 23);
             this.panel9.TabIndex = 12;
+            this.panel9.Visible = false;
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.Crimson;
-            this.panel8.Location = new System.Drawing.Point(595, 66);
+            this.panel8.BackColor = System.Drawing.Color.Blue;
+            this.panel8.Location = new System.Drawing.Point(595, 82);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(23, 23);
             this.panel8.TabIndex = 12;
+            this.panel8.Visible = false;
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.Crimson;
-            this.panel7.Location = new System.Drawing.Point(595, 39);
+            this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel7.Location = new System.Drawing.Point(595, 55);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(23, 23);
             this.panel7.TabIndex = 12;
+            this.panel7.Visible = false;
             // 
-            // textBox9
+            // tbWpropelan
             // 
-            this.textBox9.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(313, 177);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(66, 23);
-            this.textBox9.TabIndex = 11;
+            this.tbWpropelan.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWpropelan.Location = new System.Drawing.Point(309, 190);
+            this.tbWpropelan.Name = "tbWpropelan";
+            this.tbWpropelan.Size = new System.Drawing.Size(66, 23);
+            this.tbWpropelan.TabIndex = 11;
             // 
-            // button8
+            // btnSQ5
             // 
-            this.button8.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(479, 194);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(110, 25);
-            this.button8.TabIndex = 10;
-            this.button8.Text = "5)  HITUNG !";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.btnSQ5.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSQ5.Location = new System.Drawing.Point(479, 162);
+            this.btnSQ5.Name = "btnSQ5";
+            this.btnSQ5.Size = new System.Drawing.Size(110, 25);
+            this.btnSQ5.TabIndex = 10;
+            this.btnSQ5.Text = "5)  Ta, TOTAL";
+            this.btnSQ5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSQ5.UseVisualStyleBackColor = true;
+            this.btnSQ5.Click += new System.EventHandler(this.btnSQ5_Click);
             // 
-            // button7
+            // btnSQ6
             // 
-            this.button7.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(479, 119);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(110, 25);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "4)  PEAK";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnSQ6.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSQ6.Location = new System.Drawing.Point(479, 189);
+            this.btnSQ6.Name = "btnSQ6";
+            this.btnSQ6.Size = new System.Drawing.Size(110, 25);
+            this.btnSQ6.TabIndex = 10;
+            this.btnSQ6.Text = ">> HITUNG !";
+            this.btnSQ6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSQ6.UseVisualStyleBackColor = true;
+            this.btnSQ6.Click += new System.EventHandler(this.btnSQ6_Click);
             // 
-            // button6
+            // btnSQ4
             // 
-            this.button6.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(479, 92);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(110, 25);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "3)  TOTAL";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSQ4.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSQ4.Location = new System.Drawing.Point(479, 135);
+            this.btnSQ4.Name = "btnSQ4";
+            this.btnSQ4.Size = new System.Drawing.Size(110, 25);
+            this.btnSQ4.TabIndex = 10;
+            this.btnSQ4.Text = "4)  Tb, STOP";
+            this.btnSQ4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSQ4.UseVisualStyleBackColor = true;
+            this.btnSQ4.Click += new System.EventHandler(this.btnSQ4_Click);
             // 
-            // button5
+            // btnSQ3
             // 
-            this.button5.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(479, 65);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(110, 25);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "2)  BURNING";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnSQ3.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSQ3.Location = new System.Drawing.Point(479, 108);
+            this.btnSQ3.Name = "btnSQ3";
+            this.btnSQ3.Size = new System.Drawing.Size(110, 25);
+            this.btnSQ3.TabIndex = 10;
+            this.btnSQ3.Text = "3) Tb, START";
+            this.btnSQ3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSQ3.UseVisualStyleBackColor = true;
+            this.btnSQ3.Click += new System.EventHandler(this.btnSQ3_Click);
             // 
-            // button4
+            // btnSQ2
             // 
-            this.button4.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(479, 38);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(110, 25);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "1)  IGNITION - T0";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnSQ2.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSQ2.Location = new System.Drawing.Point(479, 81);
+            this.btnSQ2.Name = "btnSQ2";
+            this.btnSQ2.Size = new System.Drawing.Size(110, 25);
+            this.btnSQ2.TabIndex = 10;
+            this.btnSQ2.Text = "2)  TIME IGNITION";
+            this.btnSQ2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSQ2.UseVisualStyleBackColor = true;
+            this.btnSQ2.Click += new System.EventHandler(this.btnSQ2_Click);
             // 
-            // label25
+            // btnSQ1
             // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(22, 110);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(357, 18);
-            this.label25.TabIndex = 9;
-            this.label25.Text = "4) Tentukan Ta, Time action (Titik Akhir pembakaran total)";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(22, 57);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(271, 18);
-            this.label13.TabIndex = 9;
-            this.label13.Text = "1) Tentukan T0 (Titik Awal sinyal Firing-On)";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(22, 93);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(381, 18);
-            this.label24.TabIndex = 9;
-            this.label24.Text = "3) Tentukan Tb, Time burning (Titik Akhir pembakaran efektif)";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(23, 128);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(325, 18);
-            this.label26.TabIndex = 9;
-            this.label26.Text = "5) Tentukan Titik Nilai Maksimum (Peak) Pengukuran";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(22, 75);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(437, 18);
-            this.label22.TabIndex = 9;
-            this.label22.Text = "2) Tentukan Tign, Tim ignition (Titik Awal dimana motor mulai menyala)";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(385, 179);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(39, 18);
-            this.label27.TabIndex = 9;
-            this.label27.Text = "gram";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(22, 179);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(285, 18);
-            this.label31.TabIndex = 9;
-            this.label31.Text = "1) Masukkan berat propelan motor roket (Wp)";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(22, 197);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(193, 18);
-            this.label32.TabIndex = 9;
-            this.label32.Text = "2) Hitung nilai Impuls Spesifik !";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(22, 160);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(134, 19);
-            this.label29.TabIndex = 9;
-            this.label29.Text = "Hasil Penghitungan";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Crimson;
-            this.label2.Location = new System.Drawing.Point(22, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(239, 19);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "CARA: Klik mouse pada area kurva !";
+            this.btnSQ1.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSQ1.Location = new System.Drawing.Point(479, 54);
+            this.btnSQ1.Name = "btnSQ1";
+            this.btnSQ1.Size = new System.Drawing.Size(110, 25);
+            this.btnSQ1.TabIndex = 10;
+            this.btnSQ1.Text = "1)  T-ZERO";
+            this.btnSQ1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSQ1.UseVisualStyleBackColor = true;
+            this.btnSQ1.Click += new System.EventHandler(this.btnSQ1_Click);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(22, 39);
+            this.label23.Location = new System.Drawing.Point(22, 29);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(260, 19);
+            this.label23.Size = new System.Drawing.Size(490, 19);
             this.label23.TabIndex = 9;
-            this.label23.Text = "Time Sequence Penyalaan Motor roket";
+            this.label23.Text = "Time Sequence Penyalaan Motor Roket (LIHAT SKEMA ASTM di samping !! )";
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(721, 100);
+            this.button3.Location = new System.Drawing.Point(662, 78);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(69, 49);
+            this.button3.Size = new System.Drawing.Size(125, 45);
             this.button3.TabIndex = 10;
-            this.button3.Text = "CLEAR CURSOR";
+            this.button3.Text = "PLOT REFINE";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(721, 45);
+            this.button2.Location = new System.Drawing.Point(662, 26);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(69, 49);
+            this.button2.Size = new System.Drawing.Size(125, 45);
             this.button2.TabIndex = 10;
             this.button2.Text = "ASTM";
             this.button2.UseVisualStyleBackColor = true;
@@ -820,7 +974,6 @@
         #endregion
         private System.Windows.Forms.Button btnMakeReport;
         private ZedGraph.ZedGraphControl zedGraphControl1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
@@ -838,8 +991,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -853,32 +1004,42 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblSQ3;
+        private System.Windows.Forms.Label lblSQ2;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblSQ1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblSQ4;
+        private System.Windows.Forms.Label lblSQ5;
+        private System.Windows.Forms.Label lblSQ6;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbWpropelan;
+        private System.Windows.Forms.Button btnSQ4;
+        private System.Windows.Forms.Button btnSQ3;
+        private System.Windows.Forms.Button btnSQ2;
+        private System.Windows.Forms.Button btnSQ1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSQ6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnSQ5;
+        private System.Windows.Forms.Panel panelSQ;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.Label label13;
     }
 }

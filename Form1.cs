@@ -11,11 +11,6 @@ using Transitions;
 using System.Globalization;
 
 using System.IO;
-/*
- * [SF3] TES RE COMMIT 
- * [GSX] tes dari kantor
- * 
- * /
 
 /*
 A-SELASA, 10 Dzulhijjah 1442 / 20 Juli 2021 
@@ -258,23 +253,31 @@ namespace DACQViewer
             {
                 showSubMenu(false);
                 hideButton(true);
-                
-                //Panggil fungsi Load_CSV
-                ambil_csv_table();      
-                
-                //bikin windows auto maximize setelah load file csv
-                this.WindowState = FormWindowState.Maximized;
 
-                //show judul
-                DateTime dayTime = DateTime.ParseExact(dateID, "yyyy/MM/dd",CultureInfo.InvariantCulture);
-                hariUji = lokalID.DateTimeFormat.GetDayName(dayTime.DayOfWeek).ToString();
-                tglUji = dayTime.ToString("dd MMM yyyy");
+                try
+                {
+                    //Panggil fungsi Load_CSV
+                    ambil_csv_table();      
                 
-                label17.Text = "Motor Roket : "+roketID;
-                label18.Text = "Waktu Uji Statis : " + hariUji + ", " + tglUji + ", " + timeID;
-                label17.Visible = true;
-                label18.Visible = true;
-                pictureBox2.Visible = true;
+                    //bikin windows auto maximize setelah load file csv
+                    this.WindowState = FormWindowState.Maximized;
+
+                    //show judul
+                    DateTime dayTime = DateTime.ParseExact(dateID, "yyyy/MM/dd",CultureInfo.InvariantCulture);
+                    hariUji = lokalID.DateTimeFormat.GetDayName(dayTime.DayOfWeek).ToString();
+                    tglUji = dayTime.ToString("dd MMM yyyy");
+                
+                    label17.Text = "Motor Roket : "+roketID;
+                    label18.Text = "Waktu Uji Statis : " + hariUji + ", " + tglUji + ", " + timeID;
+                    label17.Visible = true;
+                    label18.Visible = true;
+                    pictureBox2.Visible = true;
+                }
+                catch(Exception err)
+                {
+                    MessageBox.Show("ERROR, broo !" + Environment.NewLine + err.Message);
+                }
+                
 
                 //langsung buka tabel
                 seqClick = 1;

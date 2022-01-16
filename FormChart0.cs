@@ -17,7 +17,6 @@ namespace DACQViewer
         //create objek dulu
         DataTable dtRekapF3 = new DataTable();  //objek tabel
         DataTable dtAnalytic = new DataTable();
-        GraphPane myChart = new GraphPane();    //objek zedgraph
         Color[] warnaKurva = new Color[10]
         {
             Color.Crimson,          // sebisa mungkin untuk igniter signal
@@ -31,20 +30,27 @@ namespace DACQViewer
             Color.DarkOrange,
             Color.YellowGreen
         };
+        Color[] warnaCursor = new Color[6]
+        {
+            Color.Silver,
+            Color.Black,
+            Color.Blue,
+            Color.Red,
+            Color.Red,
+            Color.Blue
+        };
 
         //variabel data header tabel parameter daq
-        private string[] dataChX, dataChDg;
-        private string[] idChannelArr;
-        private int jumChannel;
-        private int jumDataRow;
-        private int sampleRate;
-        private string[] unitChannelArr;
         private string roketID;
+        private string[] dataChX, dataChDg, idChannelArr, unitChannelArr;
+        private int jumChannel, jumDataRow, sampleRate;
+
+        grafikAstm showAstm = new grafikAstm();
 
         public FormChart0(DataTable dtRekapF1, int dt1, string[] dt2, string[] dt3, int dt4, int dt5, string dt6)
         {
             InitializeComponent();
-            
+                       
             dtRekapF3 = dtRekapF1;  //ambil data tabel full
             jumDataRow = dt1;       //jumlah baris data
             unitChannelArr = dt2;   //nama satuan
@@ -53,13 +59,21 @@ namespace DACQViewer
             sampleRate = dt5;
             roketID = dt6;
 
+            panelSQ.Visible = false;
             //mulai form
+            showAstm.Show();
+
             inisialisasi_grafik();
             plot_grafik();
+
+            //if (showAstm.getAck())
+            //    tampilkan_tabel_analitik();
         }
 
     #region FORM_CHART
+        GraphPane myChart = new GraphPane();    //objek zedgraph
         LineItem kurvaCHX;
+        bool tag_f, tag_p, tag_v;
 
         private void plot_grafik()
         { 
@@ -79,7 +93,7 @@ namespace DACQViewer
             for (int a = 0; a < jumChannel; a++)
             {
 
-                bool isVolt = false;    bool isBar = false;
+                bool isVolt = false;    bool isBar = false; bool isKgf = false;
                 float b = 0;
 
                 //cek Unit satuan >> tentukan pembagi Value
@@ -88,14 +102,23 @@ namespace DACQViewer
                     isBar = true;
                 }
 
+                if (String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "kgf")
+                {
+                    isKgf = true;
+                }
+
                 if (String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "volt" || String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "V")
                 {
                     isVolt = true;
                     pembagi = pembagiVolt;          //pengecualian untuk Volt, pembagi pakai 1000000
                 }
+
+
                 
                 //isi data pointpair untuk kurva
                 dataChX = dtRekapF3.AsEnumerable().Select(r => r.Field<string>(a)).ToArray();
+                dataus.Add(dataChX);
+                
                 for (int c = 0; c < jumDataRow; c++)
                 {
                     xVal[c] = b / sampleRate;
@@ -114,6 +137,8 @@ namespace DACQViewer
                 {
                     kurvaCHX.IsY2Axis = true;
                     myChart.Y2Axis.IsVisible = true;
+
+                    idxColIgn = a;
                 }
 
                 if(isBar)
@@ -121,12 +146,18 @@ namespace DACQViewer
                     kurvaCHX.YAxisIndex= 1 ;        //YAxis0
                     myChart.YAxisList[1].IsVisible = true;
                     //YAxis0.IsVisible = true;
+                    idxColBar = a;
+                }
+
+                if(isKgf)
+                {
+                    idxColKgf = a;          //posisi index kolom kgf (F Thrust)
                 }
                 
                 myChart.CurveList.Add(kurvaCHX);
                 
                 zedGraphControl1.AxisChange();
-                zedGraphControl1.Invalidate();
+                //zedGraphControl1.Invalidate();
                 //zedGraphControl1.Refresh();
             }
         }
@@ -165,6 +196,7 @@ namespace DACQViewer
             myChart.YAxis.Title.Text = "Gaya dorong (Kgf)";
             myChart.YAxis.Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black,true,false,false);
             myChart.YAxis.Title.FontSpec.Border = new Border(false, Color.Black, 0);
+            myChart.YAxis.Title.FontSpec.Angle = 180;
 
             myChart.YAxis.Scale.MaxAuto = true;
             myChart.YAxis.Scale.Min = 0;
@@ -182,6 +214,7 @@ namespace DACQViewer
             myChart.Y2Axis.Title.Text = "Ignition (Volt)";
             myChart.Y2Axis.Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black, true, false, false);
             myChart.Y2Axis.Title.FontSpec.Border = new Border(false, Color.Black, 0);
+            myChart.Y2Axis.Title.FontSpec.Angle = 180;
 
             myChart.Y2Axis.Scale.Max = 30;      //30 volt...
             myChart.Y2Axis.Scale.Min = 0;
@@ -200,6 +233,7 @@ namespace DACQViewer
             myChart.YAxisList[1].Title.Text = "Tekanan (Bar)";
             myChart.YAxisList[1].Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black, true, false, false);
             myChart.YAxisList[1].Title.FontSpec.Border = new Border(false, Color.Black, 0);
+            myChart.YAxisList[1].Title.FontSpec.Angle = 180;
 
             myChart.YAxisList[1].Scale.Max = 150;       //bar max scale view
             myChart.YAxisList[1].Scale.Min = 0;
@@ -223,8 +257,13 @@ namespace DACQViewer
             zedGraphControl1.AxisChange();     
         }
 
-    #endregion FORM_CHART
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //replotting dengan data refining
+        }
+        #endregion FORM_CHART
 
+        #region TABEL_ANALITIK
         private void tampilkan_tabel_analitik()
         {
             //clear tabel
@@ -308,16 +347,12 @@ namespace DACQViewer
                 MessageBox.Show("Gagal menampilkan Tabel Analitik! "+ Environment.NewLine + errz.Message);
             }
         }
-        private void create_cursor_vertical()
-        {
-            //dtRekapF3.Rows[1][2];
-        }
+    #endregion TABEL_ANALITIK
 
     #region BUTTON
         private void btnMakeReport_Click(object sender, EventArgs e)
         {
             seqClick = 1;
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -326,22 +361,18 @@ namespace DACQViewer
             astm.Show();
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            tampilkan_tabel_analitik();
-            
-        }
-
         int seqClick = 0;
         public int getSeqClick_FChart0()
         {
             return seqClick;
         }
-    
-    #endregion BUTTON
 
-        /*----------------------------------------------------------------------------------------------EVENT HANDLER-------*/
-    #region TABEL_ANALITIK_CELL_KLIK_EVENT
+        #endregion BUTTON
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------- EVENT HANDLER ------*/
+    #region TABEL_ANALITIK_EVENTS : CLICK
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             //pakai event cell value changed >> perlu masuk ke status checkboxnya
@@ -366,7 +397,6 @@ namespace DACQViewer
                 dataGridView1.EndEdit();
         }
 
-   
         //fungsi untuk show/hide curve, via kolom centang di DGV1
         private void aksi_centang(int idx, bool status)
         {
@@ -386,59 +416,320 @@ namespace DACQViewer
             zedGraphControl1.Refresh();
         }
 
-    # endregion TABEL_ANALITIK_CELL_KLIK_EVENT
-    
-    #region CHART_CLICK_EVENTSSS
-        //point value waktu hovering
+    #endregion TABEL_ANALITIK_CELL_KLIK_EVENT
+
+    #region CHART_EVENT : HOVER, CLICK
+
+     //point value waktu hovering
         PointPair ppCross;
-        string strUnit;
         private string zedGraphControl1_PointValueEvent(ZedGraphControl sender, GraphPane pane, CurveItem curve, int iPt)
         {
             ppCross = curve[iPt];
-            /*
-            for(int xx=0;xx<jumChannel;xx++)
-            {
-                if (curve.Label.Text == myChart.CurveList[xx].Label.Text)
-                    strUnit = unitChannelArr[xx+1];
-                else
-                    strUnit = " ~";
-            }
-
-            */
+            
             return curve.Label.Text + " : " + ppCross.X.ToString("#.##") + " detik; " + ppCross.Y.ToString("#.##") + " " + unitChannelArr[curve.YAxisIndex+1];  //strUnit;//
         }
 
-        //fungsi klik baca value >> dgv1
+    //fungsi klik baca value >> dgv1
         private void zedGraphControl1_MouseClick(object sender, MouseEventArgs e)
         {
             double X1, Y1, pembagiVolt;
-
-            myChart.ReverseTransform(e.Location, out X1, out Y1);
-            X1 = X1 * 100;
-            
-
-            for(int idx=0; idx<jumChannel; idx++)
+            if(e.Button==MouseButtons.Left)
             {
-                
-                if (String.Format(unitChannelArr[idx],StringComparison.InvariantCultureIgnoreCase) == "volt")
+                if(idxCursor==0)
+                    tampilkan_tabel_analitik();
+
+                idxCursor++; //urutan cursor, warna, 
+
+                myChart.ReverseTransform(e.Location, out X1, out Y1);
+
+                create_cursorx_lineObj(X1);
+
+                X1 = X1 * 100;
+
+                for (int idx = 0; idx < jumChannel; idx++)
                 {
-                    pembagiVolt = 1000000;
+                    if (String.Format(unitChannelArr[idx + 1], StringComparison.InvariantCultureIgnoreCase) == "volt")
+                    {
+                        pembagiVolt = 1000000;
+                    }
+                    else
+                        pembagiVolt = 10000;
+
+                    dataChDg = dtRekapF3.AsEnumerable().Select(r => r.Field<string>(idx)).ToArray();
+
+                    string dat0 = dataChDg[Convert.ToInt32(X1)];
+                    double dat1 = double.Parse(dat0);
+                    double dat2 = dat1 / pembagiVolt;
+
+                    dataGridView1.Rows[idx].Cells[3].Value = dat2.ToString("#.000");
                 }
-                else
-                    pembagiVolt = 10000;
-                
-                dataChDg = dtRekapF3.AsEnumerable().Select(r => r.Field<string>(idx)).ToArray();
+                    
+                //ambil nilai CursorX, tergantung button 
+                if(btnSQ1cek)
+                {
+                    tZero = X1 / 100;   //time Zero, saat sinyal diberikan
 
-                string dat0 = dataChDg[Convert.ToInt32(X1)];
-                double dat1 = double.Parse(dat0);
-                double dat2 = dat1 / pembagiVolt;
+                    btnSQ1.BackColor = Color.Lime;
+                    btnSQ1cek = false;
+                }
 
-                dataGridView1.Rows[idx].Cells[3].Value = dat2.ToString("#.###");
+                if(btnSQ2cek)
+                {
+                    tA = X1 / 100;      //time A, saat ignition dimulai
+                    tign=(tA-tZero);
+                    textBox8.Text = tign.ToString("#.000")+"  ";
+
+                    btnSQ2.BackColor = Color.Lime;
+                    btnSQ2cek = false;
+                }
+
+                if(btnSQ3cek)
+                {
+                    tB = X1/100;
+
+                    btnSQ3.BackColor = Color.Lime;
+                    btnSQ3cek = false;
+                }
+
+                if(btnSQ4cek)
+                {
+                    tE = X1/sampleRate;
+                    tburnEff = (tE - tB);
+                    textBox2.Text = tburnEff.ToString("#.000") + "  ";
+
+                    btnSQ4.BackColor = Color.Lime;
+                    btnSQ4cek = false;                               
+                }
+
+                if(btnSQ5cek)
+                {
+                    tF = X1/100;
+                    taction = (tF - tB);
+                    textBox3.Text = taction.ToString("#.000") + "  ";
+
+                    btnSQ5.BackColor = Color.Lime;
+                    btnSQ5cek = false;
+                }
                 
             }
         }
+
+     //fungsi hovering VCursor
+        PointPairList listCursorX = new PointPairList();
+        LineItem lineCursorX;
         
-    #endregion CHART_CLICK_EVENTSS
+        private void zedGraphControl1_MouseMove(object sender, MouseEventArgs e)
+        {
+            //ambil data koordinat mouse
+            double mousex, mousey;
+            myChart.ReverseTransform(e.Location, out mousex, out mousey);
+
+            //add (x,y) garis cursor
+            listCursorX.Add(mousex, myChart.YAxis.Scale.Min);
+            listCursorX.Add(mousex, myChart.YAxis.Scale.Max);
+
+            //add curve
+            lineCursorX = myChart.AddCurve("", listCursorX, Color.Black, SymbolType.Square);
+            lineCursorX.Line.Width = 1f;
+            lineCursorX.Line.Style = System.Drawing.Drawing2D.DashStyle.Dash;
+
+            zedGraphControl1.Refresh();
+
+            listCursorX.Clear();
+
+
+        }
+        private void zedGraphControl1_MouseLeave(object sender, EventArgs e)
+        {
+            //listCursorX.Clear();
+        }
+
+    //fungsi letakkan garis VCursor
+        int idxCursor = 0;
+        private void create_cursorx_lineObj(double xval)
+        {                                    
+            //reset cursor jumlah
+            if (idxCursor > 5)      
+            {
+                idxCursor = 0;
+                myChart.GraphObjList.Clear();
+                zedGraphControl1.GraphPane.GraphObjList.Clear();
+                zedGraphControl1.Refresh();
+            }  
+
+            //bikin line cursorX
+            //LineObj cursorx1 = new LineObj(Color.Black, x1, myChart.YAxis.Scale.Min, x1, myChart.YAxis.Scale.Max);
+            LineObj cursorx1 = new LineObj(warnaCursor[idxCursor], xval, 0, xval,1 );   //index idxCursor langsung nilai 1 ...untuk warnaCursor
+            cursorx1.Location.CoordinateFrame = CoordType.XScaleYChartFraction;
+            cursorx1.IsClippedToChartRect = true;
+            cursorx1.Line.Width = 2;
+            cursorx1.Line.Style = System.Drawing.Drawing2D.DashStyle.Dash;
+            cursorx1.ZOrder = ZOrder.E_BehindCurves;
+
+            myChart.GraphObjList.Add(cursorx1);
+            zedGraphControl1.Refresh();
+        }
+
+        private void create_textObj()
+        {
+            TextObj labelA = new TextObj("1) Klik sekali untuk memilih titik awal \n 2)Klik kedua...",
+                1f, 1f, CoordType.ChartFraction, AlignH.Left, AlignV.Bottom);
+
+            labelA.FontSpec.StringAlignment = StringAlignment.Near;
+
+            myChart.GraphObjList.Add(labelA);
+        }
+
+    //fungsi box burning area
+        double x1box, x2box;
+        private void create_burning_area()
+        {
+            x1box = tB;
+            BoxObj boxBurning = new BoxObj(x1box,15000,tburnEff,15000, Color.Empty, Color.FromArgb(50, Color.Crimson));
+            boxBurning.Location.CoordinateFrame = CoordType.AxisXYScale;
+            boxBurning.Location.AlignV = AlignV.Top;
+            boxBurning.Location.AlignH = AlignH.Left;
+            boxBurning.ZOrder = ZOrder.E_BehindCurves;
+            myChart.GraphObjList.Add(boxBurning);
+
+            TextObj texBurning = new TextObj("Area waktu bakar efektif", (x1box+(tburnEff*0.1)),10000);
+            texBurning.Location.CoordinateFrame = CoordType.AxisXYScale;
+            texBurning.Location.AlignH = AlignH.Left;
+            texBurning.Location.AlignV = AlignV.Center;
+            texBurning.FontSpec.IsItalic = true;
+            texBurning.FontSpec.Family = "HP Simplified";
+            texBurning.FontSpec.FontColor = Color.Black;
+            texBurning.FontSpec.Size = 14f;
+            myChart.GraphObjList.Add(texBurning);
+
+
+            zedGraphControl1.Refresh();
+        }
+
+
+        #endregion CHART_CLICK_EVENTSS
+        
+    #region FUNGSI AMBIL DATA CURSOR
+
+        //variabel hitung-hitungan
+        bool btnSQ1cek, btnSQ2cek, btnSQ3cek, btnSQ4cek, btnSQ5cek;
+        double tZero, tA, tB, tE, tF;           // titik2 dalam skema ASTM (A, B, C...)dalam detik, untuk dapet data-urut, perlu dikali 10
+        double tign, tburnEff, taction;
+
+        List<string[]> dataus = new List<string[]>();
+
+        int idxColKgf, idxColBar, idxColIgn;
+        double impuls_tot, impuls_sp, w_prop;
+
+        private void hitung_analisis_astm()
+        {
+            double[] data_f, data_p, data_v;
+            double[] data_f_fine_eff, data_p_fine_eff;                  //burning effective
+            double[] data_f_fine_tot, data_p_fine_tot, data_v_fine_tot; //burning total/action
+
+            double f_max, f_ave, p_max, p_ave;
+
+            int refineSkip, refineTake;             //refining data untuk effective burning
+            int refineSkip_tot, refineTake_tot;     //refining data untuk total burning
+            
+            //convert string[] ke double
+                //data_f = Array.ConvertAll(dataus[idxColKgf], s => double.Parse(s));   //pakai LAMBDA :convert String[] to double[]
+                //data_f = Array.ConvertAll(dataus[idxColKgf],double.Parse);            //convert String[] to double[]
+            data_f = dataus[idxColKgf].Select(double.Parse).ToArray();  // THRUST_F       //pakai LINQ : convert String[] to double[]
+            data_p = dataus[idxColBar].Select(double.Parse).ToArray();  // PRESSURE_P
+            data_v = dataus[idxColIgn].Select(double.Parse).ToArray();  //IGNITION_V
+            
+            //cari parameter
+            f_max = data_f.Max();
+            f_max = f_max / 10000;
+            p_max = data_p.Max();
+            p_max = p_max / 10000;
+
+            //ACTION AREA ~ total burning
+            refineSkip_tot = Convert.ToInt32(tA * sampleRate);
+            refineTake_tot = Convert.ToInt32(taction * sampleRate);
+
+            data_f_fine_tot = data_f.Skip(refineSkip_tot).Take(refineTake_tot).ToArray();
+            data_p_fine_tot = data_p.Skip(refineSkip_tot).Take(refineTake_tot).ToArray();
+            data_v_fine_tot = data_v.Skip(refineSkip_tot).Take(refineTake_tot).ToArray();
+            
+
+
+            //BURNING AREA - effective buning
+            refineSkip = Convert.ToInt32(tB * sampleRate);
+            refineTake = Convert.ToInt32(tburnEff * sampleRate);
+
+            data_f_fine_eff = data_f.Skip(refineSkip).Take(refineTake).ToArray();
+            data_p_fine_eff = data_p.Skip(refineSkip).Take(refineTake).ToArray();
+
+            //rerata dari BURNING TIME EFFECTIVE !
+            f_ave = data_f_fine_eff.Average();
+            p_ave = data_p_fine_eff.Average();
+
+          if(tbWpropelan!=null)
+            {
+                w_prop = double.Parse(tbWpropelan.Text);
+
+                impuls_tot = (f_ave/10000 * tburnEff);            //impuls total= Thrust rerata*TimeBurning effective
+                impuls_sp = (impuls_tot / w_prop);          //impuls sp=impuls total/berat propelan
+            }
+          
+            //tampilkan
+            textBox4.Text = impuls_tot.ToString("#.000") + "  ";
+            textBox5.Text = impuls_sp.ToString("#.000") + "  ";
+
+            textBox7.Text = (f_ave / 10000).ToString("#.000") + "  ";
+            textBox10.Text = (p_ave / 10000).ToString("#.000") + "  ";
+
+            textBox6.Text = f_max.ToString("#.000")+"  ";
+            textBox1.Text = p_max.ToString("#.000")+"  ";
+
+            textBox11.Text = jumDataRow.ToString();
+            textBox13.Text = sampleRate.ToString();
+        }
+
+        private void btnSQ1_Click(object sender, EventArgs e)
+        {
+            panel7.Visible = true;
+            btnSQ1.BackColor = Color.Crimson;
+            btnSQ1cek = true;
+        }
+
+        private void btnSQ2_Click(object sender, EventArgs e)
+        {
+            panel8.Visible = true;
+            btnSQ2.BackColor = Color.Crimson;
+            btnSQ2cek = true;
+        }
+
+        private void btnSQ3_Click(object sender, EventArgs e)
+        {
+            panel9.Visible = true;
+            btnSQ3.BackColor = Color.Crimson;
+            btnSQ3cek = true;
+        }
+
+        private void btnSQ4_Click(object sender, EventArgs e)
+        {
+            panel10.Visible = true;
+            btnSQ4.BackColor = Color.Crimson;
+            btnSQ4cek = true;
+        }
+
+        private void btnSQ5_Click(object sender, EventArgs e)
+        {
+            panel5.Visible = true;
+            btnSQ5.BackColor = Color.Crimson;
+            btnSQ5cek = true;
+        }
+
+        private void btnSQ6_Click(object sender, EventArgs e)
+        {
+            hitung_analisis_astm();
+            create_burning_area();
+        }
+        
+    #endregion FUNGS AMBIL DATA CURSOR
 
     #region Fungsi Hide/show Panel
         private static bool isOdd(int val)
@@ -446,24 +737,30 @@ namespace DACQViewer
             return val % 2 != 0;
         }
 
+        int lastHeight;
         int idxButton = 0;
+
+
         private void button9_Click(object sender, EventArgs e)
         {
             idxButton++;
 
+
             if(isOdd(idxButton))
             {
+                lastHeight = panel4.Size.Height;
                 Transition.run(panel4, "Height", 35, new TransitionType_EaseInEaseOut(500));
                button9.BackgroundImage = Properties.Resources.upBtn;
             }
             else
             {
-                Transition.run(panel4, "Height", 232, new TransitionType_EaseInEaseOut(500));
+                Transition.run(panel4, "Height", lastHeight, new TransitionType_EaseInEaseOut(500));
                 button9.BackgroundImage = Properties.Resources.downBtn;
             }
         }
     #endregion Fungsi Hide/show Panel
 
         
+
     }
 }

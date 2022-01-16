@@ -17,9 +17,17 @@ namespace DACQViewer
             InitializeComponent();
         }
 
+        public bool setuju;
+
         private void button1_Click(object sender, EventArgs e)
         {
+            setuju = true;
             this.Close();
+        }
+
+        public bool getAck()
+        {
+            return setuju;
         }
     }
 }
