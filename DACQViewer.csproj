@@ -107,11 +107,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADMIN.cs">
+    <Compile Include="_form_admin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ADMIN.Designer.cs">
-      <DependentUpon>ADMIN.cs</DependentUpon>
+    <Compile Include="_form_admin.Designer.cs">
+      <DependentUpon>_form_admin.cs</DependentUpon>
     </Compile>
     <Compile Include="baca_csv_ke_tabel.cs" />
     <Compile Include="Form1.cs">
@@ -156,28 +156,28 @@
     <Compile Include="FormVideoz.Designer.cs">
       <DependentUpon>FormVideoz.cs</DependentUpon>
     </Compile>
-    <Compile Include="form_w_prop.cs">
+    <Compile Include="_form_w_propelan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form_w_prop.Designer.cs">
-      <DependentUpon>form_w_prop.cs</DependentUpon>
+    <Compile Include="_form_w_propelan.Designer.cs">
+      <DependentUpon>_form_w_propelan.cs</DependentUpon>
     </Compile>
-    <Compile Include="grafikAstm.cs">
+    <Compile Include="_form_astm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="grafikAstm.Designer.cs">
-      <DependentUpon>grafikAstm.cs</DependentUpon>
+    <Compile Include="_form_astm.Designer.cs">
+      <DependentUpon>_form_astm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="temporarys.cs">
+    <Compile Include="_form_temp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="temporarys.Designer.cs">
-      <DependentUpon>temporarys.cs</DependentUpon>
+    <Compile Include="_form_temp.Designer.cs">
+      <DependentUpon>_form_temp.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ADMIN.resx">
-      <DependentUpon>ADMIN.cs</DependentUpon>
+    <EmbeddedResource Include="_form_admin.resx">
+      <DependentUpon>_form_admin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -200,11 +200,11 @@
     <EmbeddedResource Include="FormVideoz.resx">
       <DependentUpon>FormVideoz.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form_w_prop.resx">
-      <DependentUpon>form_w_prop.cs</DependentUpon>
+    <EmbeddedResource Include="_form_w_propelan.resx">
+      <DependentUpon>_form_w_propelan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="grafikAstm.resx">
-      <DependentUpon>grafikAstm.cs</DependentUpon>
+    <EmbeddedResource Include="_form_astm.resx">
+      <DependentUpon>_form_astm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -216,8 +216,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="temporarys.resx">
-      <DependentUpon>temporarys.cs</DependentUpon>
+    <EmbeddedResource Include="_form_temp.resx">
+      <DependentUpon>_form_temp.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

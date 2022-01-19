@@ -1,6 +1,6 @@
 ﻿namespace DACQViewer
 {
-    partial class grafikAstm
+    partial class _form_astm
     {
         /// <summary>
         /// Required designer variable.

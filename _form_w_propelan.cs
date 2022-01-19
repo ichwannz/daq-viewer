@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DACQViewer
 {
-    public partial class form_w_prop : Form
+    public partial class _form_w_propelan : Form
     {
-        public form_w_prop()
+        public _form_w_propelan()
         {
             InitializeComponent();
         }

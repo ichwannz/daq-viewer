@@ -42,14 +42,18 @@ namespace DACQViewer
         //formchart1 fgrafik2;
         FormReport freport;
         //formZipFInal fzip;
+        int psize_w, psize_h;
 
         public Form1()
         {
             InitializeComponent();
             showSubMenu(false);
             hideButton(true);
+            psize_w = panelSideMenu.Width;
+            psize_h = panelSideMenu.Width;
+            panelSideMenu.Size = new Size(50, psize_h);
+            panelSideMenu.Visible = false;
 
-            pictureBox2.Visible = false;
             btnDetach.Visible = false;
             panJudulSubForm.Visible = false;
             lblJudulSubForm.Visible = false;
@@ -141,7 +145,9 @@ namespace DACQViewer
                         //HEADER
                         daqID = bc.get_daqID();
                         //roketID = bc.get_roketID(); //yg lama, tidak dipakai ! per 22JAN2022
+
                         roketID = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
+                        roketID = refine_roket_id();
                         dateID = bc.get_dateID();
                         timeID = bc.get_timeID();
 
@@ -172,9 +178,26 @@ namespace DACQViewer
                 }
             }
         }
-     # endregion FUNGSI_UTAMA_DACQ
-       
-     #region FUNGSI_UI-VIEW-HIDE-UX
+
+        private string refine_roket_id()
+        {
+            //cari index huruf R > hapus index sebelumnya > copy ke string baru
+            try
+            {
+                int idx = 0;
+                idx = roketID.IndexOf("R", StringComparison.InvariantCultureIgnoreCase);
+                roketID = roketID.Remove(0, idx);
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show("Nama roket (Nama file Csv) salah, mohon diperbaiki, bro!", "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            return roketID;
+        }
+
+        #endregion FUNGSI_UTAMA_DACQ
+
+        #region FUNGSI_UI-VIEW-HIDE-UX
         private void hideButton(bool val)
         {
             if(val)
@@ -270,11 +293,10 @@ namespace DACQViewer
                     hariUji = lokalID.DateTimeFormat.GetDayName(dayTime.DayOfWeek).ToString();
                     tglUji = dayTime.ToString("dd MMM yyyy");
                 
-                    label17.Text = "Motor Roket : "+roketID;
-                    label18.Text = "Waktu Uji Statis : " + hariUji + ", " + tglUji + ", " + timeID;
+                    label17.Text = roketID;
+                    label18.Text = hariUji + ", " + tglUji + ", " + timeID;
                     label17.Visible = true;
                     label18.Visible = true;
-                    pictureBox2.Visible = true;
                 }
                 catch(Exception err)
                 {
@@ -420,7 +442,7 @@ namespace DACQViewer
         private void btnGrafThrust_Click(object sender, EventArgs e)
         {
             lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
-            openMainForm(new ADMIN());
+            openMainForm(new _form_admin());
             coloring(btnGrafThrust);
         }
      #endregion SUB_BUTTON
@@ -444,6 +466,8 @@ namespace DACQViewer
                 Transition.run(panHeader, "Height", 70, new TransitionType_EaseInEaseOut(1000));
                 Transition.run(panFooter,"Height",100, new TransitionType_EaseInEaseOut(1000));
                 Transition.run(panWelcome, "Height", 52, new TransitionType_EaseInEaseOut(300));
+                panelSideMenu.Visible = true;
+                Transition.run(panelSideMenu, "Width", psize_w, new TransitionType_EaseInEaseOut(1000));
 
                 //...
 

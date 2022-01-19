@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DACQViewer
 {
-    public partial class ADMIN : Form
+    public partial class _form_temp : Form
     {
-        public ADMIN()
+        public _form_temp()
         {
             InitializeComponent();
         }

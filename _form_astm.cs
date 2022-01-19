@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DACQViewer
 {
-    public partial class grafikAstm : Form
+    public partial class _form_astm : Form
     {
-        public grafikAstm()
+        public _form_astm()
         {
             InitializeComponent();
         }

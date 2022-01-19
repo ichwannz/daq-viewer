@@ -1,6 +1,6 @@
 ﻿namespace DACQViewer
 {
-    partial class form_w_prop
+    partial class _form_w_propelan
     {
         /// <summary>
         /// Required designer variable.

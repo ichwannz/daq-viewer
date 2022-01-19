@@ -44,8 +44,8 @@ namespace DACQViewer
         private string[] dataChX, dataChDg, idChannelArr, unitChannelArr;
         private int jumChannel, jumDataRow, sampleRate;
 
-        grafikAstm showAstm = new grafikAstm();
-        form_w_prop formwp = new form_w_prop();
+        _form_astm showAstm = new _form_astm();
+        _form_w_propelan formwp = new _form_w_propelan();
 
         public FormChart0(DataTable dtRekapF1, int dt1, string[] dt2, string[] dt3, int dt4, int dt5, string dt6)
         {
@@ -368,7 +368,7 @@ namespace DACQViewer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            grafikAstm astm = new grafikAstm();
+            _form_astm astm = new _form_astm();
             astm.Show();
         }
 
@@ -549,7 +549,7 @@ namespace DACQViewer
                         tbWpropelan.Text = "0"; //reset
                         while(tbWpropelan.Text=="0")
                         {
-                            form_w_prop fw = new form_w_prop();
+                            _form_w_propelan fw = new _form_w_propelan();
                             using (fw)
                             {
                                 if (fw.ShowDialog() == DialogResult.OK)

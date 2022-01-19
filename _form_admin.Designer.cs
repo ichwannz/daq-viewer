@@ -1,6 +1,6 @@
 ﻿namespace DACQViewer
 {
-    partial class ADMIN
+    partial class _form_admin
     {
         /// <summary>
         /// Required designer variable.
