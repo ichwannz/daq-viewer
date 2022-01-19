@@ -124,6 +124,8 @@ namespace DACQViewer
                 {
                     loadFailed = true;
                     MessageBox.Show("Gagal mengambil CSV, mohon diulangi, broo ! " + err.Message);
+                    Application.Exit();     //restart program, exit dulu
+                    Environment.Exit(0);
                 }
             }
 
@@ -138,7 +140,8 @@ namespace DACQViewer
 
                         //HEADER
                         daqID = bc.get_daqID();
-                        roketID = bc.get_roketID();
+                        //roketID = bc.get_roketID(); //yg lama, tidak dipakai ! per 22JAN2022
+                        roketID = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
                         dateID = bc.get_dateID();
                         timeID = bc.get_timeID();
 
@@ -476,6 +479,10 @@ namespace DACQViewer
             Application.Exit();
         }
 
+        private void panFooter_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
 
         List<Form> formDetached = new List<Form>();
         private void btnDetach_Click(object sender, EventArgs e)

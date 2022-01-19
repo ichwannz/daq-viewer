@@ -156,6 +156,12 @@
     <Compile Include="FormVideoz.Designer.cs">
       <DependentUpon>FormVideoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_w_prop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_w_prop.Designer.cs">
+      <DependentUpon>form_w_prop.cs</DependentUpon>
+    </Compile>
     <Compile Include="grafikAstm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVideoz.resx">
       <DependentUpon>FormVideoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_w_prop.resx">
+      <DependentUpon>form_w_prop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="grafikAstm.resx">
       <DependentUpon>grafikAstm.cs</DependentUpon>

@@ -64,17 +64,20 @@ namespace DACQViewer
             //dtRekapF2.Columns.Add("No.", typeof(int)).SetOrdinal(0);  //sudah di Form1
             dataGridView1.DataSource = dtRekapF2;
             dataGridView1.Columns[0].Width = 55;
-            dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.Silver;
 
             //style
-            foreach(DataGridViewColumn col in dataGridView1.Columns)
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
-                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                 col.HeaderCell.Style.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                
 
                 col.ReadOnly = true;        //semua readonly..
             }
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+
             dataGridView1.Refresh();
         }
 

@@ -110,12 +110,11 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
@@ -162,6 +161,7 @@
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -176,7 +176,7 @@
             this.Sensor3,
             this.Sensor4});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
@@ -284,92 +284,92 @@
             // 
             // textBox3
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox3.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(720, 34);
+            this.textBox3.Location = new System.Drawing.Point(720, 36);
             this.textBox3.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox3.MaxLength = 32;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(37, 25);
+            this.textBox3.Size = new System.Drawing.Size(37, 18);
             this.textBox3.TabIndex = 1;
             // 
             // textBox11
             // 
-            this.textBox11.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox11.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox11.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox11.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox11.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(720, 60);
+            this.textBox11.Location = new System.Drawing.Point(720, 62);
             this.textBox11.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox11.MaxLength = 32;
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(37, 25);
+            this.textBox11.Size = new System.Drawing.Size(37, 18);
             this.textBox11.TabIndex = 1;
             // 
             // textBox10
             // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox10.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox10.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox10.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox10.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(396, 62);
+            this.textBox10.Location = new System.Drawing.Point(466, 62);
             this.textBox10.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox10.MaxLength = 32;
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(65, 25);
+            this.textBox10.Size = new System.Drawing.Size(83, 18);
             this.textBox10.TabIndex = 1;
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox2.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(396, 34);
+            this.textBox2.Location = new System.Drawing.Point(466, 36);
             this.textBox2.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox2.MaxLength = 32;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(65, 25);
+            this.textBox2.Size = new System.Drawing.Size(83, 18);
             this.textBox2.TabIndex = 1;
             // 
             // textBox9
             // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox9.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox9.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox9.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(152, 34);
+            this.textBox9.Location = new System.Drawing.Point(152, 36);
             this.textBox9.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox9.MaxLength = 32;
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(74, 25);
+            this.textBox9.Size = new System.Drawing.Size(126, 18);
             this.textBox9.TabIndex = 1;
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(152, 60);
+            this.textBox1.Location = new System.Drawing.Point(152, 62);
             this.textBox1.Margin = new System.Windows.Forms.Padding(5, 1, 5, 1);
             this.textBox1.MaxLength = 32;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(74, 25);
+            this.textBox1.Size = new System.Drawing.Size(126, 18);
             this.textBox1.TabIndex = 1;
             // 
             // label17
@@ -387,7 +387,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(764, 36);
+            this.label16.Location = new System.Drawing.Point(775, 36);
             this.label16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(30, 18);
@@ -420,7 +420,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(264, 36);
+            this.label2.Location = new System.Drawing.Point(334, 36);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(134, 18);
@@ -601,7 +601,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBox7.BackColor = System.Drawing.SystemColors.Info;
             this.textBox7.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(164, 89);
             this.textBox7.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -644,7 +644,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBox4.BackColor = System.Drawing.SystemColors.Info;
             this.textBox4.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(164, 12);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -687,7 +687,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBox5.BackColor = System.Drawing.SystemColors.Info;
             this.textBox5.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(164, 37);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -697,7 +697,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBox8.BackColor = System.Drawing.SystemColors.Info;
             this.textBox8.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox8.Location = new System.Drawing.Point(296, 12);
             this.textBox8.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -707,7 +707,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBox6.BackColor = System.Drawing.SystemColors.Info;
             this.textBox6.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(164, 63);
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);

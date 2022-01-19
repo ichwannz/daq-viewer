@@ -55,6 +55,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,26 +77,17 @@
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnHitung = new System.Windows.Forms.Button();
+            this.btnCurStart = new System.Windows.Forms.Button();
+            this.tbWpropelan = new System.Windows.Forms.TextBox();
             this.lblSQ4 = new System.Windows.Forms.Label();
             this.lblSQ1 = new System.Windows.Forms.Label();
             this.lblSQ3 = new System.Windows.Forms.Label();
             this.lblSQ2 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.lblSQ6 = new System.Windows.Forms.Label();
             this.lblSQ5 = new System.Windows.Forms.Label();
             this.panelSQ = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.tbWpropelan = new System.Windows.Forms.TextBox();
-            this.btnSQ5 = new System.Windows.Forms.Button();
-            this.btnSQ6 = new System.Windows.Forms.Button();
-            this.btnSQ4 = new System.Windows.Forms.Button();
-            this.btnSQ3 = new System.Windows.Forms.Button();
-            this.btnSQ2 = new System.Windows.Forms.Button();
-            this.btnSQ1 = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
@@ -112,14 +104,14 @@
             // 
             // btnMakeReport
             // 
-            this.btnMakeReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMakeReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMakeReport.BackColor = System.Drawing.Color.OrangeRed;
             this.btnMakeReport.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnMakeReport.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnMakeReport.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMakeReport.Location = new System.Drawing.Point(662, 171);
+            this.btnMakeReport.Location = new System.Drawing.Point(680, 171);
             this.btnMakeReport.Name = "btnMakeReport";
-            this.btnMakeReport.Size = new System.Drawing.Size(125, 45);
+            this.btnMakeReport.Size = new System.Drawing.Size(109, 45);
             this.btnMakeReport.TabIndex = 5;
             this.btnMakeReport.Text = "BUAT LAPORAN";
             this.btnMakeReport.UseVisualStyleBackColor = false;
@@ -130,6 +122,7 @@
             this.zedGraphControl1.AutoScroll = true;
             this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zedGraphControl1.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zedGraphControl1.IsEnableVZoom = false;
             this.zedGraphControl1.IsShowHScrollBar = true;
             this.zedGraphControl1.IsShowVScrollBar = true;
             this.zedGraphControl1.Location = new System.Drawing.Point(3, 26);
@@ -144,6 +137,7 @@
             this.zedGraphControl1.Size = new System.Drawing.Size(803, 250);
             this.zedGraphControl1.TabIndex = 4;
             this.zedGraphControl1.UseExtendedPrintDialog = true;
+            this.zedGraphControl1.ZoomButtons = System.Windows.Forms.MouseButtons.None;
             this.zedGraphControl1.PointValueEvent += new ZedGraph.ZedGraphControl.PointValueHandler(this.zedGraphControl1_PointValueEvent);
             this.zedGraphControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.zedGraphControl1_MouseClick);
             this.zedGraphControl1.MouseLeave += new System.EventHandler(this.zedGraphControl1_MouseLeave);
@@ -230,6 +224,7 @@
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.textBox2);
             this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.label26);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label4);
@@ -375,7 +370,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(188, 61);
+            this.label14.Location = new System.Drawing.Point(183, 61);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(43, 19);
             this.label14.TabIndex = 9;
@@ -399,7 +394,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(188, 89);
+            this.label15.Location = new System.Drawing.Point(183, 89);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(43, 19);
             this.label15.TabIndex = 9;
@@ -423,7 +418,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(188, 130);
+            this.label16.Location = new System.Drawing.Point(183, 130);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(56, 19);
             this.label16.TabIndex = 9;
@@ -447,7 +442,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(188, 158);
+            this.label17.Location = new System.Drawing.Point(183, 158);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(43, 19);
             this.label17.TabIndex = 9;
@@ -471,17 +466,27 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(188, 340);
+            this.label13.Location = new System.Drawing.Point(183, 340);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(73, 19);
             this.label13.TabIndex = 9;
             this.label13.Text = "rate (Sps)";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(13, 334);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(80, 16);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "(Action time)";
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(188, 314);
+            this.label26.Location = new System.Drawing.Point(183, 314);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(39, 19);
             this.label26.TabIndex = 9;
@@ -491,7 +496,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(188, 243);
+            this.label11.Location = new System.Drawing.Point(183, 243);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(31, 19);
             this.label11.TabIndex = 9;
@@ -501,7 +506,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(188, 271);
+            this.label4.Location = new System.Drawing.Point(183, 271);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 19);
             this.label4.TabIndex = 9;
@@ -511,7 +516,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(188, 186);
+            this.label18.Location = new System.Drawing.Point(183, 186);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(31, 19);
             this.label18.TabIndex = 9;
@@ -521,7 +526,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(188, 214);
+            this.label19.Location = new System.Drawing.Point(183, 214);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(31, 19);
             this.label19.TabIndex = 9;
@@ -531,7 +536,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(188, 33);
+            this.label20.Location = new System.Drawing.Point(183, 33);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(43, 19);
             this.label20.TabIndex = 9;
@@ -657,7 +662,6 @@
             this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.groupBox3);
             this.panel4.Controls.Add(this.btnMakeReport);
-            this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 279);
@@ -667,21 +671,22 @@
             // 
             // textBox12
             // 
+            this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(680, 129);
+            this.textBox12.Location = new System.Drawing.Point(680, 140);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(95, 22);
+            this.textBox12.Size = new System.Drawing.Size(109, 22);
             this.textBox12.TabIndex = 14;
             // 
             // button9
             // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button9.BackColor = System.Drawing.Color.Gold;
             this.button9.BackgroundImage = global::DACQViewer.Properties.Resources.downBtn;
             this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button9.Location = new System.Drawing.Point(662, 0);
+            this.button9.Location = new System.Drawing.Point(680, 0);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(125, 18);
+            this.button9.Size = new System.Drawing.Size(109, 18);
             this.button9.TabIndex = 13;
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
@@ -689,39 +694,63 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.btnHitung);
             this.groupBox3.Controls.Add(this.tbWpropelan);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.btnCurStart);
             this.groupBox3.Controls.Add(this.lblSQ4);
             this.groupBox3.Controls.Add(this.lblSQ1);
             this.groupBox3.Controls.Add(this.lblSQ3);
             this.groupBox3.Controls.Add(this.lblSQ2);
+            this.groupBox3.Controls.Add(this.label22);
             this.groupBox3.Controls.Add(this.lblSQ6);
             this.groupBox3.Controls.Add(this.lblSQ5);
             this.groupBox3.Controls.Add(this.panelSQ);
-            this.groupBox3.Controls.Add(this.panel5);
-            this.groupBox3.Controls.Add(this.panel10);
-            this.groupBox3.Controls.Add(this.panel9);
-            this.groupBox3.Controls.Add(this.panel8);
-            this.groupBox3.Controls.Add(this.panel7);
-            this.groupBox3.Controls.Add(this.btnSQ5);
-            this.groupBox3.Controls.Add(this.btnSQ6);
-            this.groupBox3.Controls.Add(this.btnSQ4);
-            this.groupBox3.Controls.Add(this.btnSQ3);
-            this.groupBox3.Controls.Add(this.btnSQ2);
-            this.groupBox3.Controls.Add(this.btnSQ1);
-            this.groupBox3.Controls.Add(this.label23);
             this.groupBox3.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(627, 220);
+            this.groupBox3.Size = new System.Drawing.Size(659, 220);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Langkah urutan analisis data";
+            // 
+            // btnHitung
+            // 
+            this.btnHitung.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHitung.Location = new System.Drawing.Point(12, 142);
+            this.btnHitung.Name = "btnHitung";
+            this.btnHitung.Size = new System.Drawing.Size(109, 44);
+            this.btnHitung.TabIndex = 14;
+            this.btnHitung.Text = "HITUNG";
+            this.btnHitung.UseVisualStyleBackColor = true;
+            this.btnHitung.Click += new System.EventHandler(this.btnHitung_Click);
+            // 
+            // btnCurStart
+            // 
+            this.btnCurStart.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCurStart.Location = new System.Drawing.Point(12, 92);
+            this.btnCurStart.Name = "btnCurStart";
+            this.btnCurStart.Size = new System.Drawing.Size(109, 44);
+            this.btnCurStart.TabIndex = 14;
+            this.btnCurStart.Text = "MULAI";
+            this.btnCurStart.UseVisualStyleBackColor = true;
+            this.btnCurStart.Click += new System.EventHandler(this.btnCurStart_Click);
+            // 
+            // tbWpropelan
+            // 
+            this.tbWpropelan.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWpropelan.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWpropelan.Location = new System.Drawing.Point(441, 173);
+            this.tbWpropelan.Name = "tbWpropelan";
+            this.tbWpropelan.Size = new System.Drawing.Size(66, 25);
+            this.tbWpropelan.TabIndex = 11;
+            this.tbWpropelan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSQ4
             // 
             this.lblSQ4.AutoSize = true;
             this.lblSQ4.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSQ4.Location = new System.Drawing.Point(22, 138);
+            this.lblSQ4.Location = new System.Drawing.Point(148, 121);
             this.lblSQ4.Name = "lblSQ4";
             this.lblSQ4.Size = new System.Drawing.Size(430, 18);
             this.lblSQ4.TabIndex = 9;
@@ -731,7 +760,7 @@
             // 
             this.lblSQ1.AutoSize = true;
             this.lblSQ1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSQ1.Location = new System.Drawing.Point(22, 57);
+            this.lblSQ1.Location = new System.Drawing.Point(148, 40);
             this.lblSQ1.Name = "lblSQ1";
             this.lblSQ1.Size = new System.Drawing.Size(271, 18);
             this.lblSQ1.TabIndex = 9;
@@ -741,7 +770,7 @@
             // 
             this.lblSQ3.AutoSize = true;
             this.lblSQ3.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSQ3.Location = new System.Drawing.Point(22, 111);
+            this.lblSQ3.Location = new System.Drawing.Point(148, 94);
             this.lblSQ3.Name = "lblSQ3";
             this.lblSQ3.Size = new System.Drawing.Size(437, 18);
             this.lblSQ3.TabIndex = 9;
@@ -751,27 +780,37 @@
             // 
             this.lblSQ2.AutoSize = true;
             this.lblSQ2.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSQ2.Location = new System.Drawing.Point(22, 84);
+            this.lblSQ2.Location = new System.Drawing.Point(148, 67);
             this.lblSQ2.Name = "lblSQ2";
             this.lblSQ2.Size = new System.Drawing.Size(450, 18);
             this.lblSQ2.TabIndex = 9;
             this.lblSQ2.Text = "2) Tentukan Titik-A, Tim ignition (Titik Awal dimana motor mulai menyala)";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(511, 175);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 18);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "gram";
+            // 
             // lblSQ6
             // 
             this.lblSQ6.AutoSize = true;
             this.lblSQ6.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSQ6.Location = new System.Drawing.Point(38, 192);
+            this.lblSQ6.Location = new System.Drawing.Point(164, 175);
             this.lblSQ6.Name = "lblSQ6";
-            this.lblSQ6.Size = new System.Drawing.Size(381, 18);
+            this.lblSQ6.Size = new System.Drawing.Size(276, 18);
             this.lblSQ6.TabIndex = 9;
-            this.lblSQ6.Text = "Masukkan berat propelan motor roket (Wp)                           gram";
+            this.lblSQ6.Text = "Masukkan berat propelan motor roket (Wp) :";
             // 
             // lblSQ5
             // 
             this.lblSQ5.AutoSize = true;
             this.lblSQ5.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSQ5.Location = new System.Drawing.Point(23, 165);
+            this.lblSQ5.Location = new System.Drawing.Point(149, 148);
             this.lblSQ5.Name = "lblSQ5";
             this.lblSQ5.Size = new System.Drawing.Size(381, 18);
             this.lblSQ5.TabIndex = 9;
@@ -780,164 +819,29 @@
             // panelSQ
             // 
             this.panelSQ.BackColor = System.Drawing.Color.Crimson;
-            this.panelSQ.Location = new System.Drawing.Point(6, 55);
+            this.panelSQ.Location = new System.Drawing.Point(132, 38);
             this.panelSQ.Name = "panelSQ";
-            this.panelSQ.Size = new System.Drawing.Size(474, 20);
+            this.panelSQ.Size = new System.Drawing.Size(475, 20);
             this.panelSQ.TabIndex = 13;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.Blue;
-            this.panel5.Location = new System.Drawing.Point(595, 163);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(23, 23);
-            this.panel5.TabIndex = 12;
-            this.panel5.Visible = false;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.Crimson;
-            this.panel10.Location = new System.Drawing.Point(595, 136);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(23, 23);
-            this.panel10.TabIndex = 12;
-            this.panel10.Visible = false;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.Crimson;
-            this.panel9.Location = new System.Drawing.Point(595, 109);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(23, 23);
-            this.panel9.TabIndex = 12;
-            this.panel9.Visible = false;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.Blue;
-            this.panel8.Location = new System.Drawing.Point(595, 82);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(23, 23);
-            this.panel8.TabIndex = 12;
-            this.panel8.Visible = false;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel7.Location = new System.Drawing.Point(595, 55);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(23, 23);
-            this.panel7.TabIndex = 12;
-            this.panel7.Visible = false;
-            // 
-            // tbWpropelan
-            // 
-            this.tbWpropelan.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWpropelan.Location = new System.Drawing.Point(309, 190);
-            this.tbWpropelan.Name = "tbWpropelan";
-            this.tbWpropelan.Size = new System.Drawing.Size(66, 23);
-            this.tbWpropelan.TabIndex = 11;
-            // 
-            // btnSQ5
-            // 
-            this.btnSQ5.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSQ5.Location = new System.Drawing.Point(479, 162);
-            this.btnSQ5.Name = "btnSQ5";
-            this.btnSQ5.Size = new System.Drawing.Size(110, 25);
-            this.btnSQ5.TabIndex = 10;
-            this.btnSQ5.Text = "5)  Ta, TOTAL";
-            this.btnSQ5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSQ5.UseVisualStyleBackColor = true;
-            this.btnSQ5.Click += new System.EventHandler(this.btnSQ5_Click);
-            // 
-            // btnSQ6
-            // 
-            this.btnSQ6.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSQ6.Location = new System.Drawing.Point(479, 189);
-            this.btnSQ6.Name = "btnSQ6";
-            this.btnSQ6.Size = new System.Drawing.Size(110, 25);
-            this.btnSQ6.TabIndex = 10;
-            this.btnSQ6.Text = ">> HITUNG !";
-            this.btnSQ6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSQ6.UseVisualStyleBackColor = true;
-            this.btnSQ6.Click += new System.EventHandler(this.btnSQ6_Click);
-            // 
-            // btnSQ4
-            // 
-            this.btnSQ4.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSQ4.Location = new System.Drawing.Point(479, 135);
-            this.btnSQ4.Name = "btnSQ4";
-            this.btnSQ4.Size = new System.Drawing.Size(110, 25);
-            this.btnSQ4.TabIndex = 10;
-            this.btnSQ4.Text = "4)  Tb, STOP";
-            this.btnSQ4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSQ4.UseVisualStyleBackColor = true;
-            this.btnSQ4.Click += new System.EventHandler(this.btnSQ4_Click);
-            // 
-            // btnSQ3
-            // 
-            this.btnSQ3.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSQ3.Location = new System.Drawing.Point(479, 108);
-            this.btnSQ3.Name = "btnSQ3";
-            this.btnSQ3.Size = new System.Drawing.Size(110, 25);
-            this.btnSQ3.TabIndex = 10;
-            this.btnSQ3.Text = "3) Tb, START";
-            this.btnSQ3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSQ3.UseVisualStyleBackColor = true;
-            this.btnSQ3.Click += new System.EventHandler(this.btnSQ3_Click);
-            // 
-            // btnSQ2
-            // 
-            this.btnSQ2.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSQ2.Location = new System.Drawing.Point(479, 81);
-            this.btnSQ2.Name = "btnSQ2";
-            this.btnSQ2.Size = new System.Drawing.Size(110, 25);
-            this.btnSQ2.TabIndex = 10;
-            this.btnSQ2.Text = "2)  TIME IGNITION";
-            this.btnSQ2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSQ2.UseVisualStyleBackColor = true;
-            this.btnSQ2.Click += new System.EventHandler(this.btnSQ2_Click);
-            // 
-            // btnSQ1
-            // 
-            this.btnSQ1.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSQ1.Location = new System.Drawing.Point(479, 54);
-            this.btnSQ1.Name = "btnSQ1";
-            this.btnSQ1.Size = new System.Drawing.Size(110, 25);
-            this.btnSQ1.TabIndex = 10;
-            this.btnSQ1.Text = "1)  T-ZERO";
-            this.btnSQ1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSQ1.UseVisualStyleBackColor = true;
-            this.btnSQ1.Click += new System.EventHandler(this.btnSQ1_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(22, 29);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(490, 19);
-            this.label23.TabIndex = 9;
-            this.label23.Text = "Time Sequence Penyalaan Motor Roket (LIHAT SKEMA ASTM di samping !! )";
             // 
             // button3
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(662, 78);
+            this.button3.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(12, 41);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 45);
+            this.button3.Size = new System.Drawing.Size(109, 45);
             this.button3.TabIndex = 10;
-            this.button3.Text = "PLOT REFINE";
+            this.button3.Text = "RE-PLOT";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(662, 26);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(680, 24);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 45);
+            this.button2.Size = new System.Drawing.Size(109, 45);
             this.button2.TabIndex = 10;
             this.button2.Text = "ASTM";
             this.button2.UseVisualStyleBackColor = true;
@@ -1006,7 +910,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblSQ3;
         private System.Windows.Forms.Label lblSQ2;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblSQ1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblSQ4;
@@ -1014,15 +917,6 @@
         private System.Windows.Forms.Label lblSQ6;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.TextBox tbWpropelan;
-        private System.Windows.Forms.Button btnSQ4;
-        private System.Windows.Forms.Button btnSQ3;
-        private System.Windows.Forms.Button btnSQ2;
-        private System.Windows.Forms.Button btnSQ1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox11;
@@ -1034,12 +928,14 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnSQ6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnSQ5;
         private System.Windows.Forms.Panel panelSQ;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnCurStart;
+        private System.Windows.Forms.Button btnHitung;
+        private System.Windows.Forms.Label label24;
+        public System.Windows.Forms.TextBox tbWpropelan;
     }
 }

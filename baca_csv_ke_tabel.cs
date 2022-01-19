@@ -43,12 +43,12 @@ namespace DACQViewer
             temps = temp.Split(new Char[] { ',', '"', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             daqID = temps[2];
 
-            //Ambil baris Nama Roket (kolom Comment)
+            //Ambil baris Nama Roket (kolom Comment)        ==> update per 2021-01-22: namaroket roketId diambil dari filename
             //langsung lanjut scanif
             temp = sr.ReadLine();
-            temps = temp.Split(new Char[] { ',', '"', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            roketID = temps[1];     // ==> comment harus diisi tipe roket
-
+            //temps = temp.Split(new Char[] { ',', '"', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            //roketID = temps[1];     // ==> comment harus diisi tipe roket
+            
             //Ambil Judul tiap Channel (array)
             for (int a = 0; a < 1; a++) sr.ReadLine();             //lanjut ke baris 5, baris judul channel; angka '2' merupakan lanjutan dari scan#1 baris ke-3,4,5
             temp = sr.ReadLine();
@@ -122,7 +122,16 @@ namespace DACQViewer
 
         public DataTable get_dataRekap() { return dtRekap; }
         public string get_daqID() { return daqID; }
-        public string get_roketID() { return roketID; }
+        public string get_roketID()
+        {
+            //TIDAK DIPAKAI !
+            if (roketID == null || roketID == "")
+            {
+                roketID = "[N/A]";
+            }
+
+            return roketID;
+        }
         public string get_dateID() { return dateID; }
         public string get_timeID() { return timeID; }
 
