@@ -72,14 +72,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnHitung = new System.Windows.Forms.Button();
-            this.btnCurStart = new System.Windows.Forms.Button();
             this.tbWpropelan = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnCurStart = new System.Windows.Forms.Button();
             this.lblSQ4 = new System.Windows.Forms.Label();
             this.lblSQ1 = new System.Windows.Forms.Label();
             this.lblSQ3 = new System.Windows.Forms.Label();
@@ -88,8 +88,13 @@
             this.lblSQ6 = new System.Windows.Forms.Label();
             this.lblSQ5 = new System.Windows.Forms.Label();
             this.panelSQ = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.numf = new System.Windows.Forms.NumericUpDown();
+            this.nump = new System.Windows.Forms.NumericUpDown();
+            this.numv = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -100,6 +105,9 @@
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numf)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nump)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numv)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMakeReport
@@ -635,7 +643,6 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.zedGraphControl1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -645,19 +652,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(388, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(387, 18);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "1-Klik pada area kurva sekali untuk menentukan titik Cursor X1";
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.label25);
+            this.panel4.Controls.Add(this.label23);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.numv);
+            this.panel4.Controls.Add(this.nump);
+            this.panel4.Controls.Add(this.numf);
             this.panel4.Controls.Add(this.textBox12);
             this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.groupBox3);
@@ -725,6 +728,27 @@
             this.btnHitung.UseVisualStyleBackColor = true;
             this.btnHitung.Click += new System.EventHandler(this.btnHitung_Click);
             // 
+            // tbWpropelan
+            // 
+            this.tbWpropelan.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWpropelan.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWpropelan.Location = new System.Drawing.Point(441, 173);
+            this.tbWpropelan.Name = "tbWpropelan";
+            this.tbWpropelan.Size = new System.Drawing.Size(66, 25);
+            this.tbWpropelan.TabIndex = 11;
+            this.tbWpropelan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(12, 41);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(109, 45);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "RE-PLOT";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // btnCurStart
             // 
             this.btnCurStart.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -735,16 +759,6 @@
             this.btnCurStart.Text = "MULAI";
             this.btnCurStart.UseVisualStyleBackColor = true;
             this.btnCurStart.Click += new System.EventHandler(this.btnCurStart_Click);
-            // 
-            // tbWpropelan
-            // 
-            this.tbWpropelan.BackColor = System.Drawing.SystemColors.Info;
-            this.tbWpropelan.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWpropelan.Location = new System.Drawing.Point(441, 173);
-            this.tbWpropelan.Name = "tbWpropelan";
-            this.tbWpropelan.Size = new System.Drawing.Size(66, 25);
-            this.tbWpropelan.TabIndex = 11;
-            this.tbWpropelan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSQ4
             // 
@@ -824,17 +838,6 @@
             this.panelSQ.Size = new System.Drawing.Size(475, 20);
             this.panelSQ.TabIndex = 13;
             // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(12, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 45);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "RE-PLOT";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -846,6 +849,77 @@
             this.button2.Text = "ASTM";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // numf
+            // 
+            this.numf.Location = new System.Drawing.Point(726, 72);
+            this.numf.Name = "numf";
+            this.numf.Size = new System.Drawing.Size(63, 20);
+            this.numf.TabIndex = 15;
+            this.numf.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nump
+            // 
+            this.nump.Location = new System.Drawing.Point(726, 96);
+            this.nump.Name = "nump";
+            this.nump.Size = new System.Drawing.Size(63, 20);
+            this.nump.TabIndex = 15;
+            this.nump.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numv
+            // 
+            this.numv.Location = new System.Drawing.Point(726, 120);
+            this.numv.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numv.Name = "numv";
+            this.numv.Size = new System.Drawing.Size(63, 20);
+            this.numv.TabIndex = 15;
+            this.numv.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(692, 97);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 19);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "P";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(692, 73);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(16, 19);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "F";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(692, 121);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(31, 19);
+            this.label25.TabIndex = 9;
+            this.label25.Text = "IGN";
             // 
             // FormChart0
             // 
@@ -866,11 +940,13 @@
             this.groupBox4.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numf)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nump)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -883,7 +959,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel6;
@@ -937,5 +1012,11 @@
         private System.Windows.Forms.Button btnHitung;
         private System.Windows.Forms.Label label24;
         public System.Windows.Forms.TextBox tbWpropelan;
+        private System.Windows.Forms.NumericUpDown numv;
+        private System.Windows.Forms.NumericUpDown nump;
+        private System.Windows.Forms.NumericUpDown numf;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label1;
     }
 }

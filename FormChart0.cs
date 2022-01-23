@@ -39,6 +39,11 @@ namespace DACQViewer
             Color.Blue
         };
 
+        String[] idxLabel = new string[5]
+        {
+            "T0", "A", "B","E","F"
+        };
+
         //variabel data header tabel parameter daq
         private string roketID;
         private string[] dataChX, dataChDg, idChannelArr, unitChannelArr;
@@ -88,8 +93,8 @@ namespace DACQViewer
             double[] xVal = new double[jumDataRow];
             double[] yVal = new double[jumDataRow];
 
-            int pembagi = 10000;
-            int pembagiVolt = 1000000;
+            int pembagi = 10000*(int)numf.Value;
+            int pembagiVolt = 10000*(int)numv.Value;
 
             /*isi kurva (a) tiap Channel (a)  ===> tiap Kurva*/
             for (int a = 0; a < jumChannel; a++)
@@ -651,8 +656,14 @@ namespace DACQViewer
             cursorx1.Line.Width = 2;
             cursorx1.Line.Style = System.Drawing.Drawing2D.DashStyle.Dash;
             cursorx1.ZOrder = ZOrder.E_BehindCurves;
-
             myChart.GraphObjList.Add(cursorx1);
+
+            TextObj linex = new TextObj("X", xval, 0, CoordType.XScaleYChartFraction, AlignH.Right, AlignV.Top);
+            linex.FontSpec = new FontSpec("HP Simplified", 17, Color.Gold, true, true, false, Color.Black, null, FillType.Solid);
+            linex.FontSpec.Border.IsVisible = false;
+            linex.ZOrder = ZOrder.E_BehindCurves;
+            myChart.GraphObjList.Add(linex);
+
             zedGraphControl1.Refresh();
         }
 
@@ -666,8 +677,14 @@ namespace DACQViewer
             cursorx1.Line.Width = 2;
             cursorx1.Line.Style = System.Drawing.Drawing2D.DashStyle.Dash;
             cursorx1.ZOrder = ZOrder.E_BehindCurves;
-
             myChart.GraphObjList.Add(cursorx1);
+
+            TextObj linex = new TextObj(idxLabel[idxCursor], xval, 0, CoordType.XScaleYChartFraction, AlignH.Right, AlignV.Top);
+            linex.FontSpec = new FontSpec("HP Simplified", 17, Color.White, true, true, false, warnaCursor[idxCursor], null, FillType.Solid);
+            linex.FontSpec.Border.IsVisible = false;
+            linex.ZOrder = ZOrder.E_BehindCurves;
+            myChart.GraphObjList.Add(linex);
+
             zedGraphControl1.Refresh();
         }
 
@@ -679,14 +696,16 @@ namespace DACQViewer
         {
             idxBtnCursorStart++;
 
-            //clear dulu setelah single cursorx
-            myChart.GraphObjList.Clear();
-            zedGraphControl1.GraphPane.GraphObjList.Clear();
-            zedGraphControl1.Refresh();
+            
 
             if (isOdd(idxBtnCursorStart))
             {
                 hapus_data_baca();
+    
+                //clear dulu setelah single cursorx
+                myChart.GraphObjList.Clear();
+                zedGraphControl1.GraphPane.GraphObjList.Clear();
+                zedGraphControl1.Refresh();
 
                 btnHitung.Enabled = false;
                 btnHitung.BackColor = Color.FromArgb(240, 240, 240);
@@ -730,7 +749,6 @@ namespace DACQViewer
             texBurning.FontSpec.FontColor = Color.Black;
             texBurning.FontSpec.Size = 14f;
             myChart.GraphObjList.Add(texBurning);
-
 
             zedGraphControl1.Refresh();
         }

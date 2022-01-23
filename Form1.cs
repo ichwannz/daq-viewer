@@ -467,7 +467,7 @@ namespace DACQViewer
                 Transition.run(panFooter,"Height",100, new TransitionType_EaseInEaseOut(1000));
                 Transition.run(panWelcome, "Height", 52, new TransitionType_EaseInEaseOut(300));
                 panelSideMenu.Visible = true;
-                Transition.run(panelSideMenu, "Width", psize_w, new TransitionType_EaseInEaseOut(1000));
+                Transition.run(panelSideMenu, "Width", psize_w, new TransitionType_EaseInEaseOut(300));
 
                 //...
 
