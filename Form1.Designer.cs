@@ -44,9 +44,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnZip = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
-            this.panSubAnalyze = new System.Windows.Forms.Panel();
-            this.btnGrafThrust = new System.Windows.Forms.Button();
-            this.btnGrafIgn = new System.Windows.Forms.Button();
             this.btnGrafik = new System.Windows.Forms.Button();
             this.btnDataMotor = new System.Windows.Forms.Button();
             this.btnParamsInput = new System.Windows.Forms.Button();
@@ -91,7 +88,6 @@
             this.panHeader = new System.Windows.Forms.Panel();
             this.panelSideMenu.SuspendLayout();
             this.panEngineerID.SuspendLayout();
-            this.panSubAnalyze.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panFooter.SuspendLayout();
@@ -116,7 +112,6 @@
             this.panelSideMenu.Controls.Add(this.panEngineerID);
             this.panelSideMenu.Controls.Add(this.btnZip);
             this.panelSideMenu.Controls.Add(this.btnReport);
-            this.panelSideMenu.Controls.Add(this.panSubAnalyze);
             this.panelSideMenu.Controls.Add(this.btnGrafik);
             this.panelSideMenu.Controls.Add(this.btnDataMotor);
             this.panelSideMenu.Controls.Add(this.btnParamsInput);
@@ -278,7 +273,7 @@
             this.btnZip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZip.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZip.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnZip.Location = new System.Drawing.Point(0, 410);
+            this.btnZip.Location = new System.Drawing.Point(0, 320);
             this.btnZip.Name = "btnZip";
             this.btnZip.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnZip.Size = new System.Drawing.Size(306, 50);
@@ -296,7 +291,7 @@
             this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReport.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnReport.Location = new System.Drawing.Point(0, 360);
+            this.btnReport.Location = new System.Drawing.Point(0, 270);
             this.btnReport.Name = "btnReport";
             this.btnReport.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnReport.Size = new System.Drawing.Size(306, 50);
@@ -305,52 +300,6 @@
             this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
-            // 
-            // panSubAnalyze
-            // 
-            this.panSubAnalyze.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.panSubAnalyze.Controls.Add(this.btnGrafThrust);
-            this.panSubAnalyze.Controls.Add(this.btnGrafIgn);
-            this.panSubAnalyze.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panSubAnalyze.Location = new System.Drawing.Point(0, 270);
-            this.panSubAnalyze.Name = "panSubAnalyze";
-            this.panSubAnalyze.Size = new System.Drawing.Size(306, 90);
-            this.panSubAnalyze.TabIndex = 98;
-            // 
-            // btnGrafThrust
-            // 
-            this.btnGrafThrust.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.btnGrafThrust.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGrafThrust.FlatAppearance.BorderSize = 0;
-            this.btnGrafThrust.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGrafThrust.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrafThrust.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGrafThrust.Location = new System.Drawing.Point(0, 45);
-            this.btnGrafThrust.Name = "btnGrafThrust";
-            this.btnGrafThrust.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnGrafThrust.Size = new System.Drawing.Size(306, 45);
-            this.btnGrafThrust.TabIndex = 91;
-            this.btnGrafThrust.Text = "COMBUSTION (F - P))";
-            this.btnGrafThrust.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGrafThrust.UseVisualStyleBackColor = false;
-            this.btnGrafThrust.Click += new System.EventHandler(this.btnGrafThrust_Click);
-            // 
-            // btnGrafIgn
-            // 
-            this.btnGrafIgn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGrafIgn.FlatAppearance.BorderSize = 0;
-            this.btnGrafIgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGrafIgn.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrafIgn.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGrafIgn.Location = new System.Drawing.Point(0, 0);
-            this.btnGrafIgn.Name = "btnGrafIgn";
-            this.btnGrafIgn.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.btnGrafIgn.Size = new System.Drawing.Size(306, 45);
-            this.btnGrafIgn.TabIndex = 90;
-            this.btnGrafIgn.Text = "IGNITION (IGN - F)";
-            this.btnGrafIgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGrafIgn.UseVisualStyleBackColor = true;
-            this.btnGrafIgn.Click += new System.EventHandler(this.btnGrafIgn_Click);
             // 
             // btnGrafik
             // 
@@ -888,7 +837,6 @@
             this.panelSideMenu.ResumeLayout(false);
             this.panEngineerID.ResumeLayout(false);
             this.panEngineerID.PerformLayout();
-            this.panSubAnalyze.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panFooter.ResumeLayout(false);
@@ -916,8 +864,6 @@
 
         private System.Windows.Forms.Panel panelSideMenu;
         private System.Windows.Forms.Button btnReport;
-        private System.Windows.Forms.Panel panSubAnalyze;
-        private System.Windows.Forms.Button btnGrafIgn;
         private System.Windows.Forms.Button btnGrafik;
         private System.Windows.Forms.Button btnDataMotor;
         private System.Windows.Forms.Button btnParamsInput;
@@ -953,7 +899,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.Button btnGrafThrust;
         private System.Windows.Forms.Button btnZip;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox3;

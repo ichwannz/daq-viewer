@@ -86,6 +86,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -749,12 +750,24 @@
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.button1);
             this.panel10.Controls.Add(this.button2);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel10.Location = new System.Drawing.Point(0, 309);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(682, 50);
             this.panel10.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(216, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(201, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "CLEAR, ISI DT, ISI DGV";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormParams
             // 
@@ -850,5 +863,6 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -20,6 +20,23 @@ namespace DACQViewer
             InitializeComponent();
         }
 
+
+        private void isi_form_us()
+        {
+            // 1-isi hasil hitungan ke form aktif
+            // 2-save pdf (get file_path pdf hasil form yg terisi)
+            // 3-preview
+            // 4-lanjut cetak atau perbaiki
+
+            view_form_us_pdf();
+        }
+
+        private void view_form_us_pdf()
+        {
+
+        }
+
+
         private void btnExport_Click(object sender, EventArgs e)
         {
             Stream myStream;
@@ -43,11 +60,7 @@ namespace DACQViewer
 
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+       
         int seqClick = 0;
         public int getSeqClick_FReport()
         {
@@ -57,6 +70,11 @@ namespace DACQViewer
         {
             seqClick = 1;
             //...
+        }
+
+        private void btnViewPdfRreport_Click(object sender, EventArgs e)
+        {
+            isi_form_us();
         }
     }
 }

@@ -14,19 +14,21 @@ namespace DACQViewer
 {
     public partial class FormParams : Form
     {
-        DataTable dtRekapF2 = new DataTable();
         DataTable dtParam_old = new DataTable();
         DataTable dtParam_upd = new DataTable();
         DataTable dtFiringParam = new DataTable();
 
-       
 
-        
+        DataTable dtSensorNumbering = new DataTable();
+
+
+
+
         //private string roketID, daqID, dateID, timeID;
         private string[] idChannels, unitChannels;
-        private int jumChannel;
+        private int jumChannel, jumDataRow;
 
-        public FormParams(DataTable dtRekapF1, string daqID, string roketID, string dateID, string timeID, int sampleRate, int jumCh, string[] idCh, string[] unitCh)
+        public FormParams(DataTable dtRekapF1, string daqID, string roketID, string dateID, string timeID, int sampleRate, int jumCh, string[] idCh, string[] unitCh, int jumlahDataRow)
         {
             InitializeComponent();
             
@@ -39,13 +41,14 @@ namespace DACQViewer
             textBox11.Text = jumCh.ToString();
 
             jumChannel = jumCh;
+            jumDataRow = jumlahDataRow;
             idChannels = idCh;
             unitChannels = unitCh;
 
             // Tabel 1
             //clear tabel first
-            dtRekapF2.Clear();
-            dtRekapF2 = dtRekapF1;          // sudah ketambahan KOLOM0 NOMOR
+            dtSensorNumbering.Clear();
+            dtSensorNumbering = dtRekapF1;          // sudah ketambahan KOLOM0 NOMOR
             create_Tabel1();
 
             // Tabel 2
@@ -55,6 +58,12 @@ namespace DACQViewer
         private void create_Tabel1()
         {
             //Inisialisasi tabel
+            //isi kolom nomer
+            dtSensorNumbering.Columns.Add("No.Data", typeof(int)).SetOrdinal(0);
+            for (int a = 0; a < jumDataRow; a++)
+                dtSensorNumbering.Rows[a][0] = a;
+
+            //init dgv
             if (dataGridView1 != null)
             {
                 dataGridView1.DataSource = null;
@@ -62,7 +71,7 @@ namespace DACQViewer
             }
 
             //dtRekapF2.Columns.Add("No.", typeof(int)).SetOrdinal(0);  //sudah di Form1
-            dataGridView1.DataSource = dtRekapF2;
+            dataGridView1.DataSource = dtSensorNumbering;
             dataGridView1.Columns[0].Width = 55;
 
             //style
@@ -86,19 +95,20 @@ namespace DACQViewer
         DataGridViewComboBoxColumn cbSensorSign = new DataGridViewComboBoxColumn();
         private void create_ChannelParams()
         {
-            //clear dgv2
-            dataGridView2.DataSource = null;
-            dataGridView2.Rows.Clear();
-            dataGridView2.Columns.Clear();
-            dataGridView2.Refresh();
-
-
+            
+            
             //bikin comboBox
             create_comboBox_ChParams();
 
             //bikin data table parameter
             try
             {
+                //clear dgv2
+                dataGridView2.DataSource = null;
+                dataGridView2.Rows.Clear();
+                dataGridView2.Columns.Clear();
+                dataGridView2.Refresh();
+
                 //bikin datagridview2 column header
                 dataGridView2.Columns.Add("nM", "No");            //0
                 dataGridView2.Columns.Add("chName", "Channel Name");        //1
@@ -131,33 +141,8 @@ namespace DACQViewer
                 }
 
                 //masukkan data tiap rows
-                if (DAQCH_SAVED)
-                {
-                    load_dbChannelParams();
-
-                    //dataGridView2.DataSource = dtParam_upd;
-
-
-
-                    //load yg sudah ada
-                    using (Form1 F1 = new Form1())
-                    {
-                        dataGridView2.DataSource = F1.dtParamsChannel;
-                    }
-
-                }
-                else
-                {
-                    //bikin dari awal
-                    for (int a=0; a< jumChannel;a++)
-                    {
-                        dataGridView2.Rows.Add((a + 1), idChannels[a + 1],0, unitChannels[a+1]);
-                        //dataGridView2.Rows[a].Cells[5].Value = unitChannels[a + 1];
-                    }
-                }
-
-                //isi dengan data di tiap row
-                
+                for (int a=0; a< jumChannel;a++)
+                    dataGridView2.Rows.Add((a + 1), idChannels[a + 1],0, unitChannels[a+1]);
                 
                 dataGridView2.Refresh();
             }
@@ -165,30 +150,6 @@ namespace DACQViewer
             {
                 MessageBox.Show("Tabel Param Error");
             }
-        }
-
-        private void load_dbChannelParams()
-        {/*
-            var dt = new DataTable();
-            foreach (DataGridViewColumn col in dataGridView2.Columns)
-            {
-                if (col.Visible)
-                {
-                    dt.Columns.Add();
-                }
-            }
-
-            var cell = new object[dgv.Columns.Count];
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                for (int i = 0; i < row.Cells.Count; i++)
-                {
-                    cell[i] = row.Cells[i].Value;
-                }
-                dt.Rows.Add(cell);
-            }
-        */
-
         }
 
         private void create_comboBox_ChParams()
@@ -214,7 +175,7 @@ namespace DACQViewer
         }
 
         #endregion
-
+        
         int seqClick = 0;
         public int getSeqClick_FTabelz()
         {
@@ -223,32 +184,10 @@ namespace DACQViewer
         #region SAVE UPDATE TABEL CH PARAMS
         private void button2_Click(object sender, EventArgs e)
         {
-            seqClick = 1;
-
-            dtParam_upd.Clear();
-            dtParam_upd.Rows.Clear();
-            dtParam_upd.Columns.Clear();
-            
-            /* CARA-2 : pakai fungsi konvert*/
-            dtParam_upd = updateDataParams(dataGridView2);
+            //make_dt();
+            make_csv();
 
 
-            /* CARA-1 : pindah data dari datagridview2 ke datatable*/
-           // dtParam_upd= (DataTable)(dataGridView2.DataSource);
-
-            using (Form1 F1 = new Form1())
-            {
-                //F1.dtParamsChannel = (DataTable)(dataGridView2.DataSource);
-                F1.dtParamsChannel = dtParam_upd;
-            }
-
-
-            DAQCH_SAVED = true;
-
-
-            //Form1 f1 = new Form1();
-            //f1.Show();
-            //this.Hide();
         }
 
         private DataTable updateDataParams(DataGridView dgv)
@@ -273,6 +212,89 @@ namespace DACQViewer
             }
             return dt;
         }
+
+        
+        string csv_dgv2_path = "D:/temp.daqc";
+        string path_temporary = Path.GetTempFileName(); //temporary path windows, naming nya random *.tmp
+
+        private void make_csv() //export dgv2 ke csv
+        {
+            StringBuilder sb = new StringBuilder();
+
+            //judul column
+            var headers = dataGridView2.Columns.Cast<DataGridViewColumn>();
+            //sb.AppendLine(string.Join(";", headers.Select(col => "\"" + col.HeaderText + "\"").ToArray()));
+            sb.AppendLine(string.Join(";", headers.Select(col => col.HeaderText).ToArray()));
+
+            //isi setiap row
+            foreach (DataGridViewRow dr in dataGridView2.Rows)
+            {
+                var cellz = dr.Cells.Cast<DataGridViewCell>();
+                sb.AppendLine(string.Join(";", cellz.Select(celz => celz.Value).ToArray()));
+            }
+
+            //tulis ke file csv
+            System.IO.File.WriteAllText(csv_dgv2_path, sb.ToString());
+        }
+       
+        private void make_csv_dt()
+        {
+            //untuk baca csv ke datatable
+
+            DataTable dtHasil = new DataTable();
+                        
+            //isi ke DT
+            File.ReadLines(csv_dgv2_path).Take(1)
+                .SelectMany(x => x.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                .ToList()
+                .ForEach(x => dtHasil.Columns.Add(x.Trim()));
+           
+
+            File.ReadLines(csv_dgv2_path).Skip(1)
+                .Select(x => x.Split(';'))
+                .ToList()
+                .ForEach(line => dtHasil.Rows.Add(line));
+
+            //isi ke DGV2
+            foreach(DataRow dr in dtHasil.Rows)
+            {
+                dataGridView2.Rows.Add(dr.ItemArray);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = null;
+            dataGridView2.Rows.Clear();
+
+            make_csv_dt();
+            dataGridView2.Refresh();
+
+            //hapus file csv temporary
+            //File.Delete(csv_dgv2_path);
+        }
+
+        DataTable dtRef = new DataTable();
+        private void make_dt()
+        {
+            dtRef.Clear();
+            
+            foreach(DataGridViewColumn dgc in dataGridView2.Columns)
+            {
+                dtRef.Columns.Add(dgc.Name);
+            }
+
+            object[] celz = new object[dataGridView2.Columns.Count];
+            foreach(DataGridViewRow dgr in dataGridView2.Rows)
+            {
+                for(int a=0;a<dgr.Cells.Count;a++)
+                {
+                    celz[a] = dgr.Cells[a].Value;
+                }
+                dtRef.Rows.Add(celz);
+            }
+        }
+
         #endregion
 
         #region Fungsi DateTimePicker di kolom 9
@@ -372,16 +394,7 @@ namespace DACQViewer
                 }
             }
         }
-
-
-        // fungsi screen capture 
-        private int autonaming;
-        private void button4_Click(object sender, EventArgs e)
-        {
-           
-
-        }
-        
+                 
 
         //sub-fungsi untuk otomatis klik cell combobox
         private void dataGridView2_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -395,11 +408,6 @@ namespace DACQViewer
                 datagridview.BeginEdit(true);
                 ((ComboBox)datagridview.EditingControl).DroppedDown = true;
             }
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridView2_CurrentCellDirtyStateChanged(object sender, EventArgs e)

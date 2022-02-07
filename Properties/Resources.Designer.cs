@@ -61,6 +61,15 @@ namespace DACQViewer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string csv_refined_temp {
+            get {
+                return ResourceManager.GetString("csv_refined_temp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap detachButton {

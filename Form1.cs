@@ -34,21 +34,13 @@ namespace DACQViewer
     public partial class Form1 : Form
     {
         baca_csv_ke_tabel bc;
-
-        //untuk akses seqclick dari masing2 Formz
-        FormParams ftabel;
-        FormDataMotor fmotor;
-        FormChart0 fchart0;
-        //formchart1 fgrafik2;
-        FormReport freport;
-        //formZipFInal fzip;
         int psize_w, psize_h;
 
         public Form1()
         {
             InitializeComponent();
-            showSubMenu(false);
-            hideButton(true);
+
+            bt_coloring(null); //bikin tombol jadi dimgray BG.Color
             psize_w = panelSideMenu.Width;
             psize_h = panelSideMenu.Width;
             panelSideMenu.Size = new Size(50, psize_h);
@@ -72,9 +64,11 @@ namespace DACQViewer
             textBox5.CharacterCasing = CharacterCasing.Upper;
         }
 
+        /*
         public DataTable dtDAQSampling = new DataTable();
         public DataTable dtParamsChannel = new DataTable(); //untuk save hasil saving
         public DataTable dtParamsFiring = new DataTable();
+        */
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -84,8 +78,10 @@ namespace DACQViewer
      #region FUNGSI_UTAMA_DACQ
 
         /* Variabel untuk store Data Table <=== CSV */
-        DataTable dtRekap = new DataTable();
-        DataTable dtRekapNum = new DataTable();
+
+        //model manual
+        DataTable dtSensor = new DataTable();
+        DataTable dtSensorNumbering = new DataTable();    // ada kolom nomer di samping
 
         private string[] idChannel;
         private string[] unitChannelStr;
@@ -94,7 +90,29 @@ namespace DACQViewer
         private int jumDataRow;
         private int sampleRate;
 
-        private string daqID, roketID, dateID, timeID;
+        private string daqID;
+        private string roketID;
+        private string dateID;
+        private string timeID;
+
+        //model pakai struct
+        struct data_us
+        {
+            public DataTable dtSensor;
+            public string[] chName;
+            public string[] chUnit;
+
+            public int chJumlah;
+            public int datarowJumlah;
+            public int sampelRate;
+
+            public string scopeId;
+            public string motorId;
+            public string dateId;
+            public string timeId;
+        }
+        data_us daq=new data_us();
+        
 
         bool loadFailed = false;
         private void ambil_csv_table()
@@ -127,7 +145,7 @@ namespace DACQViewer
                 catch (Exception err)
                 {
                     loadFailed = true;
-                    MessageBox.Show("Gagal mengambil CSV, mohon diulangi, broo ! " + err.Message);
+                    MessageBox.Show("(0) Gagal mengambil CSV, mohon diulangi, broo ! " + err.Message);
                     Application.Exit();     //restart program, exit dulu
                     Environment.Exit(0);
                 }
@@ -139,13 +157,11 @@ namespace DACQViewer
                 {
                     if (bc != null)
                     {
-                        //Ambil DataTable : Binding
-                        dtRekap = bc.get_dataRekap();
+                        //Ambil DataTable
+                        dtSensor = bc.get_dataRekap();
 
                         //HEADER
                         daqID = bc.get_daqID();
-                        //roketID = bc.get_roketID(); //yg lama, tidak dipakai ! per 22JAN2022
-
                         roketID = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
                         roketID = refine_roket_id();
                         dateID = bc.get_dateID();
@@ -160,19 +176,14 @@ namespace DACQViewer
                         sampleRate = int.Parse(bc.get_Sps());
 
                         //tambah/insert kolom Nomer urut di Column0
-                        dtRekapNum = dtRekap.Copy();
-                        dtRekapNum.Columns.Add("No.Data", typeof(int)).SetOrdinal(0);
-                        for (int a = 0; a < jumDataRow; a++)
-                            dtRekapNum.Rows[a][0] = a;
+                        dtSensorNumbering = dtSensor.Copy();
 
-                        //debung value via textbox
-                        string csvPath = ofd.FileName;
                     }
                 }
 
                 catch (Exception) //err
                 {
-                    MessageBox.Show("TIDAK BERHASIL MENGAMBIL FILE ! <ERROR_STREAM>", "Wassalam..", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("(1) TIDAK BERHASIL MENGAMBIL FILE ! <ERROR_STREAM>", "Wassalam..", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     Application.Exit();
                     Environment.Exit(0);
                 }
@@ -190,63 +201,45 @@ namespace DACQViewer
             }
             catch(Exception err)
             {
-                MessageBox.Show("Nama roket (Nama file Csv) salah, mohon diperbaiki, bro!", "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("(2)Nama roket (Nama file Csv) salah, mohon diperbaiki, bro!", "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                Application.Exit();
+                Environment.Exit(0);
             }
             return roketID;
         }
 
         #endregion FUNGSI_UTAMA_DACQ
 
-        #region FUNGSI_UI-VIEW-HIDE-UX
-        private void hideButton(bool val)
-        {
-            if(val)
-                seqClick = 0;
 
-            btnLoad.ForeColor = Color.DimGray;
-            btnParamsInput.ForeColor = Color.DimGray;
-            btnDataMotor.ForeColor = Color.DimGray;
-            btnGrafik.ForeColor = Color.DimGray;
-            btnReport.ForeColor = Color.DimGray;
-            btnZip.ForeColor = Color.DimGray;
-        }
 
-        private void showSubMenu(bool val)
-        {
-            panSubAnalyze.Visible = val;
-        }
+     #region FUNGSI_UX_HIDING/SHOW
 
-        private void hidingSubMenu()
-        {
-            if (panSubAnalyze.Visible) panSubAnalyze.Visible = false;
-        }
+        //modifier untuk pergantian antar OpenForm
+        private int seqLeftMenu = 0;   //klik menu sequence
+        private bool fload_ok, ftabel_ok, fmotor_ok, fchart_ok, freport_ok;
+        private bool flag_logged_in = false;
 
-        private void showingSubMenu(Panel subMenu)
-        {
-            if (!subMenu.Visible)
-            {
-                hidingSubMenu();
-                subMenu.Visible = true;
+        FormParams ftabel;
+        FormDataMotor fmotor;
+        FormChart0 fchart0;
+        //formchart1 fgrafik2;
+        FormReport freport;
+        FormArsipZip fzip;
 
-            }
-            else
-                subMenu.Visible = false;
-        }
-
-        private void coloring(Button tombol)
+        private void bt_coloring(Button tombol)
         {
             Font ftBold = new Font(tombol.Font.Name, tombol.Font.Size, FontStyle.Bold);
             Font ftNorm = new Font(tombol.Font.Name, tombol.Font.Size, FontStyle.Regular);
 
+            //button bukan 'tombol' dibikin inactive
             btnLoad.ForeColor = Color.DimGray;
             btnParamsInput.ForeColor = Color.DimGray;
             btnDataMotor.ForeColor = Color.DimGray;
             btnGrafik.ForeColor = Color.DimGray;
-            btnGrafIgn.ForeColor = Color.DimGray;
-            btnGrafThrust.ForeColor = Color.DimGray;
             btnReport.ForeColor = Color.DimGray;
             btnZip.ForeColor = Color.DimGray;
 
+            //button 'tombol' dibikin active
             tombol.ForeColor = Color.Gold;
             tombol.Font = ftBold;
 
@@ -254,160 +247,25 @@ namespace DACQViewer
             //panel3.Location = new Point(192, tombol.Location.Y);
             panel3.Location = tombol.Location;
             panel3.Visible = true;
-            if(panel3.Location==btnGrafIgn.Location || panel3.Location==btnGrafThrust.Location)
-            { panel3.Location = btnGrafik.Location;
-                //panel3.Location = new Point(this.panel3.Location.X, 195);
-            }
-        }
-  
-     #endregion FUNGSI_VIEW-HIDE-UX
-
-     #region MAIN_BUTTON
-        // MAIN-BUTTON
-        private int seqClick = 0;
-        private bool flag_logged_in = false;
-        CultureInfo lokalID = new System.Globalization.CultureInfo("id-ID");
-
-        private void btnLoad_Click(object sender, EventArgs e)
-        {           
-            //setting datetime lokal Indonesia
-            string hariUji, tglUji;
-
-            coloring(btnLoad);
-
-            if (flag_logged_in)
-            {
-                showSubMenu(false);
-                hideButton(true);
-
-                try
-                {
-                    //Panggil fungsi Load_CSV
-                    ambil_csv_table();      
-                
-                    //bikin windows auto maximize setelah load file csv
-                    this.WindowState = FormWindowState.Maximized;
-
-                    //show judul
-                    DateTime dayTime = DateTime.ParseExact(dateID, "yyyy/MM/dd",CultureInfo.InvariantCulture);
-                    hariUji = lokalID.DateTimeFormat.GetDayName(dayTime.DayOfWeek).ToString();
-                    tglUji = dayTime.ToString("dd MMM yyyy");
-                
-                    label17.Text = roketID;
-                    label18.Text = hariUji + ", " + tglUji + ", " + timeID;
-                    label17.Visible = true;
-                    label18.Visible = true;
-                }
-                catch(Exception err)
-                {
-                    MessageBox.Show("ERROR, broo !" + Environment.NewLine + err.Message);
-                }
-                
-
-                //langsung buka tabel
-                seqClick = 1;
-
-                btnParamsInput_Click(sender, e);
-            }
-            else
-                MessageBox.Show("Anda belum login, Bro !");
-        }
-    
-       
-        private void btnParamsInput_Click(object sender, EventArgs e)
-        {
-            if(seqClick == 1)
-            {
-                btnDetach.Visible = true;
-                panJudulSubForm.Visible = true;
-                panFooterLeft.Visible = true;
-                lblJudulSubForm.Visible = true;
-                lblJudulSubForm.Text = "PARAMETER DATA AKUISISI DAN FIRING SETUP";
-
-                openMainForm(new FormParams(dtRekapNum, daqID, roketID, dateID, timeID, sampleRate, jumChannel, idChannel, unitChannelStr));     // start form baru
-                coloring(btnParamsInput);
-            }
-            else
-                MessageBox.Show("File Data Akuisisi US (Csv) belum dipilih, bro !");
+            panel3.Location = btnGrafik.Location;
         }
 
-        private void btnDataMotor_Click(object sender, EventArgs e)
-        {
-            //seqClick = ftabel.getSeqClick_FTabelz() + 1;
-            if(seqClick==1)
-            {
-                lblJudulSubForm.Text = "DATA MOTOR ROKET (CHECKLIST)";
-
-                openMainForm(new FormDataMotor());
-                coloring(btnDataMotor);
-            }
-            else
-                MessageBox.Show("Data Parameter US belum dilengkapi, bro !");
-        }
-
-        private void btnGrafik_Click(object sender, EventArgs e)
-        {
-            //seqClick = fmotor.getSeqClick_FMotor() + 1;
-            if(seqClick==1)
-            {
-                showingSubMenu(panSubAnalyze);
-                btnGrafIgn_Click(sender, e);
-                coloring(btnGrafik);
-            }
-            else
-                MessageBox.Show("Data Motor Roket (Checklist) belum lengkap, bro !");
-        }
-
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            //seqClick = fchart0.getSeqClick_FChart0() + 1;
-            if(seqClick==1)
-            {
-                lblJudulSubForm.Text = "FORM LAPORAN HASIL UJI STATIS";
-                openMainForm(new FormReport());
-                coloring(btnReport);
-            }
-            else
-                MessageBox.Show("Grafik Analisis belum diselesaikan, bro !");
-        }
-        private void btnZip_Click(object sender, EventArgs e)
-        {
-            //seqClick = freport.getSeqClick_FReport() + 1;
-            if (seqClick == 1)
-            {
-                hidingSubMenu();
-                lblJudulSubForm.Text = "BUNDEL ARSIP (zip) MOTOR ROKET UJI STATIS";
-                openMainForm(new FormArsipZip());
-                coloring(btnZip);
-            }
-            else
-                MessageBox.Show("Form Laporan Uji Statis (pdf) belum selesai, bro !");
-        }
-
-        #endregion MAIN_BUTTON
-
-
-
-
-        #region SUB_BUTTON
-        //Setiap Sub-Button click_events langsung create Form Baru 
-        //object form untuk simpan masing2 kondisi form, jadi gak perlu load eksekusi lagi dari awal (csv, tabel & chart)
-
+        //show FORM UTAMA
         List<Form> listForm = new List<Form>();
+        List<Form> listFm = new List<Form>();
         int indexActForm = 0;
-        int indexListForm = 0;
+        int idxListForm = 0;
 
         private Form activeFormz = null;
         private Form prevForm = null;
 
-        
-        private void openMainForm(Form formz)
+        private void openform(Form formz)
         {
             listForm.Add(formz);
-            indexListForm++;
+            idxListForm++;
 
-            //manual disave dulu kondisi lastForm yg diload, pakai indexListForm
-            //listForm.Insert(indexListForm, formz);
+            //manual disave dulu kondisi lastForm yg diload, pakai idxListForm
+            //listForm.Insert(idxListForm, formz);
 
             //active form diclose dulu..kalau ada
             if (activeFormz != null)
@@ -432,23 +290,180 @@ namespace DACQViewer
             formz.Show();
         }
 
-        private void btnGrafIgn_Click(object sender, EventArgs e)
+        private void open_form(Form f_input)
         {
-            lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
-            openMainForm(new FormChart0(dtRekap, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate, roketID));
-            coloring(btnGrafIgn);
+            if(activeFormz!=null)
+            {
+                activeFormz.Close();    // hide?
+            }
+            else
+            {
+                activeFormz = f_input;  //save dulu active form nya
+                
+                //setting untuk form yg diklik (LeftMenu)
+                f_input.TopLevel = false;
+                f_input.FormBorderStyle = FormBorderStyle.None;
+                f_input.Dock = DockStyle.Fill;
+
+                //masukkan, filling ke panel 
+                panMainView.Controls.Add(f_input);
+                //panMainView.Tag = f_input;
+                f_input.BringToFront();
+                f_input.Show();
+
+            }
+            /*
+            switch (seqLeftMenu)
+            {
+                case 1:
+                    listFm.Insert(1, activeFormz);
+                    break;
+                case 2:
+                    listFm.Insert(2, activeFormz);
+                    break;
+                case 3:
+                    listFm.Insert(3, activeFormz);
+                    break;
+                case 4:
+                    listFm.Insert(4, activeFormz);
+                    break;
+                case 5:
+                    listFm.Insert(5, activeFormz);
+                    break;
+            }
+            */
         }
 
-        private void btnGrafThrust_Click(object sender, EventArgs e)
-        {
-            lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
-            openMainForm(new _form_admin());
-            coloring(btnGrafThrust);
+    #endregion FUNGSI_VIEW-HIDE-UX
+
+
+     #region MAIN_BUTTON
+        
+        CultureInfo lokalID = new System.Globalization.CultureInfo("id-ID");
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {           
+            //setting datetime lokal Indonesia
+            string hariUji, tglUji;
+            bt_coloring(btnLoad);
+
+            if (flag_logged_in)
+            {
+                //bikin windows auto maximize setelah load file csv
+                this.WindowState = FormWindowState.Maximized;
+
+                //Panggil fungsi Load_CSV
+                ambil_csv_table();      
+
+                try
+                {
+                    //show judul
+                    DateTime dayTime = DateTime.ParseExact(dateID, "yyyy/MM/dd",CultureInfo.InvariantCulture);
+                    hariUji = lokalID.DateTimeFormat.GetDayName(dayTime.DayOfWeek).ToString();
+                    tglUji = dayTime.ToString("dd MMM yyyy");
+                
+                    label17.Text = roketID;
+                    label18.Text = hariUji + ", " + tglUji + ", " + timeID;
+                    label17.Visible = true;
+                    label18.Visible = true;
+
+                    //increment seq
+                    fload_ok = true;
+                    btnParamsInput_Click(sender, e);
+                }
+                catch(Exception err)
+                {
+                    MessageBox.Show("ERROR, broo !" + Environment.NewLine + err.Message);
+                    Application.Exit();
+                    Environment.Exit(0);
+                }
+
+            }
+            else
+                MessageBox.Show("Anda belum login, Bro !");
         }
-     #endregion SUB_BUTTON
+    
+        private void btnParamsInput_Click(object sender, EventArgs e)
+        {
+            if(fload_ok)
+            {
+                btnDetach.Visible = true;
+                panJudulSubForm.Visible = true;
+                panFooterLeft.Visible = true;
+                lblJudulSubForm.Visible = true;
+
+                lblJudulSubForm.Text = "PARAMETER DATA AKUISISI DAN FIRING SETUP";
+                open_form(new FormParams(dtSensor, daqID, roketID, dateID, timeID, sampleRate, jumChannel, idChannel, unitChannelStr, jumDataRow));     // start form baru
+                seqLeftMenu = 1;
+
+                bt_coloring(btnParamsInput);
+            }
+            else
+                MessageBox.Show("File Data Akuisisi US (Csv) belum dipilih, bro !");
+        }
+
+        private void btnDataMotor_Click(object sender, EventArgs e)
+        {
+            if(ftabel_ok)
+            {
+                lblJudulSubForm.Text = "DATA MOTOR ROKET (CHECKLIST)";
+
+                open_form(new FormDataMotor());
+                seqLeftMenu = 2;
+
+                bt_coloring(btnDataMotor);
+            }
+            else
+                MessageBox.Show("Data Parameter US belum dilengkapi, bro !");
+        }
+
+        private void btnGrafik_Click(object sender, EventArgs e)
+        {
+            if(fmotor_ok)
+            {
+                lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
+
+                open_form(new FormChart0(dtSensor, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate, roketID));
+                seqLeftMenu = 3;
+                bt_coloring(btnGrafik);
+            }
+            else
+                MessageBox.Show("Data Motor Roket (Checklist) belum lengkap, bro !");
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            if(fchart_ok)
+            {
+                lblJudulSubForm.Text = "FORM LAPORAN HASIL UJI STATIS";
+
+                open_form(new FormReport());
+                seqLeftMenu = 4;
+                bt_coloring(btnReport);
+            }
+            else
+                MessageBox.Show("Grafik Analisis belum diselesaikan, bro !");
+        }
+        private void btnZip_Click(object sender, EventArgs e)
+        {
+            if (freport_ok)
+            {
+                lblJudulSubForm.Text = "BUNDEL ARSIP (zip) MOTOR ROKET UJI STATIS";
+
+                open_form(new FormArsipZip());
+                seqLeftMenu = 5;
+                bt_coloring(btnZip);
+            }
+            else
+                MessageBox.Show("Form Laporan Uji Statis (pdf) belum selesai, bro !");
+        }
+
+     #endregion MAIN_BUTTON
 
 
-     #region BUTTON_NAVIGASI
+        
+
+     #region BUTTON_NAVIGASI dan FITUR TAMBAHAN
 
         /* Button navigasi*/
         private const int PANEL_WELC_HIDE = 52;
@@ -534,13 +549,12 @@ namespace DACQViewer
             formDetached.Add(prevForm);
         }
      
-     #endregion BUTTON_NAVIGASI
-
         /*Status waktu saat ini*/
         private void timer1_Tick(object sender, EventArgs e)
         {
             string strDate = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");//DateTime.Today.ToLongDateString();
             //label9.Text = strDate;
         }
+     #endregion BUTTON_NAVIGASI
     }
 }
