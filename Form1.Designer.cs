@@ -86,6 +86,7 @@
             this.lblJudulSubForm = new System.Windows.Forms.Label();
             this.btnDetach = new System.Windows.Forms.Button();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
             this.panelSideMenu.SuspendLayout();
             this.panEngineerID.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -106,7 +107,7 @@
             // panelSideMenu
             // 
             this.panelSideMenu.AutoScroll = true;
-            this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(17)))), ((int)(((byte)(7)))));
+            this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
             this.panelSideMenu.Controls.Add(this.panel5);
             this.panelSideMenu.Controls.Add(this.panel3);
             this.panelSideMenu.Controls.Add(this.panEngineerID);
@@ -811,6 +812,15 @@
             this.panHeader.Size = new System.Drawing.Size(958, 70);
             this.panHeader.TabIndex = 91;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(0, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 17);
+            this.label16.TabIndex = 92;
+            this.label16.Text = "label16";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnLogin;
@@ -819,6 +829,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.panMainView);
             this.Controls.Add(this.panHeader);
             this.Controls.Add(this.panFooter);
@@ -857,6 +868,7 @@
             this.panJudulSubForm.PerformLayout();
             this.panHeader.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -918,6 +930,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label16;
     }
 }
 

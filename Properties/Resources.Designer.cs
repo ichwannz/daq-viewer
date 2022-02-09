@@ -61,15 +61,6 @@ namespace DACQViewer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string csv_refined_temp {
-            get {
-                return ResourceManager.GetString("csv_refined_temp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap detachButton {
@@ -196,6 +187,26 @@ namespace DACQViewer.Properties {
             get {
                 object obj = ResourceManager.GetObject("upBtn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] usform {
+            get {
+                object obj = ResourceManager.GetObject("usform", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] usformv3 {
+            get {
+                object obj = ResourceManager.GetObject("usformv3", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

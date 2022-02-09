@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReport));
             this.btnSavePdfReport = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btnViewPdfRreport = new System.Windows.Forms.Button();
+            this.btnIsiPdfForm = new System.Windows.Forms.Button();
             this.btnMakeZip = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -46,7 +46,7 @@
             this.btnSavePdfReport.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnSavePdfReport.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSavePdfReport.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSavePdfReport.Location = new System.Drawing.Point(16, 64);
+            this.btnSavePdfReport.Location = new System.Drawing.Point(16, 362);
             this.btnSavePdfReport.Name = "btnSavePdfReport";
             this.btnSavePdfReport.Size = new System.Drawing.Size(198, 45);
             this.btnSavePdfReport.TabIndex = 0;
@@ -63,17 +63,17 @@
             this.richTextBox1.Text = "- Tabel Konfirmasi nilai hasil penghitungan ISP, Impuls, dkk\n- Hasil Report FORM-" +
     "UJI-STATIS\n\n- lampiran photo gambar2 penting";
             // 
-            // btnViewPdfRreport
+            // btnIsiPdfForm
             // 
-            this.btnViewPdfRreport.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnViewPdfRreport.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold);
-            this.btnViewPdfRreport.Location = new System.Drawing.Point(16, 12);
-            this.btnViewPdfRreport.Name = "btnViewPdfRreport";
-            this.btnViewPdfRreport.Size = new System.Drawing.Size(198, 46);
-            this.btnViewPdfRreport.TabIndex = 2;
-            this.btnViewPdfRreport.Text = "ISI  FORM-US";
-            this.btnViewPdfRreport.UseVisualStyleBackColor = true;
-            this.btnViewPdfRreport.Click += new System.EventHandler(this.btnViewPdfRreport_Click);
+            this.btnIsiPdfForm.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnIsiPdfForm.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold);
+            this.btnIsiPdfForm.Location = new System.Drawing.Point(16, 12);
+            this.btnIsiPdfForm.Name = "btnIsiPdfForm";
+            this.btnIsiPdfForm.Size = new System.Drawing.Size(198, 46);
+            this.btnIsiPdfForm.TabIndex = 2;
+            this.btnIsiPdfForm.Text = "ISI  FORM-US";
+            this.btnIsiPdfForm.UseVisualStyleBackColor = true;
+            this.btnIsiPdfForm.Click += new System.EventHandler(this.btnIsiForm_Click);
             // 
             // btnMakeZip
             // 
@@ -91,22 +91,22 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnMakeZip);
-            this.panel1.Controls.Add(this.btnViewPdfRreport);
+            this.panel1.Controls.Add(this.btnIsiPdfForm);
             this.panel1.Controls.Add(this.btnSavePdfReport);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 472);
+            this.panel1.Size = new System.Drawing.Size(334, 472);
             this.panel1.TabIndex = 4;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.axAcroPDF1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(258, 0);
+            this.panel2.Location = new System.Drawing.Point(334, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(795, 472);
+            this.panel2.Size = new System.Drawing.Size(719, 472);
             this.panel2.TabIndex = 4;
             // 
             // axAcroPDF1
@@ -116,7 +116,7 @@
             this.axAcroPDF1.Location = new System.Drawing.Point(0, 0);
             this.axAcroPDF1.Name = "axAcroPDF1";
             this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(795, 472);
+            this.axAcroPDF1.Size = new System.Drawing.Size(719, 472);
             this.axAcroPDF1.TabIndex = 0;
             // 
             // FormReport
@@ -139,7 +139,7 @@
 
         private System.Windows.Forms.Button btnSavePdfReport;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button btnViewPdfRreport;
+        private System.Windows.Forms.Button btnIsiPdfForm;
         private System.Windows.Forms.Button btnMakeZip;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnMakeReport = new System.Windows.Forms.Button();
+            this.btnSaveAnalysis = new System.Windows.Forms.Button();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -73,7 +73,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numv = new System.Windows.Forms.NumericUpDown();
+            this.nump = new System.Windows.Forms.NumericUpDown();
+            this.numf = new System.Windows.Forms.NumericUpDown();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnHitung = new System.Windows.Forms.Button();
@@ -88,13 +93,7 @@
             this.lblSQ6 = new System.Windows.Forms.Label();
             this.lblSQ5 = new System.Windows.Forms.Label();
             this.panelSQ = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.numf = new System.Windows.Forms.NumericUpDown();
-            this.nump = new System.Windows.Forms.NumericUpDown();
-            this.numv = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
+            this.btnAstm = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -104,26 +103,26 @@
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numf)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nump)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nump)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numf)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnMakeReport
+            // btnSaveAnalysis
             // 
-            this.btnMakeReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMakeReport.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnMakeReport.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnMakeReport.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnMakeReport.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMakeReport.Location = new System.Drawing.Point(680, 171);
-            this.btnMakeReport.Name = "btnMakeReport";
-            this.btnMakeReport.Size = new System.Drawing.Size(109, 45);
-            this.btnMakeReport.TabIndex = 5;
-            this.btnMakeReport.Text = "BUAT LAPORAN";
-            this.btnMakeReport.UseVisualStyleBackColor = false;
-            this.btnMakeReport.Click += new System.EventHandler(this.btnMakeReport_Click);
+            this.btnSaveAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAnalysis.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnSaveAnalysis.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSaveAnalysis.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSaveAnalysis.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAnalysis.Location = new System.Drawing.Point(680, 171);
+            this.btnSaveAnalysis.Name = "btnSaveAnalysis";
+            this.btnSaveAnalysis.Size = new System.Drawing.Size(109, 45);
+            this.btnSaveAnalysis.TabIndex = 5;
+            this.btnSaveAnalysis.Text = "SIMPAN ANALISIS";
+            this.btnSaveAnalysis.UseVisualStyleBackColor = false;
+            this.btnSaveAnalysis.Click += new System.EventHandler(this.btnSaveAnalysis_Click);
             // 
             // zedGraphControl1
             // 
@@ -661,25 +660,86 @@
             this.panel4.Controls.Add(this.numv);
             this.panel4.Controls.Add(this.nump);
             this.panel4.Controls.Add(this.numf);
-            this.panel4.Controls.Add(this.textBox12);
             this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.groupBox3);
-            this.panel4.Controls.Add(this.btnMakeReport);
-            this.panel4.Controls.Add(this.button2);
+            this.panel4.Controls.Add(this.btnSaveAnalysis);
+            this.panel4.Controls.Add(this.btnAstm);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 279);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(809, 232);
             this.panel4.TabIndex = 7;
             // 
-            // textBox12
+            // label25
             // 
-            this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(680, 140);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(109, 22);
-            this.textBox12.TabIndex = 14;
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(692, 121);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(31, 19);
+            this.label25.TabIndex = 9;
+            this.label25.Text = "IGN";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(692, 73);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(16, 19);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "F";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(692, 97);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 19);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "P";
+            // 
+            // numv
+            // 
+            this.numv.Location = new System.Drawing.Point(726, 120);
+            this.numv.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numv.Name = "numv";
+            this.numv.Size = new System.Drawing.Size(63, 20);
+            this.numv.TabIndex = 15;
+            this.numv.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nump
+            // 
+            this.nump.Location = new System.Drawing.Point(726, 96);
+            this.nump.Name = "nump";
+            this.nump.Size = new System.Drawing.Size(63, 20);
+            this.nump.TabIndex = 15;
+            this.nump.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numf
+            // 
+            this.numf.Location = new System.Drawing.Point(726, 72);
+            this.numf.Name = "numf";
+            this.numf.Size = new System.Drawing.Size(63, 20);
+            this.numf.TabIndex = 15;
+            this.numf.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // button9
             // 
@@ -838,88 +898,17 @@
             this.panelSQ.Size = new System.Drawing.Size(475, 20);
             this.panelSQ.TabIndex = 13;
             // 
-            // button2
+            // btnAstm
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(680, 24);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 45);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "ASTM";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // numf
-            // 
-            this.numf.Location = new System.Drawing.Point(726, 72);
-            this.numf.Name = "numf";
-            this.numf.Size = new System.Drawing.Size(63, 20);
-            this.numf.TabIndex = 15;
-            this.numf.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nump
-            // 
-            this.nump.Location = new System.Drawing.Point(726, 96);
-            this.nump.Name = "nump";
-            this.nump.Size = new System.Drawing.Size(63, 20);
-            this.nump.TabIndex = 15;
-            this.nump.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numv
-            // 
-            this.numv.Location = new System.Drawing.Point(726, 120);
-            this.numv.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numv.Name = "numv";
-            this.numv.Size = new System.Drawing.Size(63, 20);
-            this.numv.TabIndex = 15;
-            this.numv.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(692, 97);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 19);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "P";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(692, 73);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(16, 19);
-            this.label23.TabIndex = 9;
-            this.label23.Text = "F";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(692, 121);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(31, 19);
-            this.label25.TabIndex = 9;
-            this.label25.Text = "IGN";
+            this.btnAstm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAstm.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAstm.Location = new System.Drawing.Point(680, 24);
+            this.btnAstm.Name = "btnAstm";
+            this.btnAstm.Size = new System.Drawing.Size(109, 45);
+            this.btnAstm.TabIndex = 10;
+            this.btnAstm.Text = "ASTM";
+            this.btnAstm.UseVisualStyleBackColor = true;
+            this.btnAstm.Click += new System.EventHandler(this.btAstm_Click);
             // 
             // FormChart0
             // 
@@ -942,17 +931,17 @@
             this.groupBox1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nump)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numf)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numf)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nump)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numv)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnMakeReport;
+        private System.Windows.Forms.Button btnSaveAnalysis;
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -986,7 +975,7 @@
         private System.Windows.Forms.Label lblSQ3;
         private System.Windows.Forms.Label lblSQ2;
         private System.Windows.Forms.Label lblSQ1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAstm;
         private System.Windows.Forms.Label lblSQ4;
         private System.Windows.Forms.Label lblSQ5;
         private System.Windows.Forms.Label lblSQ6;
@@ -1004,7 +993,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panelSQ;
-        private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label22;

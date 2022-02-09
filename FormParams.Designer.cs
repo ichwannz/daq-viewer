@@ -45,7 +45,7 @@
             this.Sensor4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -269,19 +269,20 @@
             this.label18.TabIndex = 4;
             this.label18.Text = "Silakan dimasukkan data parameter instrumen Data Akuisisi numerik (Scope Corder)";
             // 
-            // button2
+            // btnSave
             // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button2.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(9, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 45);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "SIMPAN PARAMETER !";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnSave.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSave.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(9, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(160, 45);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "SIMPAN PARAMETER";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // textBox3
             // 
@@ -297,6 +298,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(37, 18);
             this.textBox3.TabIndex = 1;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox11
             // 
@@ -312,6 +314,7 @@
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(37, 18);
             this.textBox11.TabIndex = 1;
+            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox10
             // 
@@ -327,6 +330,7 @@
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(83, 18);
             this.textBox10.TabIndex = 1;
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox2
             // 
@@ -342,6 +346,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(83, 18);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox9
             // 
@@ -603,12 +608,13 @@
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox7.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(164, 89);
             this.textBox7.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(53, 21);
+            this.textBox7.Size = new System.Drawing.Size(53, 23);
             this.textBox7.TabIndex = 5;
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
             // 
@@ -646,12 +652,13 @@
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox4.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(164, 12);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(53, 21);
+            this.textBox4.Size = new System.Drawing.Size(53, 23);
             this.textBox4.TabIndex = 5;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
             // 
@@ -689,32 +696,35 @@
             // textBox5
             // 
             this.textBox5.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox5.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(164, 37);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(53, 21);
+            this.textBox5.Size = new System.Drawing.Size(53, 23);
             this.textBox5.TabIndex = 6;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox8.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox8.Location = new System.Drawing.Point(296, 12);
             this.textBox8.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(53, 21);
+            this.textBox8.Size = new System.Drawing.Size(53, 23);
             this.textBox8.TabIndex = 7;
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox6.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(164, 63);
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(53, 21);
+            this.textBox6.Size = new System.Drawing.Size(53, 23);
             this.textBox6.TabIndex = 7;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label12
             // 
@@ -751,7 +761,7 @@
             // panel10
             // 
             this.panel10.Controls.Add(this.button1);
-            this.panel10.Controls.Add(this.button2);
+            this.panel10.Controls.Add(this.btnSave);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel10.Location = new System.Drawing.Point(0, 309);
             this.panel10.Name = "panel10";
@@ -761,9 +771,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(216, 15);
+            this.button1.Location = new System.Drawing.Point(475, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(201, 23);
+            this.button1.Size = new System.Drawing.Size(201, 41);
             this.button1.TabIndex = 2;
             this.button1.Text = "CLEAR, ISI DT, ISI DGV";
             this.button1.UseVisualStyleBackColor = true;
@@ -815,7 +825,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox10;

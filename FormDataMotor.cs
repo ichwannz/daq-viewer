@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 using Transitions;
 using System.Windows.Forms;
 
+using PdfSharp;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using PdfSharp.Pdf.AcroForms;
+
 namespace DACQViewer
 {
     public partial class FormDataMotor : Form
@@ -118,15 +123,6 @@ namespace DACQViewer
 
         #region VIEW_PDF
 
-        private void hideViewPdf(Button btn)
-        {
-            if (btn.Text == "Hide (pdf)")
-            {
-                panel2.Hide();
-                btnViewingPdf[0].Text = "View (pdf)";
-            }
-        }
-
         private void button10_Click(object sender, EventArgs e)
         {
             //hideViewPdf(button10);
@@ -186,12 +182,18 @@ namespace DACQViewer
         private void browse_pdf_data_srm(int pdfPathIndex)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Open file pdf checklist motor roket";
             ofd.Filter = "pdf filesx (*.pdf) |*.pdf;";
-            ofd.ShowDialog();
-            if (ofd.FileName != null)
+            ofd.RestoreDirectory = true;
+            ofd.FilterIndex = 1;
+            //ofd.ShowDialog(); //dibukak manual
+
+            if (ofd.ShowDialog()==DialogResult.OK)      //dibuka otomatis, sambil cek apakah sudah klik OK
             {
                 pdfPathDataMotorRoket[pdfPathIndex] = ofd.FileName;
                 pdfStatus[pdfPathIndex].BackColor = Color.LimeGreen;
+                pdfStatus[pdfPathIndex].Text = Path.GetFileName(ofd.FileName);
+
             }
         }
         private void view_pdf_data_srm(int pdfPathIndexz)
@@ -208,24 +210,67 @@ namespace DACQViewer
                 MessageBox.Show(dataLabel[pdfPathIndexz].Text + ", belum dipilih !");
         }
 
-        int seqClick = 0;
-        public int getSeqClick_FMotor()
+        //tombol merge-save pdf checklist
+        string pdf_merged_path = "D:/temp4.daqp";
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            return seqClick;
+            try
+            {
+                //FUNGSI MERGE PDF
+                PdfDocument pdfMerged = new PdfDocument();
+
+                foreach(string f in pdfPathDataMotorRoket)
+                {
+                    PdfDocument pdf = PdfReader.Open(f, PdfDocumentOpenMode.Import);
+
+                    int sumPage = pdf.PageCount;
+                    for(int a=0; a< sumPage; a++)
+                    {
+                        PdfPage pg = pdf.Pages[a];
+                        pdfMerged.AddPage(pg);
+                    }
+                }
+
+                //save pdf file (otomatis pakai temp folder)
+                pdfMerged.Save(pdf_merged_path);
+                MessageBox.Show("File Pdf Checklist Motor Roket sudah berhasil digabung & simpan !");
+
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show("File Pdf Checklist Motor Roket gagal disimpan, Wajib dilengkapi semua, Mohon dicek lagi, bro !" + Environment.NewLine + Environment.NewLine + "Err.Code : " + err.Message, "Hasil", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
+            //save file ke pakai save dialog (folder)
+            //save_file_dialog(pdfMerged);
         }
-        //tombol merge-save pdf checklost
-        private void button19_Click(object sender, EventArgs e)
+
+        private void save_file_dialog(PdfDocument pdfmergedz)
         {
-            seqClick = 1;
-            //copy file pdf ke folder baru
-            // atau
-            //merge semua pdf+pdf US_REPORT
-            //bikin arsip zip isi PDF & CSV file asli
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Pdf filez (.pdf)|*.pdf";
+                sfd.RestoreDirectory = true;
+                sfd.FilterIndex = 1;
 
-            //FUNGSI MERGE PDF
-            //...
+                //save dialog : pilih path, nama, ekstensi...
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    string fnamePath = sfd.FileName;
+                    string fname = Path.GetFileNameWithoutExtension(sfd.FileName);
 
+                    //save pdf
+                    pdfmergedz.Save(fnamePath);       // pakai full path
 
+                    MessageBox.Show("File " + fname + ".pdf sudah berhasil disimpan !", "Saving", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+            }
+        }
+
+        private void copy_file_pdf()
+        {
             //COPY PDF sajaa
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "pdf files(*.pdf)|*.pdf|All files (*.*)|*.*";
@@ -242,7 +287,6 @@ namespace DACQViewer
             }
         }
 
-
        
 
        
@@ -256,6 +300,7 @@ namespace DACQViewer
             fileopener.Start();
         }
 
+        //fungsi, tombol & method untuk hide/show panel
         private static bool isOdd(int val)
         {
             return val % 2 != 0;

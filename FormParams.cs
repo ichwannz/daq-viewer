@@ -14,15 +14,7 @@ namespace DACQViewer
 {
     public partial class FormParams : Form
     {
-        DataTable dtParam_old = new DataTable();
-        DataTable dtParam_upd = new DataTable();
-        DataTable dtFiringParam = new DataTable();
-
-
         DataTable dtSensorNumbering = new DataTable();
-
-
-
 
         //private string roketID, daqID, dateID, timeID;
         private string[] idChannels, unitChannels;
@@ -48,18 +40,23 @@ namespace DACQViewer
             // Tabel 1
             //clear tabel first
             dtSensorNumbering.Clear();
-            dtSensorNumbering = dtRekapF1;          // sudah ketambahan KOLOM0 NOMOR
-            create_Tabel1();
+            dtSensorNumbering.Rows.Clear();
+            dtSensorNumbering.Columns.Clear();
+
+            dtSensorNumbering = dtRekapF1.Copy();          // sudah ketambahan KOLOM0 NOMOR
+            create_tabel1_sensor();
 
             // Tabel 2
-            create_ChannelParams();
+            create_tabel2_params();
         }
-
-        private void create_Tabel1()
+     #region CREATE DGV
+        //tabel sensor value
+        private void create_tabel1_sensor()
         {
             //Inisialisasi tabel
             //isi kolom nomer
             dtSensorNumbering.Columns.Add("No.Data", typeof(int)).SetOrdinal(0);
+
             for (int a = 0; a < jumDataRow; a++)
                 dtSensorNumbering.Rows[a][0] = a;
 
@@ -81,7 +78,6 @@ namespace DACQViewer
                 col.HeaderCell.Style.Font = new System.Drawing.Font("HP Simplified", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
                 
-
                 col.ReadOnly = true;        //semua readonly..
             }
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -90,13 +86,11 @@ namespace DACQViewer
             dataGridView1.Refresh();
         }
 
-        #region TABEL CH PARAMS
+        //tabel parameter
         DataGridViewComboBoxColumn cbSensorType = new DataGridViewComboBoxColumn();
         DataGridViewComboBoxColumn cbSensorSign = new DataGridViewComboBoxColumn();
-        private void create_ChannelParams()
+        private void create_tabel2_params()
         {
-            
-            
             //bikin comboBox
             create_comboBox_ChParams();
 
@@ -121,16 +115,21 @@ namespace DACQViewer
                 dataGridView2.Columns.Add("date", "Last Calibration Date");     //8
 
                 //style
+                //dataGridView2.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                 dataGridView2.Columns[0].Width = 30;
                 dataGridView2.Columns[0].ReadOnly = true;
                 dataGridView2.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView2.Columns[1].ReadOnly = true;
                 dataGridView2.Columns[1].Width = 100;
-                dataGridView2.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView2.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView2.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView2.Columns[3].Width = 65;
+                dataGridView2.Columns[3].ReadOnly = true;
+                dataGridView2.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView2.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 ((DataGridViewTextBoxColumn)dataGridView2.Columns[2]).MaxInputLength = 2;
 
-                dataGridView2.Columns[3].ReadOnly = true;
                 
                 //bikin style setiap Header Column sama identik
                 foreach(DataGridViewColumn col in dataGridView2.Columns)
@@ -176,57 +175,63 @@ namespace DACQViewer
 
         #endregion
         
-        int seqClick = 0;
-        public int getSeqClick_FTabelz()
-        {
-            return seqClick;
-        }
-        #region SAVE UPDATE TABEL CH PARAMS
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //make_dt();
-            make_csv();
-
-
-        }
-
-        private DataTable updateDataParams(DataGridView dgv)
-        {
-            var dt = new DataTable();
-            foreach (DataGridViewColumn col in dgv.Columns)
-            {
-                if (col.Visible)
-                {
-                    dt.Columns.Add();
-                }
-            }
-
-            var cell = new object[dgv.Columns.Count];
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                for (int i = 0; i < row.Cells.Count; i++)
-                {
-                    cell[i] = row.Cells[i].Value;
-                }
-                dt.Rows.Add(cell);
-            }
-            return dt;
-        }
-
         
-        string csv_dgv2_path = "D:/temp.daqc";
-        string path_temporary = Path.GetTempFileName(); //temporary path windows, naming nya random *.tmp
+     #region FUNGSI SAVE PARAMETER
 
-        private void make_csv() //export dgv2 ke csv
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //create tag kalau sudah oke tabelnya
+            //create csv file
+            make_csv_from_dgv();    // untuk dtHasil1 & dtHasil2
+            make_dtt_from_tb();     // untuk dtHasil0 & dtHasil3
+
+            MessageBox.Show("Sudah berhasil disimpan !");
+
+        }
+
+
+
+        /*------------------------------------------------------------------------------------------------------- create CSV untuk tiap2 cluster --*/
+
+        string[] csv_path_tabel = new string[4]
+        {
+            "D:/temp0.daqc",    //dtHasil0
+            "D:/temp1.daqc",    
+            "D:/temp2.daqc",
+            "D:/temp3.daqc"     //dtHasil3
+        };
+        
+        //temporary path windows, naming nya random *.tmp
+        //string path_temporary = Path.GetTempFileName(); 
+
+        private void make_csv_from_dgv() //export dgv2 ke csv
         {
             StringBuilder sb = new StringBuilder();
 
-            //judul column
-            var headers = dataGridView2.Columns.Cast<DataGridViewColumn>();
-            //sb.AppendLine(string.Join(";", headers.Select(col => "\"" + col.HeaderText + "\"").ToArray()));
-            sb.AppendLine(string.Join(";", headers.Select(col => col.HeaderText).ToArray()));
+            //dgv1
+            //ambil header kolom
+            var header1 = dataGridView1.Columns.Cast<DataGridViewColumn>();
+            sb.AppendLine(string.Join(";", header1.Select(col1 => col1.HeaderText).ToArray()));
 
-            //isi setiap row
+            //ambil tiap baris
+            foreach(DataGridViewRow dr in dataGridView1.Rows)
+            {
+                var cellz = dr.Cells.Cast<DataGridViewCell>();
+                sb.AppendLine(string.Join(";", cellz.Select(celz => celz.Value).ToArray()));
+            }
+            File.WriteAllText(csv_path_tabel[1], sb.ToString());
+
+            //clear sb
+            sb.Clear();
+
+            //dgv2
+            //ambil judul kolom
+            var header2 = dataGridView2.Columns.Cast<DataGridViewColumn>();
+            //sb.AppendLine(string.Join(";", headers.Select(col => "\"" + col.HeaderText + "\"").ToArray()));
+
+            sb.AppendLine(string.Join(";", header2.Select(col2 => col2.HeaderText).ToArray()));
+
+            //ambil tiap row
             foreach (DataGridViewRow dr in dataGridView2.Rows)
             {
                 var cellz = dr.Cells.Cast<DataGridViewCell>();
@@ -234,70 +239,148 @@ namespace DACQViewer
             }
 
             //tulis ke file csv
-            System.IO.File.WriteAllText(csv_dgv2_path, sb.ToString());
-        }
-       
-        private void make_csv_dt()
-        {
-            //untuk baca csv ke datatable
+            File.WriteAllText(csv_path_tabel[2], sb.ToString());
 
-            DataTable dtHasil = new DataTable();
+        }
+        private void make_dtt_from_tb()
+        {
+            DataTable dtHasil0 = new DataTable();
+            DataTable dtHasil3 = new DataTable();
+
+            dtHasil0.Clear();
+            dtHasil0.Rows.Clear();
+            dtHasil3.Clear();
+            dtHasil3.Rows.Clear();
+            
+            //Parameter DAQ Scope
+            dtHasil0.Columns.Add("variabel", typeof(string)).SetOrdinal(0);
+            dtHasil0.Columns.Add("value", typeof(string)).SetOrdinal(1);
+
+            dtHasil0.Rows.Add("scopeID", textBox9.Text);
+            dtHasil0.Rows.Add("roketID", textBox1.Text);
+            dtHasil0.Rows.Add("dateID", textBox2.Text);
+            dtHasil0.Rows.Add("timeID", textBox10.Text);
+            dtHasil0.Rows.Add("spRate", textBox3.Text);
+            dtHasil0.Rows.Add("channelJum", textBox11.Text);
+
+            //Parameter Firing Ignition
+            dtHasil3.Columns.Add("variabel", typeof(string)).SetOrdinal(0);
+            dtHasil3.Columns.Add("value", typeof(string)).SetOrdinal(1);
+
+            dtHasil3.Rows.Add("volt", textBox4.Text);
+            dtHasil3.Rows.Add("iamp", textBox8.Text);
+            dtHasil3.Rows.Add("ignOhm", textBox5.Text);
+            dtHasil3.Rows.Add("wireOhm", textBox6.Text);
+            dtHasil3.Rows.Add("trigLength", textBox7.Text);
+
+            make_csv_from_dtt(dtHasil0, 0);
+            make_csv_from_dtt(dtHasil3, 3);
+        }
+
+        private void make_csv_from_dtt(DataTable dt,int idxPath)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string[] headers = dt.Columns.Cast<DataColumn>()
+                .Select(col => col.ColumnName)
+                .ToArray();
+            sb.AppendLine(string.Join(";", headers));
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                string[] cells = dr.ItemArray.Select(celz => celz.ToString()).ToArray();
+                sb.AppendLine(string.Join(";", cells));
+            }
+
+            File.WriteAllText(csv_path_tabel[idxPath], sb.ToString());
+        }
+
+
+        /*------------------------------------------------------------------------------------------------------- reload CSV untuk tiap2 cluster --*/
+
+        //reload dari save2an csv, bikin datatablem masukkan ke dgv
+        private void make_dgv_from_csv(DataGridView dgv, int idxCsv)
+        {
+            DataTable dtHasilx = new DataTable();
                         
             //isi ke DT
-            File.ReadLines(csv_dgv2_path).Take(1)
+            File.ReadLines(csv_path_tabel[idxCsv]).Take(1)
                 .SelectMany(x => x.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
                 .ToList()
-                .ForEach(x => dtHasil.Columns.Add(x.Trim()));
+                .ForEach(x => dtHasilx.Columns.Add(x.Trim()));
            
 
-            File.ReadLines(csv_dgv2_path).Skip(1)
+            File.ReadLines(csv_path_tabel[idxCsv]).Skip(1)
                 .Select(x => x.Split(';'))
                 .ToList()
-                .ForEach(line => dtHasil.Rows.Add(line));
+                .ForEach(line => dtHasilx.Rows.Add(line));
 
             //isi ke DGV2
-            foreach(DataRow dr in dtHasil.Rows)
+            foreach(DataRow dr in dtHasilx.Rows)
             {
-                dataGridView2.Rows.Add(dr.ItemArray);
+                dgv.Rows.Add(dr.ItemArray);
             }
+        }
+
+        private void make_tb_from_csv(int idxCsv)
+        {
+            //baca csv masukkan ke dt
+            DataTable dtHasily = new DataTable();
+
+            //isi ke DT
+            File.ReadLines(csv_path_tabel[idxCsv]).Take(1)
+                .SelectMany(x => x.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                .ToList()
+                .ForEach(x => dtHasily.Columns.Add(x.Trim()));
+
+
+            File.ReadLines(csv_path_tabel[idxCsv]).Skip(1)
+                .Select(x => x.Split(';'))
+                .ToList()
+                .ForEach(line => dtHasily.Rows.Add(line));
+
+            //Isi Parameter Firing Ignition
+            textBox4.Text = dtHasily.Rows[0][1].ToString(); //volt
+            textBox8.Text = dtHasily.Rows[1][1].ToString(); //iamp
+            textBox5.Text = dtHasily.Rows[2][1].ToString(); //ignOhm
+            textBox6.Text = dtHasily.Rows[3][1].ToString(); //wireOhm
+            textBox7.Text = dtHasily.Rows[4][1].ToString(); //trigLength
+
+
+            //Isi Parameter DAQ Scope
+            /*
+            textBox9.Text       //scopeID
+            textBox1.Text       //roketID
+            textBox2.Text       //dateID
+            textBox10.Text      //timeID
+            textBox3.Text       //spRate
+            textBox11.Text      //channelJum
+            */
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //dataGridView1.DataSource = null;
+            //dataGridView1.Rows.Clear();
             dataGridView2.DataSource = null;
             dataGridView2.Rows.Clear();
 
-            make_csv_dt();
+            //make_dgv_from_csv(dataGridView1, 1);  //dgv sensorval
+            make_dgv_from_csv(dataGridView2, 2);    //dgv params daq
+
+            dataGridView1.Refresh();
             dataGridView2.Refresh();
 
+            make_tb_from_csv(3);        //params firing
+
             //hapus file csv temporary
-            //File.Delete(csv_dgv2_path);
+            //File.Delete(csv_dgv_path);
         }
 
-        DataTable dtRef = new DataTable();
-        private void make_dt()
-        {
-            dtRef.Clear();
-            
-            foreach(DataGridViewColumn dgc in dataGridView2.Columns)
-            {
-                dtRef.Columns.Add(dgc.Name);
-            }
+     #endregion
 
-            object[] celz = new object[dataGridView2.Columns.Count];
-            foreach(DataGridViewRow dgr in dataGridView2.Rows)
-            {
-                for(int a=0;a<dgr.Cells.Count;a++)
-                {
-                    celz[a] = dgr.Cells[a].Value;
-                }
-                dtRef.Rows.Add(celz);
-            }
-        }
-
-        #endregion
-
-        #region Fungsi DateTimePicker di kolom 9
+     #region Fungsi DateTimePicker di kolom 9
 
         //Initialized a new DateTimePicker Control
         DateTimePicker calendarPicker = new DateTimePicker();  
@@ -343,32 +426,6 @@ namespace DACQViewer
         }
         #endregion
 
-        private bool DAQCH_SAVED, FIRING_SAVED = false;
-
-        //BUTTON save firing params
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //lebih enak pakai dataset saja?
-            dtFiringParam.Clear();
-            dtFiringParam.Columns.Clear();
-            dtFiringParam.Rows.Clear();
-
-            dtFiringParam.Columns.Add("Volt Trigger");
-            dtFiringParam.Columns.Add("Ohm Igniter");
-            dtFiringParam.Columns.Add("Ohm Cable");
-            dtFiringParam.Columns.Add("Duration Trigger");
-
-            dtFiringParam.Rows.Add(textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text);
-
-            MessageBox.Show("Parameter Firing Ignition sudah berhasil tersimpan !");
-            FIRING_SAVED = true;
-
-            if(DAQCH_SAVED && FIRING_SAVED )
-            {
-                //button1.Enabled = true;
-            }
-
-        }
 
         /*fungsi untuk FORCE HURUF kAPITAL & NUMERIC ACCEPTANCE DI SPESIFIK KOLOM*/
         private void dataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -394,8 +451,7 @@ namespace DACQViewer
                 }
             }
         }
-                 
-
+ 
         //sub-fungsi untuk otomatis klik cell combobox
         private void dataGridView2_CellEnter(object sender, DataGridViewCellEventArgs e)
         {

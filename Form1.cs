@@ -40,12 +40,21 @@ namespace DACQViewer
         {
             InitializeComponent();
 
-            bt_coloring(null); //bikin tombol jadi dimgray BG.Color
+            bt_coloring(btnLoad); //bikin tombol jadi dimgray BG.Color
+
             psize_w = panelSideMenu.Width;
             psize_h = panelSideMenu.Width;
             panelSideMenu.Size = new Size(50, psize_h);
             panelSideMenu.Visible = false;
 
+            //button
+            btnParamsInput.Enabled = false;
+            btnDataMotor.Enabled = false;
+            btnGrafik.Enabled = false;
+            btnReport.Enabled = false;
+            btnZip.Enabled = false;
+
+            //sub button
             btnDetach.Visible = false;
             panJudulSubForm.Visible = false;
             lblJudulSubForm.Visible = false;
@@ -64,12 +73,6 @@ namespace DACQViewer
             textBox5.CharacterCasing = CharacterCasing.Upper;
         }
 
-        /*
-        public DataTable dtDAQSampling = new DataTable();
-        public DataTable dtParamsChannel = new DataTable(); //untuk save hasil saving
-        public DataTable dtParamsFiring = new DataTable();
-        */
-
         private void Form1_Load(object sender, EventArgs e)
         {
          
@@ -81,7 +84,7 @@ namespace DACQViewer
 
         //model manual
         DataTable dtSensor = new DataTable();
-        DataTable dtSensorNumbering = new DataTable();    // ada kolom nomer di samping
+        DataTable dtsens = new DataTable();
 
         private string[] idChannel;
         private string[] unitChannelStr;
@@ -114,7 +117,7 @@ namespace DACQViewer
         data_us daq=new data_us();
         
 
-        bool loadFailed = false;
+        bool csv_loaded_ok = false;
         private void ambil_csv_table()
         {
             Stream mystream = null;
@@ -123,8 +126,8 @@ namespace DACQViewer
             ofd.Filter = "CSV Files (*.csv)|*.csv|All Filess|*.*";
             ofd.FilterIndex = 1;
             ofd.RestoreDirectory = true;
-
-            if (ofd.ShowDialog() == DialogResult.OK)
+            DialogResult dr = ofd.ShowDialog();
+            if (dr == DialogResult.OK)
             {
                 try
                 {
@@ -136,23 +139,36 @@ namespace DACQViewer
                             bc = new baca_csv_ke_tabel(mystream);
                             mystream.Close();
                         }
+                        csv_loaded_ok = true; ;
                     }
                     else
                     {
-                        loadFailed = true;
+                        csv_loaded_ok = false;
                     }
                 }
                 catch (Exception err)
                 {
-                    loadFailed = true;
+                    csv_loaded_ok = false;
                     MessageBox.Show("(0) Gagal mengambil CSV, mohon diulangi, broo ! " + err.Message);
                     Application.Exit();     //restart program, exit dulu
                     Environment.Exit(0);
                 }
             }
 
-            if (!loadFailed)
+            if(dr==DialogResult.Cancel)
             {
+                csv_loaded_ok = false;
+                MessageBox.Show("(0a) Gagal mengambil CSV, mohon diulangi, broo ! ");
+            }
+
+            if (csv_loaded_ok)
+            {
+                //enable button
+                btnParamsInput.Enabled = true;
+                btnDataMotor.Enabled = true;
+                btnGrafik.Enabled = true;
+                btnReport.Enabled = true;
+                btnZip.Enabled = true;
                 try
                 {
                     if (bc != null)
@@ -174,10 +190,7 @@ namespace DACQViewer
                         unitChannelStr = bc.get_channelUNIT();
                         jumChannel = bc.get_jumlahCh();
                         sampleRate = int.Parse(bc.get_Sps());
-
-                        //tambah/insert kolom Nomer urut di Column0
-                        dtSensorNumbering = dtSensor.Copy();
-
+                        dtsens = dtSensor.Copy();
                     }
                 }
 
@@ -215,8 +228,8 @@ namespace DACQViewer
      #region FUNGSI_UX_HIDING/SHOW
 
         //modifier untuk pergantian antar OpenForm
-        private int seqLeftMenu = 0;   //klik menu sequence
-        private bool fload_ok, ftabel_ok, fmotor_ok, fchart_ok, freport_ok;
+        private int idxFm = 0;   //klik menu sequence
+        private bool fload_ok = true, ftabel_ok = true, fmotor_ok = true, fchart_ok = true, freport_ok = true;
         private bool flag_logged_in = false;
 
         FormParams ftabel;
@@ -247,91 +260,30 @@ namespace DACQViewer
             //panel3.Location = new Point(192, tombol.Location.Y);
             panel3.Location = tombol.Location;
             panel3.Visible = true;
-            panel3.Location = btnGrafik.Location;
         }
 
         //show FORM UTAMA
-        List<Form> listForm = new List<Form>();
-        List<Form> listFm = new List<Form>();
-        int indexActForm = 0;
-        int idxListForm = 0;
-
-        private Form activeFormz = null;
-        private Form prevForm = null;
-
-        private void openform(Form formz)
-        {
-            listForm.Add(formz);
-            idxListForm++;
-
-            //manual disave dulu kondisi lastForm yg diload, pakai idxListForm
-            //listForm.Insert(idxListForm, formz);
-
-            //active form diclose dulu..kalau ada
-            if (activeFormz != null)
-            {
-                activeFormz.Close();
-                //activeFormz.Hide();                    
-                if (prevForm == formz)
-                    prevForm.Close();
-            }
-
-            //mainFormz dijadikan activeForm
-            activeFormz = formz;
-
-            formz.TopLevel = false;
-            formz.FormBorderStyle = FormBorderStyle.None;
-            formz.Dock = DockStyle.Fill;
-
-            // tambah(~posisikan) form ke panelMainView
-            panMainView.Controls.Add(formz);
-            panMainView.Tag = formz;
-            formz.BringToFront();
-            formz.Show();
-        }
-
+        private Form formNow = null;
         private void open_form(Form f_input)
         {
-            if(activeFormz!=null)
+            //cek apakah
+            if(formNow!=null)
             {
-                activeFormz.Close();    // hide?
+                formNow.Close();    // hide?
             }
-            else
-            {
-                activeFormz = f_input;  //save dulu active form nya
+
+            //save dulu active form nya
+            formNow = f_input;  
                 
-                //setting untuk form yg diklik (LeftMenu)
-                f_input.TopLevel = false;
-                f_input.FormBorderStyle = FormBorderStyle.None;
-                f_input.Dock = DockStyle.Fill;
+            //setting untuk form yg diklik (LeftMenu)
+            f_input.TopLevel = false;
+            f_input.FormBorderStyle = FormBorderStyle.None;
+            f_input.Dock = DockStyle.Fill;
 
-                //masukkan, filling ke panel 
-                panMainView.Controls.Add(f_input);
-                //panMainView.Tag = f_input;
-                f_input.BringToFront();
-                f_input.Show();
-
-            }
-            /*
-            switch (seqLeftMenu)
-            {
-                case 1:
-                    listFm.Insert(1, activeFormz);
-                    break;
-                case 2:
-                    listFm.Insert(2, activeFormz);
-                    break;
-                case 3:
-                    listFm.Insert(3, activeFormz);
-                    break;
-                case 4:
-                    listFm.Insert(4, activeFormz);
-                    break;
-                case 5:
-                    listFm.Insert(5, activeFormz);
-                    break;
-            }
-            */
+            //fill ke panel 
+            panMainView.Controls.Add(f_input);
+            f_input.BringToFront();
+            f_input.Show();
         }
 
     #endregion FUNGSI_VIEW-HIDE-UX
@@ -355,7 +307,7 @@ namespace DACQViewer
                 //Panggil fungsi Load_CSV
                 ambil_csv_table();      
 
-                try
+                if(csv_loaded_ok)
                 {
                     //show judul
                     DateTime dayTime = DateTime.ParseExact(dateID, "yyyy/MM/dd",CultureInfo.InvariantCulture);
@@ -371,12 +323,14 @@ namespace DACQViewer
                     fload_ok = true;
                     btnParamsInput_Click(sender, e);
                 }
+                /*
                 catch(Exception err)
                 {
-                    MessageBox.Show("ERROR, broo !" + Environment.NewLine + err.Message);
+                    MessageBox.Show("ERROR, broo !" + Environment.NewLine + Environment.NewLine + "Kode Err : "+  err.Message);
                     Application.Exit();
                     Environment.Exit(0);
                 }
+                */
 
             }
             else
@@ -392,9 +346,10 @@ namespace DACQViewer
                 panFooterLeft.Visible = true;
                 lblJudulSubForm.Visible = true;
 
+                idxFm = 1;
                 lblJudulSubForm.Text = "PARAMETER DATA AKUISISI DAN FIRING SETUP";
                 open_form(new FormParams(dtSensor, daqID, roketID, dateID, timeID, sampleRate, jumChannel, idChannel, unitChannelStr, jumDataRow));     // start form baru
-                seqLeftMenu = 1;
+                
 
                 bt_coloring(btnParamsInput);
             }
@@ -408,9 +363,9 @@ namespace DACQViewer
             {
                 lblJudulSubForm.Text = "DATA MOTOR ROKET (CHECKLIST)";
 
+                idxFm = 2;
                 open_form(new FormDataMotor());
-                seqLeftMenu = 2;
-
+                
                 bt_coloring(btnDataMotor);
             }
             else
@@ -423,8 +378,9 @@ namespace DACQViewer
             {
                 lblJudulSubForm.Text = "GRAFIK DATA AKUISISI US";
 
-                open_form(new FormChart0(dtSensor, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate, roketID));
-                seqLeftMenu = 3;
+                idxFm = 3;
+                open_form(new FormChart0(dtsens, jumDataRow, unitChannelStr, idChannel, jumChannel, sampleRate, roketID));
+
                 bt_coloring(btnGrafik);
             }
             else
@@ -437,8 +393,9 @@ namespace DACQViewer
             {
                 lblJudulSubForm.Text = "FORM LAPORAN HASIL UJI STATIS";
 
+                idxFm = 4;
                 open_form(new FormReport());
-                seqLeftMenu = 4;
+
                 bt_coloring(btnReport);
             }
             else
@@ -450,8 +407,9 @@ namespace DACQViewer
             {
                 lblJudulSubForm.Text = "BUNDEL ARSIP (zip) MOTOR ROKET UJI STATIS";
 
+                idxFm = 5;
                 open_form(new FormArsipZip());
-                seqLeftMenu = 5;
+
                 bt_coloring(btnZip);
             }
             else
@@ -513,6 +471,7 @@ namespace DACQViewer
         {
             Application.Exit();
         }
+        
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -523,30 +482,21 @@ namespace DACQViewer
 
         }
 
-        List<Form> formDetached = new List<Form>();
+        Form formLast = new Form();
         private void btnDetach_Click(object sender, EventArgs e)
         {
-            //Form Ftemp = new Form();
-            //Ftemp = activeFormz;
+            formLast = formNow;
+            panMainView.Controls.Remove(formLast);
 
-            prevForm = activeFormz;
-            indexActForm++;
+            //setting window
+            formLast.TopLevel = true;
+            formLast.FormBorderStyle = FormBorderStyle.Sizable;
+            formLast.StartPosition = FormStartPosition.CenterScreen;
+            formLast.BringToFront();
+            formLast.Show();
 
-            if(activeFormz!=null)
-            {
-                panMainView.Controls.Remove(prevForm);
-
-                //setting hasil detach window
-                prevForm.TopLevel = true;
-                prevForm.FormBorderStyle = FormBorderStyle.Sizable;
-                prevForm.Dock = DockStyle.Fill;
-                prevForm.StartPosition = FormStartPosition.CenterScreen;
-
-                prevForm.BringToFront();
-                prevForm.Show();
-                activeFormz = null;
-            }
-            formDetached.Add(prevForm);
+            formNow = null;
+            lblJudulSubForm.Text = "";
         }
      
         /*Status waktu saat ini*/

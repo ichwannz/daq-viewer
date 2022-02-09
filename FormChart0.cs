@@ -10,11 +10,57 @@ using System.Windows.Forms;
 using Transitions;
 using ZedGraph;
 
+using System.IO;
+
 namespace DACQViewer
 {
     public partial class FormChart0 : Form
     {
-        //create objek dulu
+        public FormChart0(DataTable dtRekapF1, int dt1, string[] dt2, string[] dt3, int dt4, int dt5, string dt6)
+        {
+            InitializeComponent();
+
+            //bikin array textbox hasil hitungan
+            TextBox[] textboxArray = new TextBox[]
+            {
+                textBox8,   //ign
+                textBox2,   //tburneff
+                textBox3,   //tburntot
+
+                textBox4,   //impuls_tot
+                textBox5,
+                textBox6,
+                textBox7,
+                textBox1,
+                textBox10,
+
+                textBox11,  //sampling
+                textBox13
+            };
+            tb_hasil_hitung = textboxArray; //dibikin public
+
+            dtRekapF3 = dtRekapF1;  //ambil data tabel full
+            jumDataRow = dt1;       //jumlah baris data
+            unitChannelArr = dt2;   //nama satuan
+            idChannelArr = dt3;     //nama channel
+            jumChannel = dt4;       //jumlah channel yg dipakai
+            sampleRate = dt5;
+            roketID = dt6;
+
+            btnCurStart.BackColor = Color.Gold;
+            btnHitung.Enabled = false;
+            panelSQ.Visible = false;
+            panelSQ.Location = lblSQ1.Location;
+
+            //mulai form
+            //showAstm.Show();
+
+            inisialisasi_grafik();
+            plot_grafik();
+
+            cek_eksisting();        //cek apakah ada file analisis tersimpan
+        }
+
         DataTable dtRekapF3 = new DataTable();  //objek tabel
         DataTable dtAnalytic = new DataTable();
         Color[] warnaKurva = new Color[10]
@@ -38,11 +84,12 @@ namespace DACQViewer
             Color.Red,
             Color.Blue
         };
-
         String[] idxLabel = new string[5]
         {
             "T0", "A", "B","E","F"
         };
+
+        TextBox[] tb_hasil_hitung;      //array textbox hasil hitung
 
         //variabel data header tabel parameter daq
         private string roketID;
@@ -52,33 +99,7 @@ namespace DACQViewer
         _form_astm showAstm = new _form_astm();
         _form_w_propelan formwp = new _form_w_propelan();
 
-        public FormChart0(DataTable dtRekapF1, int dt1, string[] dt2, string[] dt3, int dt4, int dt5, string dt6)
-        {
-            InitializeComponent();
-
-            dtRekapF3 = dtRekapF1;  //ambil data tabel full
-            jumDataRow = dt1;       //jumlah baris data
-            unitChannelArr = dt2;   //nama satuan
-            idChannelArr = dt3;     //nama channel
-            jumChannel = dt4;       //jumlah channel yg dipakai
-            sampleRate = dt5;
-            roketID = dt6;
-
-            btnCurStart.BackColor = Color.Gold;
-            btnHitung.Enabled = false;
-            panelSQ.Visible = false;
-            panelSQ.Location = lblSQ1.Location;
-            //mulai form
-            showAstm.Show();
-
-            inisialisasi_grafik();
-            plot_grafik();
-
-            //if (showAstm.getAck())
-            //    tampilkan_tabel_analitik();
-        }
-
-        #region FORM_CHART
+     #region FORM_CHART
         GraphPane myChart = new GraphPane();    //objek zedgraph
         LineItem kurvaCHX;
 
@@ -277,7 +298,7 @@ namespace DACQViewer
         }
         #endregion FORM_CHART
 
-        #region TABEL_ANALITIK
+     #region TABEL_ANALITIK
         bool tabelShowed = false;
         private void tampilkan_tabel_analitik()
         {
@@ -365,30 +386,217 @@ namespace DACQViewer
         }
         #endregion TABEL_ANALITIK
 
-        #region BUTTON
-        private void btnMakeReport_Click(object sender, EventArgs e)
+     #region BUTTON
+
+        /*---------------------------------------------------------------------------------------------------- SAVE CSV ------*/
+        string[] csv_path = new string[2]
+            {
+                "D:/temp5.daqc",        // csv untuk time sequence grafik
+                "D:/temp6.daqc"         // csv untuk hasil hitungan analisis
+            };
+
+        //save csv tsequence
+        private void save_csv_tsequence()
         {
-            seqClick = 1;
+            //untuk simpan variabel time sequence grafik
+            DataTable dtHasil5 = new DataTable();
+
+            //bikin dtt dari inputan
+            dtHasil5.Clear();
+            dtHasil5.Columns.Add("variabel", typeof(string)).SetOrdinal(0);
+            dtHasil5.Columns.Add("value", typeof(string)).SetOrdinal(1);
+
+            dtHasil5.Rows.Add("tzero", tZero.ToString());
+            dtHasil5.Rows.Add("timea", tA.ToString());
+            dtHasil5.Rows.Add("timeb", tB.ToString());
+            dtHasil5.Rows.Add("timee", tE.ToString());
+            dtHasil5.Rows.Add("timef", tF.ToString());
+            dtHasil5.Rows.Add("wpropelan", tbWpropelan.Text);
+
+            //bikin csv dari dtt
+            make_csv_fr_dtt(dtHasil5, 0);   //tseq data
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        //save csv hasil hitungan
+        private void save_csv_hasil()
+        {
+            //untuk simpan variabel hasil hitungan
+            DataTable dtHasil6 = new DataTable();
+
+            //bikin dtt dari hasil hitung
+            dtHasil6.Clear();
+            dtHasil6.Columns.Add("variabel", typeof(string)).SetOrdinal(0);
+            dtHasil6.Columns.Add("value", typeof(string)).SetOrdinal(1);
+
+            dtHasil6.Rows.Add("tign", tign.ToString());
+            dtHasil6.Rows.Add("tburn", tburnEff.ToString());
+            dtHasil6.Rows.Add("taction", taction.ToString());
+            dtHasil6.Rows.Add("itot", impuls_tot.ToString());
+            dtHasil6.Rows.Add("isp", impuls_sp.ToString());
+            dtHasil6.Rows.Add("fmax", f_max.ToString());
+            dtHasil6.Rows.Add("fave", f_ave.ToString());
+            dtHasil6.Rows.Add("pmax", p_max.ToString());
+            dtHasil6.Rows.Add("pave", p_ave.ToString());
+            dtHasil6.Rows.Add("sample", sample_fine_tot.ToString());
+            dtHasil6.Rows.Add("sprate", sampleRate.ToString());
+
+            //bikin csv dari dtt
+            make_csv_fr_dtt(dtHasil6, 1);   //data hasil analisis
+        }
+
+        //fungsi bikin Csv dari DataTable
+        private void make_csv_fr_dtt(DataTable dt, int idxPath)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string[] headers = dt.Columns.Cast<DataColumn>()
+                .Select(col => col.ColumnName)
+                .ToArray();
+            sb.AppendLine(string.Join(";", headers));
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                string[] cells = dr.ItemArray.Select(celz => celz.ToString()).ToArray();
+                sb.AppendLine(string.Join(";", cells));
+            }
+
+            File.WriteAllText(csv_path[idxPath], sb.ToString());
+        }
+
+        /*---------------------------------------------------------------------------------------------------- LOAD CSV ------*/
+        
+        //load csv to datatable, binding ke tb/var
+        double[] tseq = new double[5];  //tzero, tA, tB, tE, tF
+        private void baca_csv(int idxPath)
+        {
+            //baca csv masukkan ke dt
+            DataTable dtHasilz = new DataTable();
+
+            //isi ke dt
+            File.ReadLines(csv_path[idxPath]).Take(1)
+                .SelectMany(x => x.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                .ToList()
+                .ForEach(x => dtHasilz.Columns.Add(x.Trim()));
+
+            File.ReadLines(csv_path[idxPath]).Skip(1)
+                .Select(x => x.Split(';'))
+                .ToList()
+                .ForEach(line => dtHasilz.Rows.Add(line));
+
+            //Isi variabel tseq
+            if(idxPath==0)
+            {
+                //otomatis, dibikin array
+                for(int a=0; a<tseq.Count();a++)
+                {
+                    //tseq[a] = double.Parse(dtHasilz.Rows[a][1].ToString());
+                    tseq[a] = Convert.ToDouble(dtHasilz.Rows[a][1]);
+                }
+
+                //manual
+                /*
+                tZero = double.Parse(dtHasilz.Rows[0][1].ToString());
+                tA = (double)dtHasilz.Rows[1][1];
+                tB = (double)dtHasilz.Rows[2][1]; 
+                tE = (double)dtHasilz.Rows[3][1]; 
+                tF = (double)dtHasilz.Rows[4][1]; 
+                */
+                tbWpropelan.Text = dtHasilz.Rows[5][1].ToString(); 
+            }
+
+            //Isi variabel hasil hitungan
+            else if (idxPath==1)
+            {
+                int b = tb_hasil_hitung.Count();
+
+                //otomatis
+                for(int a=0; a<b ;a++)
+                {
+                    tb_hasil_hitung[a].Text = dtHasilz.Rows[a][1].ToString();
+                }
+
+                //manual
+                /*
+                textBox8.Text = dtHasilz.Rows[0][1].ToString(); 
+                textBox2.Text = dtHasilz.Rows[1][1].ToString(); 
+                textBox3.Text = dtHasilz.Rows[2][1].ToString(); 
+
+                textBox4.Text = dtHasilz.Rows[3][1].ToString();
+                textBox5.Text = dtHasilz.Rows[4][1].ToString();
+                textBox6.Text = dtHasilz.Rows[5][1].ToString();
+                textBox7.Text = dtHasilz.Rows[6][1].ToString();
+                textBox1.Text = dtHasilz.Rows[7][1].ToString();
+                textBox10.Text = dtHasilz.Rows[8][1].ToString();
+
+                textBox11.Text = dtHasilz.Rows[9][1].ToString();
+                textBox13.Text = dtHasilz.Rows[10][1].ToString();
+                */
+            }
+        }
+
+        /*---------------------------------------------------------------------------------------------------- BUTTON ------*/
+        private void btnSaveAnalysis_Click(object sender, EventArgs e)
+        {
+            //save dtHasil5 : time sequence
+            //save dtHasil1a : dt sensor refined
+            //save dtHasil6 : hasil hitungan
+            //buat form-us
+
+            save_csv_tsequence();   
+            save_csv_hasil();
+
+            MessageBox.Show("Hasil analisis berhasil disimpan, bro!");
+        }
+
+        private void btAstm_Click(object sender, EventArgs e)
         {
             _form_astm astm = new _form_astm();
             astm.Show();
         }
 
-        int seqClick = 0;
-        public int getSeqClick_FChart0()
+        private void cek_eksisting()
         {
-            return seqClick;
-        }
+            if(File.Exists(csv_path[0]) && File.Exists(csv_path[1]))
+            {
+                //ambil return value dari dialog button yesno
+                DialogResult dr= MessageBox.Show("Terdeteksi ada file Analisis DAQ sebelumnya,"+Environment.NewLine+
+                    "Grafik chart akan diatur sesuai analisis sebelumnya, Anda mau pakai, bro?"
+                    , "Reload file tersimpan"
+                    , MessageBoxButtons.YesNo
+                    , MessageBoxIcon.Asterisk);
 
+                if(dr==DialogResult.Yes)
+                {
+                    // baca csv, bikin dtt, binding ke tb/var
+                    baca_csv(0);    //tseq
+                    baca_csv(1);    //hasil
+                    //bikin line/garis
+                    idxCursor = 0;
+
+                    for(int a=0 ; a<tseq.Count() ; a++)
+                    {
+                        create_cursorx_idx(tseq[a]);
+                    }
+                    //chart refresh
+                    btnHitung.Enabled = false;
+                }
+                else if (dr==DialogResult.No)
+                {
+                    //bikin manual lagi
+                    MessageBox.Show("Silahkan setel posisi Cursor Time Sequence uji statis <lihat skema ASTM>");
+                }
+
+                //tampilkan_tabel_analitik();
+
+            }
+        }
+        
         #endregion BUTTON
 
 
-        /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        /*---------------------------------------------------------------------------------------------------------------------------------------- EVENT HANDLER ------*/
-        #region TABEL_ANALITIK_EVENTS : CLICK
+/*-------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------- EVENT HANDLER ------*/
+     #region TABEL_ANALITIK_EVENTS : CLICK
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             //pakai event cell value changed >> perlu masuk ke status checkboxnya
@@ -434,9 +642,9 @@ namespace DACQViewer
 
         #endregion TABEL_ANALITIK_CELL_KLIK_EVENT
 
-        #region CHART_EVENT : HOVER, CLICK
+     #region CHART_EVENT : HOVER, CLICK
 
-        //point value waktu hovering
+    //point value waktu hovering
         PointPair ppCross;
         private string zedGraphControl1_PointValueEvent(ZedGraphControl sender, GraphPane pane, CurveItem curve, int iPt)
         {
@@ -445,7 +653,7 @@ namespace DACQViewer
             return curve.Label.Text + " : " + ppCross.X.ToString("#.##") + " detik; " + ppCross.Y.ToString("#.##") + " " + unitChannelArr[curve.YAxisIndex + 1];  //strUnit;//
         }
 
-        //fungsi klik baca value >> dgv1
+    //fungsi klik baca value >> dgv1
         private void zedGraphControl1_MouseClick(object sender, MouseEventArgs e)
         {
             double X1, Y1, pembagiVolt;
@@ -612,7 +820,7 @@ namespace DACQViewer
             textBox1.Text = "0";
         }
         
-        //fungsi hovering VCursor
+    //fungsi hovering VCursor
         PointPairList listCursorX = new PointPairList();
         LineItem lineCursorX;
 
@@ -695,9 +903,6 @@ namespace DACQViewer
         private void btnCurStart_Click(object sender, EventArgs e)
         {
             idxBtnCursorStart++;
-
-            
-
             if (isOdd(idxBtnCursorStart))
             {
                 hapus_data_baca();
@@ -728,55 +933,29 @@ namespace DACQViewer
             }
         }
 
-    //fungsi box burning area
-        double x1box, x2box;
-        private void create_burning_area()
-        {
-            x1box = tB;
-            BoxObj boxBurning = new BoxObj(x1box,15000,tburnEff,15000, Color.Empty, Color.FromArgb(50, Color.Crimson));
-            boxBurning.Location.CoordinateFrame = CoordType.AxisXYScale;
-            boxBurning.Location.AlignV = AlignV.Top;
-            boxBurning.Location.AlignH = AlignH.Left;
-            boxBurning.ZOrder = ZOrder.E_BehindCurves;
-            myChart.GraphObjList.Add(boxBurning);
-            
-            TextObj texBurning = new TextObj("Area waktu bakar efektif", (x1box+(tburnEff*0.1)),10000);
-            texBurning.Location.CoordinateFrame = CoordType.AxisXYScale;
-            texBurning.Location.AlignH = AlignH.Left;
-            texBurning.Location.AlignV = AlignV.Center;
-            texBurning.FontSpec.IsItalic = true;
-            texBurning.FontSpec.Family = "HP Simplified";
-            texBurning.FontSpec.FontColor = Color.Black;
-            texBurning.FontSpec.Size = 14f;
-            myChart.GraphObjList.Add(texBurning);
-
-            zedGraphControl1.Refresh();
-        }
-
-
         #endregion CHART_CLICK_EVENTSS
-        
-    #region FUNGSI AMBIL DATA CURSOR
+ /*--------------------------------------------------------------------------------------------------- FUNGSI HITUNG UTAMA-*/
+
+     #region FUNGSI AMBIL DATA CURSOR, HITUNGAN ANALISIS
 
         //variabel hitung-hitungan
         double tZero, tA, tB, tE, tF;           // titik2 dalam skema ASTM (A, B, C...)dalam detik, untuk dapet data-urut, perlu dikali 10
         double tign, tburnEff, taction;
 
         List<string[]> dataus = new List<string[]>();
-
         int idxColKgf, idxColBar, idxColIgn;
-        double impuls_tot, impuls_sp, w_prop;           //w_prop dalam gram input
-
+        double impuls_tot, impuls_sp, w_prop;           //w_prop dalam input gram 
+        double f_max, f_ave, p_max, p_ave;
+        double sample_fine_tot;             //sampel data setelah direfine/split => action time
         private void hitung_analisis_astm()
         {
-            double[] data_f, data_p, data_v;
-            double[] data_f_fine_eff, data_p_fine_eff;                  //burning effective
-            double[] data_f_fine_tot, data_p_fine_tot, data_v_fine_tot; //burning total/action
+            double[] data_f, data_p, data_v;    //untuk store data raw (belum di split)
+            double[] data_f_fine_eff, data_p_fine_eff;                  //untuk store burning effective after split
+            double[] data_f_fine_tot, data_p_fine_tot, data_v_fine_tot; //utk store burning total/action after split
 
-            double f_max, f_ave, p_max, p_ave;
 
-            int refineSkip, refineTake;             //refining data untuk effective burning
-            int refineSkip_tot, refineTake_tot;     //refining data untuk total burning
+            int refineSkip_eff, refineTake_eff;             //refining data untuk effective burning
+            int refineSkip_tot, refineTake_tot;     //refining data untuk total burning action
             
             try
             {
@@ -794,8 +973,9 @@ namespace DACQViewer
                 p_max = p_max / 10000;
 
                 //ACTION AREA ~ total burning
-                refineSkip_tot = Convert.ToInt32(tA * sampleRate);
+                refineSkip_tot = Convert.ToInt32(tA * sampleRate);              //dikali sampleRate untuk mencari posisi "data urutan"
                 refineTake_tot = Convert.ToInt32(taction * sampleRate);
+                sample_fine_tot = refineTake_tot;       // ambil sebagai sampel total (split before & after time action)
 
                 data_f_fine_tot = data_f.Skip(refineSkip_tot).Take(refineTake_tot).ToArray();
                 data_p_fine_tot = data_p.Skip(refineSkip_tot).Take(refineTake_tot).ToArray();
@@ -804,11 +984,11 @@ namespace DACQViewer
 
 
                 //BURNING AREA - effective buning
-                refineSkip = Convert.ToInt32(tB * sampleRate);
-                refineTake = Convert.ToInt32(tburnEff * sampleRate);
+                refineSkip_eff = Convert.ToInt32(tB * sampleRate);              //dikali sampleRate untuk mencari posisi "data urutan"
+                refineTake_eff = Convert.ToInt32(tburnEff * sampleRate);
 
-                data_f_fine_eff = data_f.Skip(refineSkip).Take(refineTake).ToArray();
-                data_p_fine_eff = data_p.Skip(refineSkip).Take(refineTake).ToArray();
+                data_f_fine_eff = data_f.Skip(refineSkip_eff).Take(refineTake_eff).ToArray();
+                data_p_fine_eff = data_p.Skip(refineSkip_eff).Take(refineTake_eff).ToArray();
 
                 //rerata dari BURNING TIME EFFECTIVE !
                 f_ave = data_f_fine_eff.Average();
@@ -842,6 +1022,31 @@ namespace DACQViewer
                 MessageBox.Show("Berat Propelan mohon diisi dulu, bro !", "Input Nilai", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
+        
+        //fungsi box burning area
+        double x1box, x2box;
+        private void create_burning_area()
+        {
+            x1box = tB;
+            BoxObj boxBurning = new BoxObj(x1box, 15000, tburnEff, 15000, Color.Empty, Color.FromArgb(50, Color.Crimson));
+            boxBurning.Location.CoordinateFrame = CoordType.AxisXYScale;
+            boxBurning.Location.AlignV = AlignV.Top;
+            boxBurning.Location.AlignH = AlignH.Left;
+            boxBurning.ZOrder = ZOrder.E_BehindCurves;
+            myChart.GraphObjList.Add(boxBurning);
+
+            TextObj texBurning = new TextObj("Area waktu bakar efektif", (x1box + (tburnEff * 0.1)), 10000);
+            texBurning.Location.CoordinateFrame = CoordType.AxisXYScale;
+            texBurning.Location.AlignH = AlignH.Left;
+            texBurning.Location.AlignV = AlignV.Center;
+            texBurning.FontSpec.IsItalic = true;
+            texBurning.FontSpec.Family = "HP Simplified";
+            texBurning.FontSpec.FontColor = Color.Black;
+            texBurning.FontSpec.Size = 14f;
+            myChart.GraphObjList.Add(texBurning);
+
+            zedGraphControl1.Refresh();
+        }
 
         private void btnHitung_Click(object sender, EventArgs e)
         {
@@ -859,7 +1064,7 @@ namespace DACQViewer
        
     #endregion FUNGSI AMBIL DATA CURSOR
 
-    #region Fungsi Hide/show Panel
+     #region Fungsi Hide/show Panel
         private static bool isOdd(int val)
         {
             return val % 2 != 0;
