@@ -353,7 +353,7 @@ namespace DACQViewer
             usform_template.Save(path_pdf_us_filled);
         }
 
-        string imgPath = "D:/img.jpg";
+        string imgPath = "D:/img.png";
        
 
         /*

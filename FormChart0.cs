@@ -109,7 +109,6 @@ namespace DACQViewer
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.GraphPane.GraphObjList.Clear();
             myChart.CurveList.Clear();
-
             /*Pointpairlist kurva listCHX*/
             double[] xVal = new double[jumDataRow];
             double[] yVal = new double[jumDataRow];
@@ -535,13 +534,18 @@ namespace DACQViewer
         }
 
         /*---------------------------------------------------------------------------------------------------- BUTTON ------*/
+        string imgChartPath = "D:\\img.png";
+        //string imgChartPath = Path.Combine(@"D:\", "imgz.png");
         private void btnSaveAnalysis_Click(object sender, EventArgs e)
         {
             //save dtHasil5 : time sequence
             //save dtHasil1a : dt sensor refined
             //save dtHasil6 : hasil hitungan
             //buat form-us
+            //save chart
+            zedGraphControl1.BorderStyle = BorderStyle.FixedSingle;
 
+            zedGraphControl1.MasterPane.GetImage().Save(imgChartPath,System.Drawing.Imaging.ImageFormat.Png);
             save_csv_tsequence();   
             save_csv_hasil();
 
