@@ -423,22 +423,22 @@ namespace DACQViewer
             //untuk simpan variabel hasil hitungan
             DataTable dtHasil6 = new DataTable();
 
-            //bikin dtt dari hasil hitung
+            //bikin dtt dari hasil hitung (TextBox)
             dtHasil6.Clear();
             dtHasil6.Columns.Add("variabel", typeof(string)).SetOrdinal(0);
             dtHasil6.Columns.Add("value", typeof(string)).SetOrdinal(1);
 
-            dtHasil6.Rows.Add("tign", tign.ToString());
-            dtHasil6.Rows.Add("tburn", tburnEff.ToString());
-            dtHasil6.Rows.Add("taction", taction.ToString());
-            dtHasil6.Rows.Add("itot", impuls_tot.ToString());
-            dtHasil6.Rows.Add("isp", impuls_sp.ToString());
-            dtHasil6.Rows.Add("fmax", f_max.ToString());
-            dtHasil6.Rows.Add("fave", f_ave.ToString());
-            dtHasil6.Rows.Add("pmax", p_max.ToString());
-            dtHasil6.Rows.Add("pave", p_ave.ToString());
-            dtHasil6.Rows.Add("sample", sample_fine_tot.ToString());
-            dtHasil6.Rows.Add("sprate", sampleRate.ToString());
+            dtHasil6.Rows.Add("tign", textBox8.Text);
+            dtHasil6.Rows.Add("tburn", textBox2.Text);
+            dtHasil6.Rows.Add("taction", textBox3.Text);
+            dtHasil6.Rows.Add("itot", textBox4.Text);
+            dtHasil6.Rows.Add("isp", textBox5.Text);
+            dtHasil6.Rows.Add("fmax", textBox6.Text);
+            dtHasil6.Rows.Add("fave", textBox7.Text);
+            dtHasil6.Rows.Add("pmax", textBox1.Text);
+            dtHasil6.Rows.Add("pave", textBox10.Text);
+            dtHasil6.Rows.Add("sample", textBox11.Text);
+            dtHasil6.Rows.Add("sprate", textBox13.Text);
 
             //bikin csv dari dtt
             make_csv_fr_dtt(dtHasil6, 1);   //data hasil analisis
