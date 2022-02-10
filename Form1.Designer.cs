@@ -426,7 +426,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.SlateGray;
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label9);
