@@ -71,7 +71,7 @@ namespace DACQViewer
         Label[] dataLabel;  // array label text checklist data
         TextBox[] pdfStatus;    // array textbox status warna loaded pdf
 
-        string[] pdfPathDataMotorRoket=new string[9];   // array file pdf & path
+        string[] pdfPathDataMotorRoket=new string[8];   // array file pdf & path    atau 9?
 
         #region LOAD_PDF
         private void button1_Click(object sender, EventArgs e)
@@ -118,6 +118,7 @@ namespace DACQViewer
         {
             browse_pdf_data_srm(8);
         }
+        
         #endregion LOAD_PDF
 
 
@@ -325,5 +326,7 @@ namespace DACQViewer
                 button20.BackgroundImage = Properties.Resources.rightBtn;
             }
         }
+
+        
     }
 }

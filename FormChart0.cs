@@ -103,25 +103,29 @@ namespace DACQViewer
         GraphPane myChart = new GraphPane();    //objek zedgraph
         LineItem kurvaCHX;
 
+        int pembagi = 10000;
+
         private void plot_grafik()
         {
             /*clearing area grafik dulu*/
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.GraphPane.GraphObjList.Clear();
             myChart.CurveList.Clear();
+
             /*Pointpairlist kurva listCHX*/
             double[] xVal = new double[jumDataRow];
             double[] yVal = new double[jumDataRow];
 
-            int pembagi = 10000*(int)numf.Value;
-            int pembagiVolt = 10000*(int)numv.Value;
+            int pembagiVolt = (int)numv.Value;
 
             /*isi kurva (a) tiap Channel (a)  ===> tiap Kurva*/
             for (int a = 0; a < jumChannel; a++)
             {
-                double maxVoltScale=0;
+                bool isVolt = false;
+                bool isBar = false;
+                bool isKgf = false;
+                bool isCel = false;
 
-                bool isVolt = false; bool isBar = false; bool isKgf = false;
                 float b = 0;
 
                 //cek Unit satuan di LOOP INI (a) >> tentukan pembagi Value, dll perlakuan tiap channel
@@ -138,7 +142,12 @@ namespace DACQViewer
                 if (String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "volt" || String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "V")
                 {
                     isVolt = true;
-                    pembagi = pembagiVolt;          //pengecualian untuk Volt, pembagi pakai 1000000
+                    pembagi = pembagiVolt;
+                }
+
+                if (String.Format(unitChannelArr[a + 1], StringComparison.InvariantCultureIgnoreCase) == "C")
+                {
+                    isCel = true;
                 }
 
 
@@ -162,6 +171,11 @@ namespace DACQViewer
 
 
                 //penentuan letak kurva dengan Y-Axis : Y2Axis, Yaxis1, YAxis2
+                if (isKgf)
+                {
+                    idxColKgf = a;          //posisi index kolom kgf (F Thrust)
+                }
+
                 if (isVolt)
                 {
                     /*
@@ -182,11 +196,13 @@ namespace DACQViewer
                     idxColBar = a;
                 }
 
-                if (isKgf)
+                if(isCel)
                 {
-                    idxColKgf = a;          //posisi index kolom kgf (F Thrust)
+                    kurvaCHX.YAxisIndex = 2;    //YAxis1
+                    myChart.YAxisList[2].IsVisible = true;
+                    idxColCel = a;  // ada berapa dulu channel suhu nya? 4 channel? terus piye?
                 }
-
+              
                 myChart.CurveList.Add(kurvaCHX);
                 
                 zedGraphControl1.AxisChange();
@@ -194,6 +210,7 @@ namespace DACQViewer
                 zedGraphControl1.Refresh();
             }
         }
+
         private void inisialisasi_grafik()
         {
             /*---------------------------------------------------------------------------CHART_SETUP-------*/
@@ -281,12 +298,33 @@ namespace DACQViewer
             myChart.YAxisList[1].Scale.Align = AlignP.Inside;
             myChart.YAxisList[1].Cross = 0.0;
 
+            //setup Y-Axis 2
+            YAxis YAxis1 = new YAxis("Celsius");
+            myChart.YAxisList.Add(YAxis1);
+
+            myChart.YAxisList[2].Title.Text = "Suhu (Celsius)";
+            myChart.YAxisList[2].Title.FontSpec = new FontSpec("HP Simplified", 15, Color.Black, true, false, false);
+            myChart.YAxisList[2].Title.FontSpec.Border = new Border(false, Color.Black, 0);
+            myChart.YAxisList[2].Title.FontSpec.Angle = 180;
+
+            myChart.YAxisList[2].Scale.Max = 1000;       //cel max scale view
+            myChart.YAxisList[2].Scale.Min = 0;
+            myChart.YAxisList[2].MajorGrid.IsVisible = false;
+            myChart.YAxisList[1].MinorGrid.IsVisible = false;
+
+            myChart.YAxisList[2].MajorTic.IsOpposite = false;  //biar Tic tidak muncul di semua YAxis-Y2
+            myChart.YAxisList[2].MinorTic.IsOpposite = false;
+            myChart.YAxisList[2].MajorTic.IsInside = false;
+            myChart.YAxisList[2].MinorTic.IsInside = false;
+            myChart.YAxisList[2].Scale.Align = AlignP.Inside;
+            myChart.YAxisList[2].Cross = 0.0;
+
             /*---------------------------------------------------------------------------ZGC_CONTROL_SETUP-------*/
             // setup draw plotter
             zedGraphControl1.IsShowPointValues = true;
             zedGraphControl1.IsShowHScrollBar = true;
             zedGraphControl1.IsShowVScrollBar = true;
-            zedGraphControl1.IsAutoScrollRange = true;
+            //zedGraphControl1.IsAutoScrollRange = true;
 
             zedGraphControl1.AxisChange();
         }
@@ -787,6 +825,7 @@ namespace DACQViewer
                         panelSQ.Visible = false;
 
                         btnCurStart_Click(sender, e);
+                        btnHitung_Click(sender, e);
 
                     }
 
@@ -906,6 +945,8 @@ namespace DACQViewer
         int idxBtnCursorStart=0;
         private void btnCurStart_Click(object sender, EventArgs e)
         {
+            btAstm_Click(sender, e);    //bukak astm first
+
             idxBtnCursorStart++;
             if (isOdd(idxBtnCursorStart))
             {
@@ -947,7 +988,7 @@ namespace DACQViewer
         double tign, tburnEff, taction;
 
         List<string[]> dataus = new List<string[]>();
-        int idxColKgf, idxColBar, idxColIgn;
+        int idxColKgf, idxColBar, idxColIgn, idxColCel;
         double impuls_tot, impuls_sp, w_prop;           //w_prop dalam input gram 
         double f_max, f_ave, p_max, p_ave;
         double sample_fine_tot;             //sampel data setelah direfine/split => action time
@@ -972,9 +1013,9 @@ namespace DACQViewer
             
                 //cari parameter
                 f_max = data_f.Max();
-                f_max = f_max / 10000;
+                f_max = f_max / (int)numf.Value;
                 p_max = data_p.Max();
-                p_max = p_max / 10000;
+                p_max = p_max / (int)nump.Value;
 
                 //ACTION AREA ~ total burning
                 refineSkip_tot = Convert.ToInt32(tA * sampleRate);              //dikali sampleRate untuk mencari posisi "data urutan"
@@ -1057,7 +1098,7 @@ namespace DACQViewer
             try
             {
                 hitung_analisis_astm();
-                create_burning_area();      //BoxObj
+                //create_burning_area();      //BoxObj
             }
             catch(Exception err)
             {

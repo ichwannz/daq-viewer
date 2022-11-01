@@ -193,19 +193,9 @@ namespace DACQViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] usform {
+        internal static byte[] usformv4 {
             get {
-                object obj = ResourceManager.GetObject("usform", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] usformv3 {
-            get {
-                object obj = ResourceManager.GetObject("usformv3", resourceCulture);
+                object obj = ResourceManager.GetObject("usformv4", resourceCulture);
                 return ((byte[])(obj));
             }
         }

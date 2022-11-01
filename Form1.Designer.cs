@@ -72,6 +72,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -409,10 +410,11 @@
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(942, 0);
+            this.panel4.Location = new System.Drawing.Point(948, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(16, 100);
+            this.panel4.Size = new System.Drawing.Size(10, 100);
             this.panel4.TabIndex = 98;
             // 
             // panFooterLeft
@@ -438,7 +440,7 @@
             this.groupBox1.Size = new System.Drawing.Size(958, 100);
             this.groupBox1.TabIndex = 97;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Uji Statis Motor Roket Padat";
+            this.groupBox1.Text = "Data Uji Statis Motor Roket Padat";
             // 
             // label11
             // 
@@ -494,6 +496,7 @@
             this.panMainView.Controls.Add(this.label12);
             this.panMainView.Controls.Add(this.label10);
             this.panMainView.Controls.Add(this.label6);
+            this.panMainView.Controls.Add(this.label19);
             this.panMainView.Controls.Add(this.label7);
             this.panMainView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panMainView.Location = new System.Drawing.Point(306, 70);
@@ -521,7 +524,7 @@
             this.cbDEBUG_MODE.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbDEBUG_MODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbDEBUG_MODE.ForeColor = System.Drawing.Color.Red;
-            this.cbDEBUG_MODE.Location = new System.Drawing.Point(376, 277);
+            this.cbDEBUG_MODE.Location = new System.Drawing.Point(570, 370);
             this.cbDEBUG_MODE.Name = "cbDEBUG_MODE";
             this.cbDEBUG_MODE.Size = new System.Drawing.Size(193, 29);
             this.cbDEBUG_MODE.TabIndex = 96;
@@ -666,11 +669,23 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("HP Simplified", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FloralWhite;
-            this.label6.Location = new System.Drawing.Point(152, 26);
+            this.label6.Location = new System.Drawing.Point(214, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(736, 52);
+            this.label6.Size = new System.Drawing.Size(673, 52);
             this.label6.TabIndex = 92;
-            this.label6.Text = "DATA ACQUISITION VIEWER UJI STATIS";
+            this.label6.Text = "ANALISIS DATA AKUISISI UJI STATIS";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.OldLace;
+            this.label19.Location = new System.Drawing.Point(740, 133);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(63, 17);
+            this.label19.TabIndex = 92;
+            this.label19.Text = "2022-OCT";
             // 
             // label7
             // 
@@ -931,6 +946,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label19;
     }
 }
 

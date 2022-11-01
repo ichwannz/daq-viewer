@@ -81,9 +81,10 @@
             this.numf = new System.Windows.Forms.NumericUpDown();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.btnHitung = new System.Windows.Forms.Button();
             this.tbWpropelan = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.btnCurStart = new System.Windows.Forms.Button();
             this.lblSQ4 = new System.Windows.Forms.Label();
             this.lblSQ1 = new System.Windows.Forms.Label();
@@ -94,6 +95,7 @@
             this.lblSQ5 = new System.Windows.Forms.Label();
             this.panelSQ = new System.Windows.Forms.Panel();
             this.btnAstm = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -107,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nump)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numf)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSaveAnalysis
@@ -129,11 +132,15 @@
             this.zedGraphControl1.AutoScroll = true;
             this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zedGraphControl1.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zedGraphControl1.IsEnableVPan = false;
             this.zedGraphControl1.IsEnableVZoom = false;
+            this.zedGraphControl1.IsShowContextMenu = false;
+            this.zedGraphControl1.IsShowCopyMessage = false;
             this.zedGraphControl1.IsShowHScrollBar = true;
             this.zedGraphControl1.IsShowVScrollBar = true;
             this.zedGraphControl1.Location = new System.Drawing.Point(3, 26);
             this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.PanModifierKeys = System.Windows.Forms.Keys.None;
             this.zedGraphControl1.ScrollGrace = 0D;
             this.zedGraphControl1.ScrollMaxX = 0D;
             this.zedGraphControl1.ScrollMaxY = 0D;
@@ -145,6 +152,7 @@
             this.zedGraphControl1.TabIndex = 4;
             this.zedGraphControl1.UseExtendedPrintDialog = true;
             this.zedGraphControl1.ZoomButtons = System.Windows.Forms.MouseButtons.None;
+            this.zedGraphControl1.ZoomStepFraction = 0.05D;
             this.zedGraphControl1.PointValueEvent += new ZedGraph.ZedGraphControl.PointValueHandler(this.zedGraphControl1_PointValueEvent);
             this.zedGraphControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.zedGraphControl1_MouseClick);
             this.zedGraphControl1.MouseLeave += new System.EventHandler(this.zedGraphControl1_MouseLeave);
@@ -267,6 +275,7 @@
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(69, 18);
             this.textBox8.TabIndex = 10;
+            this.textBox8.Text = "-  ";
             this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label21
@@ -291,6 +300,7 @@
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(69, 18);
             this.textBox13.TabIndex = 10;
+            this.textBox13.Text = "-  ";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox11
@@ -305,6 +315,7 @@
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(69, 18);
             this.textBox11.TabIndex = 10;
+            this.textBox11.Text = "-  ";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox10
@@ -319,6 +330,7 @@
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(69, 18);
             this.textBox10.TabIndex = 10;
+            this.textBox10.Text = "-  ";
             this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox7
@@ -333,6 +345,7 @@
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(69, 18);
             this.textBox7.TabIndex = 10;
+            this.textBox7.Text = "-  ";
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
@@ -357,6 +370,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(69, 18);
             this.textBox1.TabIndex = 10;
+            this.textBox1.Text = "-  ";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox6
@@ -371,6 +385,7 @@
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(69, 18);
             this.textBox6.TabIndex = 10;
+            this.textBox6.Text = "-  ";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
@@ -395,6 +410,7 @@
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(69, 18);
             this.textBox5.TabIndex = 10;
+            this.textBox5.Text = "-  ";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label15
@@ -419,6 +435,7 @@
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(69, 18);
             this.textBox4.TabIndex = 10;
+            this.textBox4.Text = "-  ";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label16
@@ -443,6 +460,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(69, 18);
             this.textBox3.TabIndex = 10;
+            this.textBox3.Text = "-  ";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label17
@@ -467,6 +485,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(69, 18);
             this.textBox2.TabIndex = 10;
+            this.textBox2.Text = "-  ";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
@@ -658,6 +677,7 @@
             this.panel4.Controls.Add(this.label23);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.numv);
+            this.panel4.Controls.Add(this.label27);
             this.panel4.Controls.Add(this.nump);
             this.panel4.Controls.Add(this.numf);
             this.panel4.Controls.Add(this.button9);
@@ -674,7 +694,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(692, 121);
+            this.label25.Location = new System.Drawing.Point(692, 141);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(31, 19);
             this.label25.TabIndex = 9;
@@ -684,7 +704,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(692, 73);
+            this.label23.Location = new System.Drawing.Point(692, 93);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(16, 19);
             this.label23.TabIndex = 9;
@@ -694,7 +714,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(692, 97);
+            this.label1.Location = new System.Drawing.Point(692, 117);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 19);
             this.label1.TabIndex = 9;
@@ -702,9 +722,14 @@
             // 
             // numv
             // 
-            this.numv.Location = new System.Drawing.Point(726, 120);
+            this.numv.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numv.Location = new System.Drawing.Point(726, 140);
             this.numv.Maximum = new decimal(new int[] {
-            1000,
+            1000000,
             0,
             0,
             0});
@@ -712,31 +737,51 @@
             this.numv.Size = new System.Drawing.Size(63, 20);
             this.numv.TabIndex = 15;
             this.numv.Value = new decimal(new int[] {
-            1,
+            1000000,
             0,
             0,
             0});
             // 
             // nump
             // 
-            this.nump.Location = new System.Drawing.Point(726, 96);
+            this.nump.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nump.Location = new System.Drawing.Point(726, 116);
+            this.nump.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.nump.Name = "nump";
             this.nump.Size = new System.Drawing.Size(63, 20);
             this.nump.TabIndex = 15;
             this.nump.Value = new decimal(new int[] {
-            1,
+            10000,
             0,
             0,
             0});
             // 
             // numf
             // 
-            this.numf.Location = new System.Drawing.Point(726, 72);
+            this.numf.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numf.Location = new System.Drawing.Point(726, 92);
+            this.numf.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numf.Name = "numf";
             this.numf.Size = new System.Drawing.Size(63, 20);
             this.numf.TabIndex = 15;
             this.numf.Value = new decimal(new int[] {
-            1,
+            10000,
             0,
             0,
             0});
@@ -757,9 +802,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Controls.Add(this.btnHitung);
+            this.groupBox3.Controls.Add(this.panel5);
             this.groupBox3.Controls.Add(this.tbWpropelan);
-            this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.btnCurStart);
             this.groupBox3.Controls.Add(this.lblSQ4);
             this.groupBox3.Controls.Add(this.lblSQ1);
@@ -777,10 +821,31 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Langkah urutan analisis data";
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel5.Controls.Add(this.button3);
+            this.panel5.Controls.Add(this.btnHitung);
+            this.panel5.Location = new System.Drawing.Point(12, 165);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(33, 29);
+            this.panel5.TabIndex = 15;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(-48, 45);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(109, 45);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "RE-PLOT";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // btnHitung
             // 
             this.btnHitung.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHitung.Location = new System.Drawing.Point(12, 142);
+            this.btnHitung.Location = new System.Drawing.Point(-18, 90);
             this.btnHitung.Name = "btnHitung";
             this.btnHitung.Size = new System.Drawing.Size(109, 44);
             this.btnHitung.TabIndex = 14;
@@ -798,21 +863,10 @@
             this.tbWpropelan.TabIndex = 11;
             this.tbWpropelan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(12, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 45);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "RE-PLOT";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // btnCurStart
             // 
             this.btnCurStart.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCurStart.Location = new System.Drawing.Point(12, 92);
+            this.btnCurStart.Location = new System.Drawing.Point(12, 35);
             this.btnCurStart.Name = "btnCurStart";
             this.btnCurStart.Size = new System.Drawing.Size(109, 44);
             this.btnCurStart.TabIndex = 14;
@@ -910,6 +964,16 @@
             this.btnAstm.UseVisualStyleBackColor = true;
             this.btnAstm.Click += new System.EventHandler(this.btAstm_Click);
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(677, 73);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(94, 18);
+            this.label27.TabIndex = 9;
+            this.label27.Text = "Pengali Y-Axis";
+            // 
             // FormChart0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -936,6 +1000,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numf)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1006,5 +1071,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label27;
     }
 }

@@ -29,11 +29,12 @@ namespace DACQViewer
             string execLoc = Path.GetDirectoryName(loc);                            // ambil path saja tanpa file.exe
             
             //ambil path usform_template (form kosongan)
-            path_us_form_kosong = String.Concat(execLoc, "\\Resources\\usformv3.daqp");        //file usform.daqp sudah diinclude di Resources (properties: Copy Always)
+            path_us_form_kosong = String.Concat(execLoc, "\\Resources\\usformv4.daqp");        //file usform.daqp sudah diinclude di Resources (properties: Copy Always)
             //tampilkan form kosongan
             open_default_form_us();
         }
 
+        
         private void cek()
         {
             string kodeOri="123456789";
@@ -58,7 +59,7 @@ namespace DACQViewer
             return strOk;
         }
 
-        string path_us_form_kosong;
+        string path_us_form_kosong = string.Empty;
 
         //baca csv database
         string[] csv_path = new string[]
@@ -72,16 +73,14 @@ namespace DACQViewer
             "D:/temp6.daqc",    //hasil hitung
             "D:/temp7.daqp",            //pdf form data us yg terisi
         };
-
-        string pdf_path = "D:/temp8.daqp";  //pdf hasil merged USFORM & CHECKLIST
-
+        
         DataTable[] dt = new DataTable[6]; 
         /*
          * {
             dt[0]   => temp0
             dt[1]   => temp1
             dt[2]   => temp2
-            dt[3]   => temp3
+            dt[3]   => temp3            //temp4 dan temp7 itu file pdf
             dt[4]   => temp5
             dt[5]   => temp6
         }
@@ -165,6 +164,16 @@ namespace DACQViewer
             "text_pmax",
             "text_pave"
         };
+        string[] nameFld_info = new string[7]
+        {
+            "img_grafik",   //ImageField tipenya
+            "para_catatan", //text multi line field
+            "text_tanggal_signed",  //text field
+            "sign_ce",  //SignField
+            "sign_us",  //SignField
+            "text_name_ce", //TextField
+            "text_name_us"  //TextField
+        };
 
         //value
         string[] valueFld_header=new string[3];
@@ -174,6 +183,7 @@ namespace DACQViewer
         string[] valueFld_operasi=new string[6];
         string[] valueFld_hasil=new string[8];
 
+        string usNoteStr=string.Empty;
         //string path_pdf_us_filled = "D:/temp7.daqp";// untuk setor file pdf Form Data US yg sudah terisi
 
         private void isi_str()
@@ -198,13 +208,19 @@ namespace DACQViewer
             //daq
             valueFld_daq[0] = dtx[0].Rows[0][1].ToString();         //scope
             valueFld_daq[1] = dtx[2].Rows[0][4].ToString();         //loadcell
-            valueFld_daq[2] = dtx[2].Rows[1][4].ToString();         //pressure
+            if (dtx[2].Rows.Count > 1)
+                valueFld_daq[2] = dtx[2].Rows[1][4].ToString();         //pressure
+            else
+                valueFld_daq[2] = "N/A";
             valueFld_daq[3] = "N/A";         //suhu
             valueFld_daq[4] = "N/A";         //strain
 
             valueFld_daq[5] = "N/A";
             valueFld_daq[6] = dtx[2].Rows[0][5].ToString();
-            valueFld_daq[7] = dtx[2].Rows[1][5].ToString();
+            if (dtx[2].Rows.Count > 1)
+                valueFld_daq[7] = dtx[2].Rows[1][5].ToString();
+            else
+                valueFld_daq[7] = "N/A";
             valueFld_daq[8] = "N/A";
             valueFld_daq[9] = "N/A";
 
@@ -257,7 +273,7 @@ namespace DACQViewer
 
             //binding ke string
             isi_str();
-
+            usNoteStr = File.ReadAllText("D:/uslog.daqt");
             //binding ke form
             baca_hh(form, nameFld_header, valueFld_header);
             baca_hh(form, nameFld_daq, valueFld_daq);
@@ -266,19 +282,33 @@ namespace DACQViewer
             baca_hh(form, nameFld_operasi, valueFld_operasi);
             baca_hh(form, nameFld_hasil, valueFld_hasil);
             
-
-            //skip signFIeld
-            PdfSignatureField signImg = (PdfSignatureField)(form.Fields["para_grafik"]);
-            PdfString signImgStr = new PdfString("Grafik Data Uji Statik");
-            signImg.Value = signImgStr;
-            signImg.ReadOnly = true;
-
+            
             //addimage
             draw_img(pageGrafik, int.Parse(textBox1.Text), int.Parse(textBox2.Text), int.Parse(textBox3.Text), int.Parse(textBox4.Text));
 
+            //add tanggal approval
+            string dateNow = DateTime.Today.ToString(" dd MMMM yyyy");
+
+            PdfTextField dateSigned = (PdfTextField)form.Fields[nameFld_info[2]]; //tanggal
+            PdfString dateSignedStr = new PdfString(dateNow);
+            dateSigned.Value = dateSignedStr;
+            dateSigned.ReadOnly = true;
+
+
+            //add nama approver
+            PdfTextField namaCE = (PdfTextField)form.Fields[nameFld_info[5]]; //ce nama
+            PdfString namaStr1 = new PdfString("Arif Nur Hakim");
+            namaCE.Value = namaStr1;
+            namaCE.ReadOnly = true;
+
+            PdfTextField namaUS = (PdfTextField)form.Fields[nameFld_info[6]]; //us nama
+            PdfString namaStr2 = new PdfString("Bagus Wicaksono");
+            namaUS.Value = namaStr2;
+            namaUS.ReadOnly = true;
+
             //add catatan
-            PdfTextField notePengujian = (PdfTextField)form.Fields["para_catatan"];
-            PdfString noteStr = new PdfString("N/A");
+            PdfTextField notePengujian = (PdfTextField)form.Fields[nameFld_info[1]];
+            PdfString noteStr = new PdfString(usNoteStr);
             notePengujian.Value = noteStr;
             notePengujian.ReadOnly = true;
 
@@ -304,6 +334,8 @@ namespace DACQViewer
                 security_form.UserPassword = textBox5.Text;
                 security_form.OwnerPassword = textBox5.Text;
             }
+
+
 
             // Don't use 40 bit encryption unless needed for compatibility
             //securitySettings.DocumentSecurityLevel = PdfDocumentSecurityLevel.Encrypted40Bit;
@@ -424,44 +456,10 @@ namespace DACQViewer
 
         string imgPath = "D:/img.png";
        
-
-        /*
-        public void BeginBox(XGraphics gfx, int number, string title)
-        {
-            const int dEllipse = 15;
-            XRect rect = new XRect(0, 20, 300, 200);
-            if (number % 2 == 0)
-                rect.X = 300 - 5;
-            rect.Y = 40 + ((number - 1) / 2) * (200 - 5);
-            rect.Inflate(-10, -10);
-            XRect rect2 = rect;
-            rect2.Offset(this.borderWidth, this.borderWidth);
-            gfx.DrawRoundedRectangle(new XSolidBrush(this.shadowColor), rect2, new XSize(dEllipse + 8, dEllipse + 8));
-            XLinearGradientBrush brush = new XLinearGradientBrush(rect, this.backColor, this.backColor2, XLinearGradientMode.Vertical);
-            gfx.DrawRoundedRectangle(this.borderPen, brush, rect, new XSize(dEllipse, dEllipse));
-            rect.Inflate(-5, -5);
-
-            XFont font = new XFont("Verdana", 12, XFontStyle.Regular);
-            gfx.DrawString(title, font, XBrushes.Navy, rect, XStringFormats.TopCenter);
-
-            rect.Inflate(-10, -5);
-            rect.Y += 20;
-            rect.Height -= 20;
-
-            this.state = gfx.Save();
-            gfx.TranslateTransform(rect.X, rect.Y);
-        }
-        
-        public void EndBox(XGraphics gfx)
-        {
-            gfx.Restore(this.state);
-        }
-        */
-
-
         //preview form data us
         private void view_usform_pdf()
         {
+
             try
             {
                 axAcroPDF1.LoadFile(csv_path[7]);
@@ -474,7 +472,6 @@ namespace DACQViewer
         
 
         //tombol tombol
-
         private void save_pdf_dialog()
         {
             Stream myStream;
@@ -495,39 +492,71 @@ namespace DACQViewer
                 MessageBox.Show("File " + filename + " sudah berhasil disimpan !", "Saving", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            //save_pdf_dialog();
-            //update file pdf csv_path[7] dari adobe??
-        }
 
-        private void btnMakeZip_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnIsiForm_Click(object sender, EventArgs e)
         {
             //isi_form_us();
             isi_form_data_us();
             view_usform_pdf();
+
+
+            MessageBox.Show("Form Analisis Data US sudah berhasil diperbarui & disimpan !");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        /*--------------------------------------------------------------------------------------- Temporary File ----*/
+        private String create_temp_path()
         {
+            string tempPath = string.Empty;
+
             try
             {
-                if (File.Exists(csv_path[4]))
-                    axAcroPDF2.LoadFile(csv_path[4]);   //checklist pdf
-                else
-                    MessageBox.Show("Data Checklist (file pdf) tidak ditemukan, bro!");
+                tempPath = Path.GetTempFileName();
 
+                FileInfo pathInfo = new FileInfo(tempPath);
+                pathInfo.Attributes = FileAttributes.Temporary;
             }
             catch (Exception err)
             {
-                MessageBox.Show("Data Checklist (file pdf) tidak dapat dibuka, bro!");
+                MessageBox.Show("Gagal membuat temp directory, bro ! " + Environment.NewLine + err.Message);
             }
 
+            return tempPath;
+        }
+
+            string[] daqFile = new string[10];
+        private void create_tmp_list()
+        {
+
+            for (int a = 0; a < daqFile.Count(); a++)
+            {
+                daqFile[a] = create_temp_path();
+            }
+
+            foreach (string a in daqFile)
+            {
+                richTextBox1.AppendText(a);
+                richTextBox1.AppendText("\n");
+            }
+        }
+
+        private void delete_tmp_file()
+        {
+            foreach(string s in daqFile)
+            {
+                if(s!=null)
+                    File.Delete(s);
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            create_tmp_list();
+        }
+
+        private void FormReport_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            delete_tmp_file();
         }
     }
 }

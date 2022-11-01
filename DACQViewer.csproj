@@ -111,6 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="connector_forms.cs" />
+    <Compile Include="hintTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="_form_admin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +242,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\usformv3.daqp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\usformv4.daqp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

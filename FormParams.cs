@@ -174,9 +174,15 @@ namespace DACQViewer
         }
 
         #endregion
-        
-        
-     #region FUNGSI SAVE PARAMETER
+
+
+        #region FUNGSI SAVE PARAMETER
+
+        string logPath = "D:/uslog.daqt";
+        private void make_txt_test_log()
+        {
+            File.WriteAllLines(logPath, rtbTestLog.Lines);
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -184,6 +190,7 @@ namespace DACQViewer
             //create csv file
             make_csv_from_dgv();    // untuk dtHasil1 & dtHasil2
             make_dtt_from_tb();     // untuk dtHasil0 & dtHasil3
+            make_txt_test_log();
 
             MessageBox.Show("Sudah berhasil disimpan !");
 

@@ -86,6 +86,11 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rtbTestLog = new System.Windows.Forms.RichTextBox();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -104,6 +109,9 @@
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -129,7 +137,7 @@
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(365, 309);
+            this.dataGridView1.Size = new System.Drawing.Size(365, 387);
             this.dataGridView1.TabIndex = 1;
             // 
             // groupBox2
@@ -140,7 +148,7 @@
             this.groupBox2.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(682, 359);
+            this.groupBox2.Size = new System.Drawing.Size(682, 437);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Parameter Data Akuisisi (DAQ)";
@@ -152,7 +160,7 @@
             this.panel5.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel5.Location = new System.Drawing.Point(3, 47);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(676, 309);
+            this.panel5.Size = new System.Drawing.Size(676, 387);
             this.panel5.TabIndex = 0;
             // 
             // dataGridView2
@@ -190,7 +198,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView2.RowHeadersWidth = 20;
-            this.dataGridView2.Size = new System.Drawing.Size(676, 309);
+            this.dataGridView2.Size = new System.Drawing.Size(676, 387);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.dataGridView2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
@@ -276,7 +284,7 @@
             this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSave.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(9, 3);
+            this.btnSave.Location = new System.Drawing.Point(9, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 45);
             this.btnSave.TabIndex = 1;
@@ -452,7 +460,7 @@
             this.groupBox1.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(371, 359);
+            this.groupBox1.Size = new System.Drawing.Size(371, 437);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tabel Data Pengukuran (raw)";
@@ -464,7 +472,7 @@
             this.panel9.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel9.Location = new System.Drawing.Point(3, 47);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(365, 309);
+            this.panel9.Size = new System.Drawing.Size(365, 387);
             this.panel9.TabIndex = 3;
             // 
             // panel8
@@ -525,7 +533,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 113);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(371, 359);
+            this.panel4.Size = new System.Drawing.Size(371, 437);
             this.panel4.TabIndex = 12;
             // 
             // panel1
@@ -536,16 +544,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(371, 113);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(682, 359);
+            this.panel1.Size = new System.Drawing.Size(682, 437);
             this.panel1.TabIndex = 13;
             // 
             // panel11
             // 
             this.panel11.Controls.Add(this.groupBox5);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 144);
+            this.panel11.Location = new System.Drawing.Point(0, 91);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(682, 165);
+            this.panel11.Size = new System.Drawing.Size(682, 121);
             this.panel11.TabIndex = 11;
             // 
             // groupBox5
@@ -556,7 +564,7 @@
             this.groupBox5.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(682, 165);
+            this.groupBox5.Size = new System.Drawing.Size(682, 121);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Input Parameter Penyalaan (Firing Ignition)";
@@ -580,14 +588,14 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(3, 47);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(676, 115);
+            this.panel7.Size = new System.Drawing.Size(676, 71);
             this.panel7.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(33, 66);
+            this.label4.Location = new System.Drawing.Point(429, 14);
             this.label4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 16);
@@ -609,7 +617,7 @@
             // 
             this.textBox7.BackColor = System.Drawing.SystemColors.Info;
             this.textBox7.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(164, 89);
+            this.textBox7.Location = new System.Drawing.Point(560, 37);
             this.textBox7.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(53, 23);
@@ -631,7 +639,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(33, 91);
+            this.label11.Location = new System.Drawing.Point(429, 39);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(112, 16);
@@ -653,11 +661,12 @@
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.Info;
             this.textBox4.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(164, 12);
+            this.textBox4.Location = new System.Drawing.Point(296, 11);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(53, 23);
             this.textBox4.TabIndex = 5;
+            this.textBox4.Text = " ~ ";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
@@ -686,7 +695,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(223, 66);
+            this.label9.Location = new System.Drawing.Point(619, 14);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(34, 16);
@@ -708,7 +717,7 @@
             // 
             this.textBox8.BackColor = System.Drawing.SystemColors.Info;
             this.textBox8.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(296, 12);
+            this.textBox8.Location = new System.Drawing.Point(164, 11);
             this.textBox8.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(53, 23);
@@ -719,7 +728,7 @@
             // 
             this.textBox6.BackColor = System.Drawing.SystemColors.Info;
             this.textBox6.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(164, 63);
+            this.textBox6.Location = new System.Drawing.Point(560, 11);
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(53, 23);
@@ -730,7 +739,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(223, 91);
+            this.label12.Location = new System.Drawing.Point(619, 39);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 16);
@@ -760,18 +769,76 @@
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.button1);
-            this.panel10.Controls.Add(this.btnSave);
+            this.panel10.Controls.Add(this.groupBox4);
+            this.panel10.Controls.Add(this.panel12);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(0, 309);
+            this.panel10.Location = new System.Drawing.Point(0, 212);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(682, 50);
+            this.panel10.Size = new System.Drawing.Size(682, 225);
             this.panel10.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.rtbTestLog);
+            this.groupBox4.Controls.Add(this.panel13);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold);
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(682, 175);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Catatan Pengujian (Log)";
+            // 
+            // rtbTestLog
+            // 
+            this.rtbTestLog.AcceptsTab = true;
+            this.rtbTestLog.BackColor = System.Drawing.SystemColors.Info;
+            this.rtbTestLog.BulletIndent = 1;
+            this.rtbTestLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbTestLog.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbTestLog.Location = new System.Drawing.Point(3, 48);
+            this.rtbTestLog.MaxLength = 800;
+            this.rtbTestLog.Name = "rtbTestLog";
+            this.rtbTestLog.Size = new System.Drawing.Size(676, 124);
+            this.rtbTestLog.TabIndex = 6;
+            this.rtbTestLog.Text = "";
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.label19);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(3, 22);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(676, 26);
+            this.panel13.TabIndex = 5;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(3, 4);
+            this.label19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(563, 18);
+            this.label19.TabIndex = 4;
+            this.label19.Text = "Silakan dimasukkan catatan visual yang teramati selama proses uji statis (800 kar" +
+    "akter max)";
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.button1);
+            this.panel12.Controls.Add(this.btnSave);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel12.Location = new System.Drawing.Point(0, 175);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(682, 50);
+            this.panel12.TabIndex = 3;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(475, 7);
+            this.button1.Location = new System.Drawing.Point(475, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(201, 41);
             this.button1.TabIndex = 2;
@@ -783,7 +850,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 472);
+            this.ClientSize = new System.Drawing.Size(1053, 550);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -812,6 +879,10 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel10.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.panel12.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -874,5 +945,10 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.RichTextBox rtbTestLog;
+        private System.Windows.Forms.Panel panel13;
     }
 }

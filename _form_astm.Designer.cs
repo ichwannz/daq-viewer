@@ -65,9 +65,9 @@
             this.label1.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(17, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(496, 21);
+            this.label1.Size = new System.Drawing.Size(418, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Metode analisis grafik analisis uji statis motor roket  (ASTM D2508-93) *";
+            this.label1.Text = "Metode analisis uji statis berdasar standar ASTM D2508-93*";
             // 
             // label2
             // 
@@ -113,7 +113,7 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Standard Test Method for Solid Rocket Propellant Specific Impulse Measurements";
             // 
-            // grafikAstm
+            // _form_astm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,12 +124,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "grafikAstm";
+            this.Name = "_form_astm";
             this.Opacity = 0.99D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "grafikAstm";
+            this.Text = "Metode Analisis";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

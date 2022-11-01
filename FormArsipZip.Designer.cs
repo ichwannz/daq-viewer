@@ -100,12 +100,13 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.OrangeRed;
             this.button1.Location = new System.Drawing.Point(30, 375);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 37);
             this.button1.TabIndex = 3;
             this.button1.Text = "Buat Zip";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
